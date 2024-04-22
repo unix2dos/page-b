@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.readwrite.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="第一部分 网络技术概览 📌 大多数网站性能的瓶颈都是延迟，而不是带宽   ⏱ 2024-04-13 15:25:01   📌 traceroute是一个简单的网络诊断工具，可以列出分组经过的路由节点，以及它在IP网络中每一跳的延迟。   ⏱ 2024-04-13 15:25:11    第2章 TCP的构成 📌 TCP负责在不可靠的传输信道之上提供可靠的抽象层，向应用层隐藏了大多数网络通信">
+<meta property="og:type" content="website">
+<meta property="og:title" content="《Web性能权威指南》">
+<meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/Web%E6%80%A7%E8%83%BD%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="第一部分 网络技术概览 📌 大多数网站性能的瓶颈都是延迟，而不是带宽   ⏱ 2024-04-13 15:25:01   📌 traceroute是一个简单的网络诊断工具，可以列出分组经过的路由节点，以及它在IP网络中每一跳的延迟。   ⏱ 2024-04-13 15:25:11    第2章 TCP的构成 📌 TCP负责在不可靠的传输信道之上提供可靠的抽象层，向应用层隐藏了大多数网络通信">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wfqqreader-1252317822.image.myqcloud.com/cover/876/26211876/t7_26211876.jpg">
+<meta property="article:published_time" content="2024-04-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-22T10:06:08.819Z">
+<meta property="article:author" content="levon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wfqqreader-1252317822.image.myqcloud.com/cover/876/26211876/t7_26211876.jpg">
+
+<link rel="canonical" href="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/Web%E6%80%A7%E8%83%BD%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>《Web性能权威指南》 | 趣读写
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">趣读写</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a>
+
+  </li>
+        
+         
+        <li class="menu-item menu-item-output">
+
+    <a href="/categories/1-output/" rel="section"><i class="fas fa-feather fa-fw"></i>Output</a>
+
+  </li>
+        <li class="menu-item menu-item-study">
+
+    <a href="/categories/2-study/" rel="section"><i class="fas fa-school fa-fw"></i>Study</a>
+
+  </li>
+        <li class="menu-item menu-item-book">
+
+    <a href="/categories/3-book/" rel="section"><i class="fas fa-book fa-fw"></i>Book</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="en">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">《Web性能权威指南》
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/booking/">BOOKING</a></li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
+            <li>WEB性能权威指南</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p><img src="https://wfqqreader-1252317822.image.myqcloud.com/cover/876/26211876/t7_26211876.jpg" alt=" Web性能权威指南|200"></p>
+<h2 id="第一部分-网络技术概览"><a href="#第一部分-网络技术概览" class="headerlink" title="第一部分 网络技术概览"></a>第一部分 网络技术概览</h2><ul>
+<li><p>📌 大多数网站性能的瓶颈都是延迟，而不是带宽 </p>
+<ul>
+<li>⏱ 2024-04-13 15:25:01</li>
+</ul>
+</li>
+<li><p>📌 traceroute是一个简单的网络诊断工具，可以列出分组经过的路由节点，以及它在IP网络中每一跳的延迟。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:25:11</li>
+</ul>
+</li>
+</ul>
+<h3 id="第2章-TCP的构成"><a href="#第2章-TCP的构成" class="headerlink" title="第2章 TCP的构成"></a>第2章 TCP的构成</h3><ul>
+<li><p>📌 TCP负责在不可靠的传输信道之上提供可靠的抽象层，向应用层隐藏了大多数网络通信的复杂细节，比如丢包重发、按序发送、拥塞控制及避免、数据完整，等等。采用TCP数据流可以确保发送的所有字节能够完整地被接收到，而且到达客户端的顺序也一样。也就是说，TCP专门为精确传送做了优化，但并未过多顾及时间。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:26:10</li>
+</ul>
+</li>
+<li><p>📌 三次握手带来的延迟使得每创建一个新TCP连接都要付出很大代价。而这也决定了提高TCP应用性能的关键，在于想办法重用连接。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:27:54</li>
+</ul>
+</li>
+<li><p>📌 。为实现流量控制，TCP连接的每一方都要通告（图2-2）自己的接收窗口（rwnd），其中包含能够保存数据的缓冲区空间大小信息。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:29:49</li>
+</ul>
+</li>
+<li><p>📌 无论带宽多大，每个TCP连接都必须经过慢启动阶段。换句话说，我们不可能一上来就完全利用连接的最大带宽！ </p>
+<ul>
+<li>⏱ 2024-04-13 15:30:48</li>
+</ul>
+</li>
+<li><p>📌 要理解为什么，可以想一想，每个TCP分组都会带着一个唯一的序列号被发出，而所有分组必须按顺序传送到接收端（图2-8）。如果中途有一个分组没能到达接收端，那么后续分组必须保存在接收端的TCP缓冲区，等待丢失的分组重发并到达接收端。这一切都发生在TCP层，应用程序对TCP重发和缓冲区中排队的分组一无所知，必须等待分组全部到达才能访问数据。在此之前，应用程序只能在通过套接字读数据时感觉到延迟交付。这种效应称为TCP的队首（HOL，Head of Line）阻塞。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:32:32</li>
+</ul>
+</li>
+<li><p>📌 另外，有些应用程序可能并不需要可靠的交付或者不需要按顺序交付。比如，每个分组都是独立的消息，那么按顺序交付就没有任何必要。而且，如果每个消息都会覆盖之前的消息，那么可靠交付同样也没有必要了。可惜的是，TCP不支持这种情况，所有分组必须按顺序交付。<br>无需按序交付数据或能够处理分组丢失的应用程序，以及对延迟或抖动要求很高的应用程序，最好选择UDP等协议。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:32:55</li>
+</ul>
+</li>
+</ul>
+<h3 id="第3章-UDP的构成"><a href="#第3章-UDP的构成" class="headerlink" title="第3章 UDP的构成"></a>第3章 UDP的构成</h3><ul>
+<li><p>📌 HTTP并未规定要使用TCP，但现实中所有HTTP实现（以及构建于其上的所有服务）都使用TCP。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:35:09</li>
+</ul>
+</li>
+<li><p>📌 WebRTC着眼于在浏览器中通过UDP实现原生的语音和视频实时通信，以及其他形式的P2P（Peer-to-Peer，端到端）通信。正是因为WebRTC的出现，UDP作为浏览器中重要传输机制的地位才得以突显，而且还有了浏览器API！ </p>
+<ul>
+<li>⏱ 2024-04-13 15:35:28</li>
+</ul>
+</li>
+<li><p>📌 建议的IP重用方案就是在网络边缘加入NAT设备，每个NAT设备负责维护一个表，表中包含本地IP和端口到全球唯一（外网）IP和端口的映射（图3-3）。这样，NAT设备背后的IP地址空间就可以在各种不同的网络中得到重用，从而解决地址耗尽问题。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:36:58</li>
+</ul>
+</li>
+<li><p>📌 为解决UDP与NAT的这种不搭配，人们发明了很多穿透技术（TURN、STUN、ICE），用于在UDP主机之间建立端到端的连接。 </p>
+<ul>
+<li>⏱ 2024-04-13 15:40:40</li>
+</ul>
+</li>
+</ul>
+<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/booking/">BOOKING</a></li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
+            <li>WEB性能权威指南</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88"><span class="nav-text">第一部分 网络技术概览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-TCP%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-text">第2章 TCP的构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-UDP%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-text">第3章 UDP的构成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">levon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">324</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备20000727号-4 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">levon</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'GeP0yYVQfmJ224422VTor9HS-gzGzoHsz',
+      appKey     : '6p5kFrCS2NlzNDNAEIy028No',
+      placeholder: "看累了，评论一下吧。",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

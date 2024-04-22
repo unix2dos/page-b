@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"www.readwrite.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="7.1 定义目标规则 📌 通常来说，在Kubernetes中访问一个服务时，需要指定其协议、服务名及端口，例如http:&#x2F;&#x2F;httpbin:8000。而在Istio的服务网格中对服务进行了进一步抽象：◎ 可以使用Pod标签对具体的服务进程进行分组；◎ 可以定义服务的负载均衡策略；◎ 可以为服务指定TLS要求；◎ 可以为服务设置连接池大小。   ⏱ 2024-04-10 09:18:05   �">
+  <meta name="description" content="第1章 云原生：云计算的再升级 📌 还有不少人将云原生与容器或基于Kubernetes的微服务混为一谈  ⏱ 2024-04-13 22:35:32    1.1 什么是云原生 📌 云原生的时候，实际上是暗指云原生计算（Cloud Native Computing）。  ⏱ 2024-04-13 22:35:43    1.1.3 支撑淘宝千亿交易背后的技术平台故事 📌 在2019年“双1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="《深入浅出Istio：Service Mesh快速入门与实践》">
-<meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAIstio%EF%BC%9AService%20Mesh%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5.html">
+<meta property="og:title" content="《阿里云云原生架构实践》">
+<meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%91%E5%8E%9F%E7%94%9F%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5.html">
 <meta property="og:site_name" content="趣读写">
-<meta property="og:description" content="7.1 定义目标规则 📌 通常来说，在Kubernetes中访问一个服务时，需要指定其协议、服务名及端口，例如http:&#x2F;&#x2F;httpbin:8000。而在Istio的服务网格中对服务进行了进一步抽象：◎ 可以使用Pod标签对具体的服务进程进行分组；◎ 可以定义服务的负载均衡策略；◎ 可以为服务指定TLS要求；◎ 可以为服务设置连接池大小。   ⏱ 2024-04-10 09:18:05   �">
+<meta property="og:description" content="第1章 云原生：云计算的再升级 📌 还有不少人将云原生与容器或基于Kubernetes的微服务混为一谈  ⏱ 2024-04-13 22:35:32    1.1 什么是云原生 📌 云原生的时候，实际上是暗指云原生计算（Cloud Native Computing）。  ⏱ 2024-04-13 22:35:43    1.1.3 支撑淘宝千亿交易背后的技术平台故事 📌 在2019年“双1">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/93/YueWen_25462648/t7_YueWen_25462648.jpg">
-<meta property="article:published_time" content="2024-04-10T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-11T01:34:06.230Z">
+<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/83/YueWen_38335197/t7_YueWen_38335197.jpg">
+<meta property="article:published_time" content="2024-04-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-22T10:06:08.819Z">
 <meta property="article:author" content="levon">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/93/YueWen_25462648/t7_YueWen_25462648.jpg">
+<meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/83/YueWen_38335197/t7_YueWen_38335197.jpg">
 
-<link rel="canonical" href="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAIstio%EF%BC%9AService%20Mesh%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5.html">
+<link rel="canonical" href="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%91%E5%8E%9F%E7%94%9F%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5.html">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>《深入浅出Istio：Service Mesh快速入门与实践》 | 趣读写
+  <title>《阿里云云原生架构实践》 | 趣读写
 </title>
   
 
@@ -198,7 +198,7 @@
     <div class="post-block" lang="en">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">《深入浅出Istio：Service Mesh快速入门与实践》
+<h1 class="post-title" itemprop="name headline">《阿里云云原生架构实践》
 </h1>
 
 <div class="post-meta">
@@ -207,7 +207,8 @@
           
             <li><a href="/booking/">BOOKING</a></li>
             <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
-            <li>深入浅出ISTIO：SERVICE MESH快速入门与实践</li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
+            <li>阿里云云原生架构实践</li>
           
   </ul>
 
@@ -219,53 +220,68 @@
       
       
       <div class="post-body">
-          <p><img src="https://cdn.weread.qq.com/weread/cover/93/YueWen_25462648/t7_YueWen_25462648.jpg" alt=" 深入浅出Istio：Service Mesh快速入门与实践|200"></p>
-<h3 id="7-1-定义目标规则"><a href="#7-1-定义目标规则" class="headerlink" title="7.1 定义目标规则"></a>7.1 定义目标规则</h3><ul>
-<li><p>📌 通常来说，在Kubernetes中访问一个服务时，需要指定其协议、服务名及端口，例如<a href="http://httpbin:8000。而在Istio的服务网格中对服务进行了进一步抽象：">http://httpbin:8000。而在Istio的服务网格中对服务进行了进一步抽象：</a><br>◎ 可以使用Pod标签对具体的服务进程进行分组；<br>◎ 可以定义服务的负载均衡策略；<br>◎ 可以为服务指定TLS要求；<br>◎ 可以为服务设置连接池大小。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:18:05</li>
-</ul>
-</li>
-<li><p>📌 在Istio中，客户端只使用一个服务入口就可以访问多个不同的服务，无须客户端干预；但客户端如果直接使用Kubernetes Service，就必须分别使用两个不同的服务入口。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:20:26</li>
-</ul>
-</li>
-<li><p>📌 Istio可以通过流量特征来完成对后端服务的选择，它的流量控制功能会根据每次访问产生的流量进行判断，根据判断结果来选择一个后端负责本次访问的响应。Kubernetes当然也可以这样做，但是因为Kubernetes的Service不具备选择后端的能力，所以如果它使用了Istio这种一对多的模式，则后果只能是使用轮询方式随机调用两个不同的工作负载。<br>而在Istio中，这种同一服务不同组别的后端被称为子集（Subset），也经常被称为服务版本。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:20:27</li>
-</ul>
-</li>
-<li><p>📌 在Istio中，建议为每个网格都设置明确的目标访问规则。在通过Istio流量控制之后，会选择明确的子集，根据该规则或者在子集中规定的流量策略来进行访问，这种规则在Istio中被称为DestinationRule。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:20:54</li>
-</ul>
-</li>
-<li><p>📌 host：是一个必要字段，代表Kubernetes中的一个Service资源，或者一个由ServiceEntry（会在7.9节讲解出站流量时介绍）定义的外部服务。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:22:11</li>
+          <p><img src="https://cdn.weread.qq.com/weread/cover/83/YueWen_38335197/t7_YueWen_38335197.jpg" alt=" 阿里云云原生架构实践|200"></p>
+<h2 id="第1章-云原生：云计算的再升级"><a href="#第1章-云原生：云计算的再升级" class="headerlink" title="第1章 云原生：云计算的再升级"></a>第1章 云原生：云计算的再升级</h2><ul>
+<li>📌 还有不少人将云原生与容器或基于Kubernetes的微服务混为一谈 <ul>
+<li>⏱ 2024-04-13 22:35:32</li>
 </ul>
 </li>
 </ul>
-<h3 id="7-2-定义默认路由"><a href="#7-2-定义默认路由" class="headerlink" title="7.2 定义默认路由"></a>7.2 定义默认路由</h3><ul>
-<li><p>📌 Istio建议为每个服务都创建一个默认路由，在访问某一服务的时候，如果没有特定的路由规则，则使用默认的路由规则来访问指定的子集，以此来确保服务在默认情况下的行为稳定性。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:26:00</li>
-</ul>
-</li>
-<li><p>📌 这里稍作回顾，在Istio中部署一个业务应用时，建议做到以下几点：<br>◎ 使用app标签表明应用身份；<br>◎ 使用version标签表明应用版本；<br>◎ 创建目标规则；<br>◎ 创建默认路由规则。<br>默认路由除了可以保证应用行为的稳定性，也是Istio的一些配置对象的构建基础。因此，和日常的Dockerfile、Service、Deployment等清单文件一样，默认路由的配置清单应该成为服务网格环境下的必要部署内容。 </p>
-<ul>
-<li>⏱ 2024-04-10 09:28:42</li>
+<h3 id="1-1-什么是云原生"><a href="#1-1-什么是云原生" class="headerlink" title="1.1 什么是云原生"></a>1.1 什么是云原生</h3><ul>
+<li>📌 云原生的时候，实际上是暗指云原生计算（Cloud Native Computing）。 <ul>
+<li>⏱ 2024-04-13 22:35:43</li>
 </ul>
 </li>
 </ul>
-<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h2 id="7-1-定义目标规则-1"><a href="#7-1-定义目标规则-1" class="headerlink" title="7.1 定义目标规则"></a>7.1 定义目标规则</h2><h3 id="划线评论"><a href="#划线评论" class="headerlink" title="划线评论"></a>划线评论</h3><blockquote>
-<p>📌 为了后续环节的顺利进行，我们为在4.3节中创建的flaskapp服务（Service和Deployment）创建目标规则，将其分成v1和v2两个版本：  ^225207353-7Qlg4yPNK<br>    - 💭 目标规则，是分subset的<br>    - ⏱ 2024-04-10 09:23:49</p>
-</blockquote>
-<h2 id="7-2-定义默认路由-1"><a href="#7-2-定义默认路由-1" class="headerlink" title="7.2 定义默认路由"></a>7.2 定义默认路由</h2><h3 id="划线评论-1"><a href="#划线评论-1" class="headerlink" title="划线评论"></a>划线评论</h3><blockquote>
-<p>📌 VirtualService同样是针对主机名工作的，但注意这个字段是一个数组内容，因此它可以针对多个主机名进行工作。VirtualService可以为多种协议的流量提供服务，除了支持本文使用的是HTTP，还支持TCP和TLS。  ^225207353-7Qlgi7ONK<br>    - 💭 针对主机名<br>    - ⏱ 2024-04-10 09:27:09</p>
-</blockquote>
-<h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
+<h4 id="1-1-3-支撑淘宝千亿交易背后的技术平台故事"><a href="#1-1-3-支撑淘宝千亿交易背后的技术平台故事" class="headerlink" title="1.1.3 支撑淘宝千亿交易背后的技术平台故事"></a>1.1.3 支撑淘宝千亿交易背后的技术平台故事</h4><ul>
+<li>📌 在2019年“双11”当天，阿里云取得了傲人成绩：交易创建峰值达54.4万笔&#x2F;秒，消息系统峰值处理量达1.5亿条&#x2F;秒，实时计算消息处理峰值达25亿条&#x2F;秒，RPC调用百亿QPS，批处理计算数据量当天达到980 PB。 <ul>
+<li>⏱ 2024-04-13 22:39:07</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-3-可观测原则"><a href="#2-2-3-可观测原则" class="headerlink" title="2.2.3 可观测原则"></a>2.2.3 可观测原则</h4><ul>
+<li>📌 要想构建可观测性体系，需要遵循如下三个基本原则。<br>1.数据的全面采集<br>指标（Metric）、链路跟踪（Tracing）和日志（Logging）这三类数据是构建一个完整的可观测性系统的“三大支柱”。 <ul>
+<li>⏱ 2024-04-13 22:52:28</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-Service-Mesh化架构模式"><a href="#3-2-Service-Mesh化架构模式" class="headerlink" title="3.2 Service Mesh化架构模式"></a>3.2 Service Mesh化架构模式</h3><ul>
+<li>📌 Service Mesh主要包含三种模式：第一种Sidecar模式，典型解决方案如Istio+Envoy，当然还有其他的实现方案，如Linkerd等；第二种是服务注册和发现模式(Service Registry &amp; Discovery)，典型解决方案如Spring Cloud；第三种是中心化Broker模式，典型解决方案如RSocket Broker。 <ul>
+<li>⏱ 2024-04-13 22:54:47</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-1-Service-Mesh之Sidecar模式"><a href="#3-2-1-Service-Mesh之Sidecar模式" class="headerlink" title="3.2.1 Service Mesh之Sidecar模式"></a>3.2.1 Service Mesh之Sidecar模式</h4><ul>
+<li><p>📌 1.服务路由和可靠性保证<br>如今，服务之间的调用通常是指网络调用，如果要发起网络调用，那么至少需要知道目标IP地址和端口号；如果是由应用发起连接创建，那么应用就需要了解创建连接的详细信息；如果涉及网络变更和调整、目标服务上&#x2F;下线、网络抖动和服务短暂不可用等问题，那么应用就需要感知并做出对应的调整。虽然只是一次简单的远程服务调用，但是其中涉及的工作量并不小。如果有了代理人的介入，应用只需要与附近（127.0.0.1）的代理人创建连接，然后代理人与目标服务创建连接和路由等。也就是说，有了代理人，应用就不用关心与网络相关的工作了。 </p>
+<ul>
+<li>⏱ 2024-04-13 22:56:02</li>
+</ul>
+</li>
+<li><p>📌 代理人可实现诸如熔断保护（Circuit Breaker）、重试（Retry）等工作，不仅实现方便，而且能很好地保证系统的稳定性和可靠性。 </p>
+<ul>
+<li>⏱ 2024-04-13 22:57:20</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-2-Service-Mesh之服务注册和发现模式"><a href="#3-2-2-Service-Mesh之服务注册和发现模式" class="headerlink" title="3.2.2 Service Mesh之服务注册和发现模式"></a>3.2.2 Service Mesh之服务注册和发现模式</h4><ul>
+<li>📌 Go的Micro（网址为<a target="_blank" rel="noopener" href="https://github.com/micro/micro%EF%BC%89%EF%BC%8C%E5%85%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%B0%B1%E4%B8%8ESpring">https://github.com/micro/micro），其设计思想就与Spring</a> Cloud非常类似。 <ul>
+<li>⏱ 2024-04-13 23:00:56</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-5-分布式事务模式"><a href="#3-5-分布式事务模式" class="headerlink" title="3.5 分布式事务模式"></a>3.5 分布式事务模式</h3><ul>
+<li>📌 分布式事务的实现主要有5种模式：传统的两阶段提交（2 PC）、早期的最终一致性BASE、预留资源的TCC、补偿机制的Saga和高效的AT。 <ul>
+<li>⏱ 2024-04-13 23:03:12</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-8-网关架构模式"><a href="#3-8-网关架构模式" class="headerlink" title="3.8 网关架构模式"></a>3.8 网关架构模式</h3><ul>
+<li>📌 大多数网关会选择Nginx这款高性能的Web服务器作为HTTP网关。在很多云厂商的服务列表中，网关并不是免费的，即用户需要支付额外的费用。 <ul>
+<li>⏱ 2024-04-13 23:08:11</li>
+</ul>
+</li>
+</ul>
+<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
       </div>
       
       
@@ -276,7 +292,8 @@
           
             <li><a href="/booking/">BOOKING</a></li>
             <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
-            <li>深入浅出ISTIO：SERVICE MESH快速入门与实践</li>
+            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
+            <li>阿里云云原生架构实践</li>
           
   </ul>
 
@@ -334,7 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E5%AE%9A%E4%B9%89%E7%9B%AE%E6%A0%87%E8%A7%84%E5%88%99"><span class="nav-text">7.1 定义目标规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E5%AE%9A%E4%B9%89%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1"><span class="nav-text">7.2 定义默认路由</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E5%AE%9A%E4%B9%89%E7%9B%AE%E6%A0%87%E8%A7%84%E5%88%99-1"><span class="nav-text">7.1 定义目标规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E7%BA%BF%E8%AF%84%E8%AE%BA"><span class="nav-text">划线评论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E5%AE%9A%E4%B9%89%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1-1"><span class="nav-text">7.2 定义默认路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E7%BA%BF%E8%AF%84%E8%AE%BA-1"><span class="nav-text">划线评论</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E4%BA%91%E5%8E%9F%E7%94%9F%EF%BC%9A%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E5%86%8D%E5%8D%87%E7%BA%A7"><span class="nav-text">第1章 云原生：云计算的再升级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%91%E5%8E%9F%E7%94%9F"><span class="nav-text">1.1 什么是云原生</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-%E6%94%AF%E6%92%91%E6%B7%98%E5%AE%9D%E5%8D%83%E4%BA%BF%E4%BA%A4%E6%98%93%E8%83%8C%E5%90%8E%E7%9A%84%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0%E6%95%85%E4%BA%8B"><span class="nav-text">1.1.3 支撑淘宝千亿交易背后的技术平台故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E5%8F%AF%E8%A7%82%E6%B5%8B%E5%8E%9F%E5%88%99"><span class="nav-text">2.2.3 可观测原则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Service-Mesh%E5%8C%96%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2 Service Mesh化架构模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-Service-Mesh%E4%B9%8BSidecar%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2.1 Service Mesh之Sidecar模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-Service-Mesh%E4%B9%8B%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E5%92%8C%E5%8F%91%E7%8E%B0%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2.2 Service Mesh之服务注册和发现模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.5 分布式事务模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-%E7%BD%91%E5%85%B3%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.8 网关架构模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -348,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">322</span>
+          <span class="site-state-item-count">324</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

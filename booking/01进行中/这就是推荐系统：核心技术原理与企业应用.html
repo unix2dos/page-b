@@ -28,8 +28,8 @@
 <meta property="og:description" content="1.2 推荐系统的核心模块 📌 推荐系统本质上是一个信息过滤系统，如图1-6所示，它的每个模块都犹如一个漏斗，从海量的内容库中最终过滤出若干（一般是十量级）推荐系统认为用户最感兴趣的内容展示给用户。   ⏱ 2024-04-17 22:19:16   📌 排序是推荐系统的第二个漏斗环节，排序环节可以使用复杂的排序模型，融入各个维度的特征，对召回的结果做更精准的打分计算   ⏱ 2024-04">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/4/cpplatform_fmnqrnwf4apbybkk31a3dp/t7_cpplatform_fmnqrnwf4apbybkk31a3dp1685689870.jpg">
-<meta property="article:published_time" content="2024-04-17T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-22T10:06:08.819Z">
+<meta property="article:published_time" content="2024-04-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-28T08:52:29.593Z">
 <meta property="article:author" content="levon">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/4/cpplatform_fmnqrnwf4apbybkk31a3dp/t7_cpplatform_fmnqrnwf4apbybkk31a3dp1685689870.jpg">
@@ -123,19 +123,19 @@
   </li>
         
          
-        <li class="menu-item menu-item-output">
-
-    <a href="/categories/1-output/" rel="section"><i class="fas fa-feather fa-fw"></i>Output</a>
-
-  </li>
-        <li class="menu-item menu-item-study">
-
-    <a href="/categories/2-study/" rel="section"><i class="fas fa-school fa-fw"></i>Study</a>
-
-  </li>
         <li class="menu-item menu-item-book">
 
-    <a href="/categories/3-book/" rel="section"><i class="fas fa-book fa-fw"></i>Book</a>
+    <a href="/categories/1-book/" rel="section"><i class="fas fa-book fa-fw"></i>Book</a>
+
+  </li>
+        <li class="menu-item menu-item-output">
+
+    <a href="/categories/2-output/" rel="section"><i class="fas fa-feather fa-fw"></i>Output</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -237,6 +237,12 @@
 </ul>
 </li>
 </ul>
+<h3 id="3-4-用户画像实践案例"><a href="#3-4-用户画像实践案例" class="headerlink" title="3.4 用户画像实践案例"></a>3.4 用户画像实践案例</h3><ul>
+<li>📌 用户画像可以作用于推荐系统的各个环节。在召回阶段有基于用户画像的召回，如基于用户年龄、性别、地域等静态画像的召回，也有基于行为画像的召回等。用户画像也可以作为各阶段模型的特征。重排阶段也可以结合画像中用户的兴趣分布设置不同的打散策略和多样性策略等。用户画像也是分析用户推荐结果、生成推荐理由的重要依据。 <ul>
+<li>⏱ 2024-04-23 07:49:40</li>
+</ul>
+</li>
+</ul>
 <h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
       </div>
       
@@ -306,7 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="nav-text">1.2 推荐系统的核心模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="nav-text">1.2 推荐系统的核心模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B"><span class="nav-text">3.4 用户画像实践案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -320,18 +326,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">324</span>
+          <span class="site-state-item-count">330</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

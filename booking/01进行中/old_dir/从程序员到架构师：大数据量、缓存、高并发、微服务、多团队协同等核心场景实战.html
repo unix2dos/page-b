@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"www.readwrite.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="封面版权信息序前言 📌 如果想要学好软件架构，基于场景的学习方式最有效。因为一旦理解了业务场景，就能很容易地看懂某个解决方案，并理解解决方案背后的实现原理。  ⏱ 2023-09-19 12:44:50    第1部分 数据持久化层场景实战 📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档">
+  <meta name="description" content="第1部分 数据持久化层场景实战 📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档数据库也可以），之后极少被访问。当前的数据库保留正常处理的较新的工单数据，这是热库。  ⏱ 2024-04-25 12:54:26    第2章 查询分离 📌 Elasticsearch是基于索引的设计，它无法像">
 <meta property="og:type" content="website">
 <meta property="og:title" content="《从程序员到架构师：大数据量、缓存、高并发、微服务、多团队协同等核心场景实战》">
 <meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/%E4%BB%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%88%B0%E6%9E%B6%E6%9E%84%E5%B8%88%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E3%80%81%E7%BC%93%E5%AD%98%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E3%80%81%E5%A4%9A%E5%9B%A2%E9%98%9F%E5%8D%8F%E5%90%8C%E7%AD%89%E6%A0%B8%E5%BF%83%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98.html">
 <meta property="og:site_name" content="趣读写">
-<meta property="og:description" content="封面版权信息序前言 📌 如果想要学好软件架构，基于场景的学习方式最有效。因为一旦理解了业务场景，就能很容易地看懂某个解决方案，并理解解决方案背后的实现原理。  ⏱ 2023-09-19 12:44:50    第1部分 数据持久化层场景实战 📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档">
+<meta property="og:description" content="第1部分 数据持久化层场景实战 📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档数据库也可以），之后极少被访问。当前的数据库保留正常处理的较新的工单数据，这是热库。  ⏱ 2024-04-25 12:54:26    第2章 查询分离 📌 Elasticsearch是基于索引的设计，它无法像">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/78/3300018278/t7_3300018278.jpg">
-<meta property="article:published_time" content="2023-09-27T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-09T07:12:09.811Z">
+<meta property="article:published_time" content="2024-04-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-06T01:50:59.614Z">
 <meta property="article:author" content="levon">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/78/3300018278/t7_3300018278.jpg">
@@ -215,74 +215,20 @@
       
       
       <div class="post-body">
-          <hr>
-<p><img src="https://cdn.weread.qq.com/weread/cover/78/3300018278/t7_3300018278.jpg" alt=" 从程序员到架构师：大数据量、缓存、高并发、微服务、多团队协同等核心场景实战|200"></p>
-<h2 id="封面"><a href="#封面" class="headerlink" title="封面"></a>封面</h2><h2 id="版权信息"><a href="#版权信息" class="headerlink" title="版权信息"></a>版权信息</h2><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>📌 如果想要学好软件架构，基于场景的学习方式最有效。因为一旦理解了业务场景，就能很容易地看懂某个解决方案，并理解解决方案背后的实现原理。 <ul>
-<li>⏱ 2023-09-19 12:44:50</li>
-</ul>
-</li>
-</ul>
+          <p><img src="https://cdn.weread.qq.com/weread/cover/78/3300018278/t7_3300018278.jpg" alt=" 从程序员到架构师：大数据量、缓存、高并发、微服务、多团队协同等核心场景实战|200"></p>
 <h2 id="第1部分-数据持久化层场景实战"><a href="#第1部分-数据持久化层场景实战" class="headerlink" title="第1部分 数据持久化层场景实战"></a>第1部分 数据持久化层场景实战</h2><ul>
-<li><p>📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档数据库也可以），之后极少被访问。当前的数据库保留正常处理的较新的工单数据，这是热库。 </p>
-<ul>
-<li>⏱ 2023-09-19 12:53:32</li>
-</ul>
-</li>
-<li><p>📌 示例场景就是这个项目中的业务场景。这里的业务需求是已经关闭超过1个月的工单视为冷数据，这种场景下，工单变更的那一瞬间，即使工单已经关闭了，也不能将其视为冷数据，而必须再等待1个月。这样的情况非常适合使用定时扫描。所以这一次，项目组就选用了定时扫描数据库的触发方式 </p>
-<ul>
-<li>⏱ 2023-09-19 12:58:05</li>
+<li>📌 这个思路也很简单：新建一个数据库，然后将1个月前已经完结的工单数据都移动到这个新的数据库。这个数据库就叫冷库，因为里面基本是冷数据（当然，叫作归档数据库也可以），之后极少被访问。当前的数据库保留正常处理的较新的工单数据，这是热库。 <ul>
+<li>⏱ 2024-04-25 12:54:26</li>
 </ul>
 </li>
 </ul>
-<h2 id="第2章-查询分离"><a href="#第2章-查询分离" class="headerlink" title="第2章 查询分离"></a>第2章 查询分离</h2><ul>
-<li><p>📌 使用Elasticsearch存储数据时并不会设计多个表，而是将所有表的相关字段数据汇集在一个Document中，即一个完整的文档结构， </p>
-<ul>
-<li>⏱ 2023-09-19 13:02:59</li>
-</ul>
-</li>
-<li><p>📌 无结构的文档经过简单的倒排索引后，字典表主要存放关键字，而倒排表存放该关键字所在的文档ID。 </p>
-<ul>
-<li>⏱ 2023-09-19 13:04:26</li>
+<h3 id="第2章-查询分离"><a href="#第2章-查询分离" class="headerlink" title="第2章 查询分离"></a>第2章 查询分离</h3><ul>
+<li>📌 Elasticsearch是基于索引的设计，它无法像MySQL那样使用join查询，所以查询数据时需要把每条主数据及关联子表的数据全部整合在一条记录中。 <ul>
+<li>⏱ 2024-04-25 12:57:50</li>
 </ul>
 </li>
 </ul>
-<h2 id="第3章-分表分库"><a href="#第3章-分表分库" class="headerlink" title="第3章 分表分库"></a>第3章 分表分库</h2><h2 id="第2部分-缓存层场景实战"><a href="#第2部分-缓存层场景实战" class="headerlink" title="第2部分 缓存层场景实战"></a>第2部分 缓存层场景实战</h2><h2 id="第5章-写缓存"><a href="#第5章-写缓存" class="headerlink" title="第5章 写缓存"></a>第5章 写缓存</h2><h2 id="第6章-数据收集"><a href="#第6章-数据收集" class="headerlink" title="第6章 数据收集"></a>第6章 数据收集</h2><ul>
-<li>📌 当然，在数据埋点的过程中，业务侧还要求在后台能实时查询用户行为数据及统计报表。这里的“实时”并不是严格意义上的实时，对于特定时间内的延迟业务方还是能接受的，为确保描述的准确性，可以称之为准实时。 <ul>
-<li>⏱ 2023-09-19 23:03:57</li>
-</ul>
-</li>
-</ul>
-<h2 id="第7章-秒杀架构"><a href="#第7章-秒杀架构" class="headerlink" title="第7章 秒杀架构"></a>第7章 秒杀架构</h2><ul>
-<li><p>📌 设计秒杀架构时，一般需要遵循商品不能超卖、下单成功的订单数据不能丢失、服务器和数据库不能崩溃、尽量别让机器人抢走商品这4个原则。 </p>
-<ul>
-<li>⏱ 2023-09-19 23:17:21</li>
-</ul>
-</li>
-<li><p>📌 静态资源尽量使用CDN（内容分发网络），如果涉及PC网站，还必须首先进行前后端分离。 </p>
-<ul>
-<li>⏱ 2023-09-21 07:46:41</li>
-</ul>
-</li>
-<li><p>📌 使用CDN的好处是不用花费自己的服务器资源和带宽，且响应速度快。 </p>
-<ul>
-<li>⏱ 2023-09-21 07:46:55</li>
-</ul>
-</li>
-</ul>
-<h2 id="第3部分-基于常见组件的微服务场景实战"><a href="#第3部分-基于常见组件的微服务场景实战" class="headerlink" title="第3部分 基于常见组件的微服务场景实战"></a>第3部分 基于常见组件的微服务场景实战</h2><h2 id="第9章-全链路日志"><a href="#第9章-全链路日志" class="headerlink" title="第9章 全链路日志"></a>第9章 全链路日志</h2><h2 id="第10章-熔断"><a href="#第10章-熔断" class="headerlink" title="第10章 熔断"></a>第10章 熔断</h2><ul>
-<li><p>📌 1.在哪种条件下会触发熔断熔断判断规则是某段时间内调用失败数超过特定的数量或比例时，就会触发熔断。 </p>
-<ul>
-<li>⏱ 2023-09-27 09:03:15</li>
-</ul>
-</li>
-<li><p>📌 如果熔断被触发，在circuitBreakerSleepWindowInMilliseconds的时间内，便不再对外调用接口，而是直接调用本地的一个降级方法， </p>
-<ul>
-<li>⏱ 2023-09-27 09:03:30</li>
-</ul>
-</li>
-</ul>
-<h2 id="第11章-限流"><a href="#第11章-限流" class="headerlink" title="第11章 限流"></a>第11章 限流</h2><h2 id="第4部分-微服务进阶场景实战"><a href="#第4部分-微服务进阶场景实战" class="headerlink" title="第4部分 微服务进阶场景实战"></a>第4部分 微服务进阶场景实战</h2><h2 id="第13章-数据一致性"><a href="#第13章-数据一致性" class="headerlink" title="第13章 数据一致性"></a>第13章 数据一致性</h2><h2 id="第14章-数据同步"><a href="#第14章-数据同步" class="headerlink" title="第14章 数据同步"></a>第14章 数据同步</h2><h2 id="第15章-BFF"><a href="#第15章-BFF" class="headerlink" title="第15章 BFF"></a>第15章 BFF</h2><h2 id="第5部分-开发运维场景实战"><a href="#第5部分-开发运维场景实战" class="headerlink" title="第5部分 开发运维场景实战"></a>第5部分 开发运维场景实战</h2><h2 id="第17章-一人一套测试环境"><a href="#第17章-一人一套测试环境" class="headerlink" title="第17章 一人一套测试环境"></a>第17章 一人一套测试环境</h2><h2 id="第18章-结束语：如何成为不可或缺的人"><a href="#第18章-结束语：如何成为不可或缺的人" class="headerlink" title="第18章 结束语：如何成为不可或缺的人"></a>第18章 结束语：如何成为不可或缺的人</h2><h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
+<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
       </div>
       
       
@@ -352,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E9%9D%A2"><span class="nav-text">封面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E4%BF%A1%E6%81%AF"><span class="nav-text">版权信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F"><span class="nav-text">序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E9%83%A8%E5%88%86-%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E5%B1%82%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第1部分 数据持久化层场景实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-%E6%9F%A5%E8%AF%A2%E5%88%86%E7%A6%BB"><span class="nav-text">第2章 查询分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93"><span class="nav-text">第3章 分表分库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC2%E9%83%A8%E5%88%86-%E7%BC%93%E5%AD%98%E5%B1%82%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第2部分 缓存层场景实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-%E5%86%99%E7%BC%93%E5%AD%98"><span class="nav-text">第5章 写缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86"><span class="nav-text">第6章 数据收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-%E7%A7%92%E6%9D%80%E6%9E%B6%E6%9E%84"><span class="nav-text">第7章 秒杀架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E9%83%A8%E5%88%86-%E5%9F%BA%E4%BA%8E%E5%B8%B8%E8%A7%81%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第3部分 基于常见组件的微服务场景实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC9%E7%AB%A0-%E5%85%A8%E9%93%BE%E8%B7%AF%E6%97%A5%E5%BF%97"><span class="nav-text">第9章 全链路日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC10%E7%AB%A0-%E7%86%94%E6%96%AD"><span class="nav-text">第10章 熔断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC11%E7%AB%A0-%E9%99%90%E6%B5%81"><span class="nav-text">第11章 限流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC4%E9%83%A8%E5%88%86-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%BF%9B%E9%98%B6%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第4部分 微服务进阶场景实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC13%E7%AB%A0-%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-text">第13章 数据一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC14%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="nav-text">第14章 数据同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC15%E7%AB%A0-BFF"><span class="nav-text">第15章 BFF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC5%E9%83%A8%E5%88%86-%E5%BC%80%E5%8F%91%E8%BF%90%E7%BB%B4%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第5部分 开发运维场景实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC17%E7%AB%A0-%E4%B8%80%E4%BA%BA%E4%B8%80%E5%A5%97%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-text">第17章 一人一套测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC18%E7%AB%A0-%E7%BB%93%E6%9D%9F%E8%AF%AD%EF%BC%9A%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E4%B8%8D%E5%8F%AF%E6%88%96%E7%BC%BA%E7%9A%84%E4%BA%BA"><span class="nav-text">第18章 结束语：如何成为不可或缺的人</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E9%83%A8%E5%88%86-%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E5%B1%82%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98"><span class="nav-text">第1部分 数据持久化层场景实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-%E6%9F%A5%E8%AF%A2%E5%88%86%E7%A6%BB"><span class="nav-text">第2章 查询分离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -366,7 +312,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-count">332</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -1,1 +1,1 @@
-# page-b
+This repository has been deleted

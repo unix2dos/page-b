@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"www.readwrite.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="第4章 Kubernetes的基础概念 📌 在生产环境中，很少单独运行一个Pod，因为单独创建的Pod并不能实现一些高级的发布策略，所以在实际使用中经常会用Deployment、DaemonSet、StatefulSet等高级控制器调度并管理Pod。  ⏱ 2024-05-02 11:20:46    第6章 Kubernetes服务发布基础 📌 在传统架构配置多个相同服务的负载均衡可能使用">
+  <meta name="description" content="推荐序2 人脑具有非凡的学习能力 📌 出生几个月的婴儿，就具备获得语言、视觉和社会知识的能力，其学习速度已经“超过了任何现有的人工智能算法”。迪昂的研究表明，婴儿已经能够理解语法、数量和空间关系，并形成了抽象的思维；能够提出假设、验证假设，并根据感官所获得的新数据不断地调整思维。  ⏱ 2024-05-22 22:49:29    导言 人脑中最伟大的才能：学习能力 📌 尼科在3岁时做了右脑">
 <meta property="og:type" content="website">
-<meta property="og:title" content="《云原生Kubernetes全栈架构师实战》">
-<meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/%E4%BA%91%E5%8E%9F%E7%94%9FKubernetes%E5%85%A8%E6%A0%88%E6%9E%B6%E6%9E%84%E5%B8%88%E5%AE%9E%E6%88%98.html">
+<meta property="og:title" content="《精准学习》">
+<meta property="og:url" content="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/%E7%B2%BE%E5%87%86%E5%AD%A6%E4%B9%A0.html">
 <meta property="og:site_name" content="趣读写">
-<meta property="og:description" content="第4章 Kubernetes的基础概念 📌 在生产环境中，很少单独运行一个Pod，因为单独创建的Pod并不能实现一些高级的发布策略，所以在实际使用中经常会用Deployment、DaemonSet、StatefulSet等高级控制器调度并管理Pod。  ⏱ 2024-05-02 11:20:46    第6章 Kubernetes服务发布基础 📌 在传统架构配置多个相同服务的负载均衡可能使用">
+<meta property="og:description" content="推荐序2 人脑具有非凡的学习能力 📌 出生几个月的婴儿，就具备获得语言、视觉和社会知识的能力，其学习速度已经“超过了任何现有的人工智能算法”。迪昂的研究表明，婴儿已经能够理解语法、数量和空间关系，并形成了抽象的思维；能够提出假设、验证假设，并根据感官所获得的新数据不断地调整思维。  ⏱ 2024-05-22 22:49:29    导言 人脑中最伟大的才能：学习能力 📌 尼科在3岁时做了右脑">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/87/cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS/t7_cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS.jpg">
-<meta property="article:published_time" content="2024-05-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-11T03:23:11.000Z">
+<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/94/cpplatform_5zr3wazqtxwezqcouqmrlf/t7_cpplatform_5zr3wazqtxwezqcouqmrlf1679645460.jpg">
+<meta property="article:published_time" content="2024-05-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:17:44.798Z">
 <meta property="article:author" content="levon">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/87/cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS/t7_cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS.jpg">
+<meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/94/cpplatform_5zr3wazqtxwezqcouqmrlf/t7_cpplatform_5zr3wazqtxwezqcouqmrlf1679645460.jpg">
 
-<link rel="canonical" href="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/%E4%BA%91%E5%8E%9F%E7%94%9FKubernetes%E5%85%A8%E6%A0%88%E6%9E%B6%E6%9E%84%E5%B8%88%E5%AE%9E%E6%88%98.html">
+<link rel="canonical" href="https://www.readwrite.fun/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/%E7%B2%BE%E5%87%86%E5%AD%A6%E4%B9%A0.html">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>《云原生Kubernetes全栈架构师实战》 | 趣读写
+  <title>《精准学习》 | 趣读写
 </title>
   
 
@@ -193,7 +193,7 @@
     <div class="post-block" lang="en">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">《云原生Kubernetes全栈架构师实战》
+<h1 class="post-title" itemprop="name headline">《精准学习》
 </h1>
 
 <div class="post-meta">
@@ -202,8 +202,7 @@
           
             <li><a href="/booking/">BOOKING</a></li>
             <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
-            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
-            <li>云原生KUBERNETES全栈架构师实战</li>
+            <li>精准学习</li>
           
   </ul>
 
@@ -215,54 +214,34 @@
       
       
       <div class="post-body">
-          <p><img src="https://cdn.weread.qq.com/weread/cover/87/cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS/t7_cpPlatform_11t4mDHaSQ79ZmwxgZ2SkS.jpg" alt=" 云原生Kubernetes全栈架构师实战|200"></p>
-<h3 id="第4章-Kubernetes的基础概念"><a href="#第4章-Kubernetes的基础概念" class="headerlink" title="第4章 Kubernetes的基础概念"></a>第4章 Kubernetes的基础概念</h3><ul>
-<li>📌 在生产环境中，很少单独运行一个Pod，因为单独创建的Pod并不能实现一些高级的发布策略，所以在实际使用中经常会用Deployment、DaemonSet、StatefulSet等高级控制器调度并管理Pod。 <ul>
-<li>⏱ 2024-05-02 11:20:46</li>
+          <p><img src="https://cdn.weread.qq.com/weread/cover/94/cpplatform_5zr3wazqtxwezqcouqmrlf/t7_cpplatform_5zr3wazqtxwezqcouqmrlf1679645460.jpg" alt=" 精准学习|200"></p>
+<h2 id="推荐序2-人脑具有非凡的学习能力"><a href="#推荐序2-人脑具有非凡的学习能力" class="headerlink" title="推荐序2 人脑具有非凡的学习能力"></a>推荐序2 人脑具有非凡的学习能力</h2><ul>
+<li>📌 出生几个月的婴儿，就具备获得语言、视觉和社会知识的能力，其学习速度已经“超过了任何现有的人工智能算法”。迪昂的研究表明，婴儿已经能够理解语法、数量和空间关系，并形成了抽象的思维；能够提出假设、验证假设，并根据感官所获得的新数据不断地调整思维。 <ul>
+<li>⏱ 2024-05-22 22:49:29</li>
 </ul>
 </li>
 </ul>
-<h3 id="第6章-Kubernetes服务发布基础"><a href="#第6章-Kubernetes服务发布基础" class="headerlink" title="第6章 Kubernetes服务发布基础"></a>第6章 Kubernetes服务发布基础</h3><ul>
-<li><p>📌 在传统架构配置多个相同服务的负载均衡可能使用的是Nginx的upstream，在Kubernetes中用Service实现。 </p>
+<h2 id="导言-人脑中最伟大的才能：学习能力"><a href="#导言-人脑中最伟大的才能：学习能力" class="headerlink" title="导言 人脑中最伟大的才能：学习能力"></a>导言 人脑中最伟大的才能：学习能力</h2><ul>
+<li>📌 尼科在3岁时做了右脑切除手术（中间插图为核磁共振检测结果），然而右脑的缺失并没有阻止他成为一名成就卓越的艺术家，他依然可以临摹画作（下图），也可以创作新的画作（上图）。<br>他将语言、数学、阅读和绘画等需要学习的才能，全部挤到了自己的左脑半球。 <ul>
+<li>⏱ 2024-05-22 22:50:52</li>
+</ul>
+</li>
+</ul>
+<h3 id="第1章-学习的7个定义"><a href="#第1章-学习的7个定义" class="headerlink" title="第1章 学习的7个定义"></a>第1章 学习的7个定义</h3><ul>
+<li>📌 一个在东京出生的婴儿，在往后的两三年里，他的语言内部模型将不得不调整为符合日语的模型。这个婴儿的脑就像一台机器，内含数以百万计的回路设置。听觉层面的设置决定了日语中使用的辅音和元音，及其允许的组合规则。一个出生在日本家庭的婴儿必须知道哪些音素构成了日本语言，以及这些音素之间的区别。例如，有一个参数是区分R和L之间的发音，这在英语中非常关键，在日语中却无关紧要。在日语中，“Bill Clinton’s election”（比尔·克林顿的选举）和“Bill Clinton’s erection”（比尔·克林顿的勃起）没有任何区别……每个婴儿必须掌握一组固定的参数，而这些参数共同指定哪些类别的语音与他的母语相关。 <ul>
+<li>⏱ 2024-05-22 22:53:11</li>
+</ul>
+</li>
+</ul>
+<h3 id="第2章-为什么人脑的学习能力比目前的人工智能机器更强"><a href="#第2章-为什么人脑的学习能力比目前的人工智能机器更强" class="headerlink" title="第2章 为什么人脑的学习能力比目前的人工智能机器更强"></a>第2章 为什么人脑的学习能力比目前的人工智能机器更强</h3><ul>
+<li><p>📌 认知科学家侯世达￼曾经说过，人工智能的真正挑战在于识别字母A！这一嘲讽无疑是夸张的，但也触及了问题的核心，即便在这最微小的问题背景下，人类都能施展自己无与伦比的抽象化本领。这个壮举来源于日常生活中的一个有趣物件——验证码，即一小段字母，一些网站会让你识别它，来证明你是人类而不是机器。 </p>
 <ul>
-<li>⏱ 2024-05-02 11:24:56</li>
+<li>⏱ 2024-05-23 09:23:23</li>
 </ul>
 </li>
-<li><p>📌 传统架构配置域名访问应用可能使用Nginx的Server配置，在Kubernetes中用Ingress实现域名路由的配置（最终通过Ingress的配置生成对应控制器的配置，比如使用Nginx作为Ingress控制器，Ingress资源最终生成的就是Nginx的配置文件 </p>
+<li><p>📌 猴子需要几万次测验才会理解如何将序列的顺序颠倒（从ABCD转变成DCBA），而对一个4岁的孩子而言，尝试5次即可￼。甚至几个月大的婴儿就已经能够用抽象和系统的规则编码外部世界。这是人工神经网络和其他灵长类物种完全无法企及的能力。 </p>
 <ul>
-<li>⏱ 2024-05-02 11:25:20</li>
-</ul>
-</li>
-<li><p>📌 Service主要用于Pod之间的通信，对于Pod的IP地址而言，Service是提前定义好并且是不变的资源类型，在生产环境中最佳的实践方式就是每个应用互相调用时使用Service的名字进行连接 </p>
-<ul>
-<li>⏱ 2024-05-02 11:26:27</li>
-</ul>
-</li>
-<li><p>📌 上述文件配置创建一个名为my-service的Service对象，它会将请求代理到TCP端口为9376并且具有标签app&#x3D;myapp的Pod上。这个Service会被分配一个IP地址，通常称为ClusterIP，它会被服务的代理使用，在集群内部可以通过该ClusterIP（不建议使用ClusterIP进行访问）或Service名加上port进行访问，该示例my-service:80即可访问具有app&#x3D;myapp标签的Pod的9376端口。 </p>
-<ul>
-<li>⏱ 2024-05-02 11:28:46</li>
-</ul>
-</li>
-<li><p>📌 Kubernetes Service Type（服务类型）主要包括以下几种：<br>·　ClusterIP：在集群内部使用，默认值，只能从集群中访问。<br>·　NodePort：在所有安装了Kube-Proxy的节点上打开一个端口，此端口可以代理至后端Pod，可以通过NodePort从集群外部访问集群内的服务，格式为NodeIP:NodePort。<br>·　LoadBalancer：使用云提供商的负载均衡器公开服务，成本较高。<br>·　ExternalName：通过返回定义的CNAME别名，将Service映射到可被DNS解析的其他域名，需要1.7或更高版本kube-dns的支持。 </p>
-<ul>
-<li>⏱ 2024-05-02 11:37:33</li>
-</ul>
-</li>
-<li><p>📌 IP+端口的方式可以用NodePort类型Service进行发布，域名的方式可以使用Ingress（6.3节介绍）进行发布。 </p>
-<ul>
-<li>⏱ 2024-05-02 11:37:50</li>
-</ul>
-</li>
-</ul>
-<h3 id="第16章-服务发布Ingress进阶"><a href="#第16章-服务发布Ingress进阶" class="headerlink" title="第16章 服务发布Ingress进阶"></a>第16章 服务发布Ingress进阶</h3><ul>
-<li>📌 目前比较流行的Ingress Controller有ingress-nginx（本书讲解的，由Kubernetes官方维护）、nginx-ingress（由Nginx官方维护，注意和ingress-nginx的区别）、Traefik、Istio等。如果读者今后需要接入Istio，推荐采用Istio的ingressgateway作为Ingress（其实已经不能再称为Ingress，因为ingressgateway配置方式并非Ingress资源，而是Istio自定义的Gateway和VirtualService资源）。 <ul>
-<li>⏱ 2024-05-02 11:58:05</li>
-</ul>
-</li>
-</ul>
-<h2 id="第7篇-拓展篇"><a href="#第7篇-拓展篇" class="headerlink" title="第7篇 拓展篇"></a>第7篇 拓展篇</h2><ul>
-<li>📌 初学者第一次接触Istio时，往往无法区分VirtualService和DestinationRule，在实际使用时很容易混淆两者的概念和用途。<br>我们可以将VirtualService理解为Kubernetes Service层面，DestinationRule理解为Service后端真实的目标地址，即VirtualService用于Service层面的路由管控，DestinationRule用于对后端真实的服务再做进一步的划分。比如存在一个Service名为paycenter，指向后端多个paycenter的Pod（该Pod可能是不同的Deployment创建的），而DestinationRule可以对后端的多个Pod区分新旧版本，划分成不同的subnet，之后VirtualService可以针对不同的版本进行流量管控。 <ul>
-<li>⏱ 2024-01-28 08:11:52</li>
+<li>⏱ 2024-05-23 09:25:01</li>
 </ul>
 </li>
 </ul>
@@ -277,8 +256,7 @@
           
             <li><a href="/booking/">BOOKING</a></li>
             <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/">01进行中</a></li>
-            <li><a href="/booking/01%E8%BF%9B%E8%A1%8C%E4%B8%AD/old_dir/">OLD_DIR</a></li>
-            <li>云原生KUBERNETES全栈架构师实战</li>
+            <li>精准学习</li>
           
   </ul>
 
@@ -336,7 +314,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-Kubernetes%E7%9A%84%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-text">第4章 Kubernetes的基础概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-Kubernetes%E6%9C%8D%E5%8A%A1%E5%8F%91%E5%B8%83%E5%9F%BA%E7%A1%80"><span class="nav-text">第6章 Kubernetes服务发布基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC16%E7%AB%A0-%E6%9C%8D%E5%8A%A1%E5%8F%91%E5%B8%83Ingress%E8%BF%9B%E9%98%B6"><span class="nav-text">第16章 服务发布Ingress进阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC7%E7%AF%87-%E6%8B%93%E5%B1%95%E7%AF%87"><span class="nav-text">第7篇 拓展篇</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E5%BA%8F2-%E4%BA%BA%E8%84%91%E5%85%B7%E6%9C%89%E9%9D%9E%E5%87%A1%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%83%BD%E5%8A%9B"><span class="nav-text">推荐序2 人脑具有非凡的学习能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E8%A8%80-%E4%BA%BA%E8%84%91%E4%B8%AD%E6%9C%80%E4%BC%9F%E5%A4%A7%E7%9A%84%E6%89%8D%E8%83%BD%EF%BC%9A%E5%AD%A6%E4%B9%A0%E8%83%BD%E5%8A%9B"><span class="nav-text">导言 人脑中最伟大的才能：学习能力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%AD%A6%E4%B9%A0%E7%9A%847%E4%B8%AA%E5%AE%9A%E4%B9%89"><span class="nav-text">第1章 学习的7个定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BA%BA%E8%84%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%83%BD%E5%8A%9B%E6%AF%94%E7%9B%AE%E5%89%8D%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E6%9B%B4%E5%BC%BA"><span class="nav-text">第2章 为什么人脑的学习能力比目前的人工智能机器更强</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -350,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">332</span>
+          <span class="site-state-item-count">335</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

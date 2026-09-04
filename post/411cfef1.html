@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="今天和 AI 助手学习了几个 A 股投资的核心基础概念，这里用最通俗易懂的“大白话”（$ljg-plain 风格）记录下来，方便以后复习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="股票投资基础知识学习笔记（一）">
+<meta property="og:url" content="https://www.readwrite.fun/post/411cfef1.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="今天和 AI 助手学习了几个 A 股投资的核心基础概念，这里用最通俗易懂的“大白话”（$ljg-plain 风格）记录下来，方便以后复习。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-28T23:50:00.000Z">
+<meta property="article:modified_time" content="2026-09-04T03:44:50.203Z">
+<meta property="article:author" content="readwrite">
+<meta property="article:tag" content="投资">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="A股">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/411cfef1.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/411cfef1.html","path":"post/411cfef1.html","title":"股票投资基础知识学习笔记（一）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>股票投资基础知识学习笔记（一） | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%91%E5%AD%97%E5%A1%94%E4%B9%B0%E5%85%A5%E6%B3%95%EF%BC%9F%E5%AE%83%E5%8F%AA%E9%92%88%E5%AF%B9%E5%AE%BD%E5%9F%BA%E5%90%97%EF%BC%9F"><span class="nav-text">1. 什么是金字塔买入法？它只针对宽基吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95%E6%AD%A2%E7%9B%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E7%AD%96%E7%95%A5%E5%91%A2%EF%BC%9F"><span class="nav-text">2. 如何止盈？有哪些策略呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AF%E8%BD%AC%E5%80%BA%EF%BC%9F"><span class="nav-text">3. 什么是可转债？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%AF%E5%80%BA%E5%9F%BA%E9%87%91%E6%88%96%E5%AD%98%E5%AE%9A%E6%9C%9F%EF%BC%9F"><span class="nav-text">4. 什么是纯债基金或存定期？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/411cfef1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="股票投资基础知识学习笔记（一） | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          股票投资基础知识学习笔记（一）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-08-28 23:50:00" itemprop="dateCreated datePublished" datetime="2026-08-28T23:50:00+00:00">2026-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-09-04 03:44:50" itemprop="dateModified" datetime="2026-09-04T03:44:50+00:00">2026-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/" itemprop="url" rel="index"><span itemprop="name">投资理财</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>今天和 AI 助手学习了几个 A 股投资的核心基础概念，这里用最通俗易懂的“大白话”（$ljg-plain 风格）记录下来，方便以后复习。</p>
+<span id="more"></span>
+
+<h3 id="1-什么是金字塔买入法？它只针对宽基吗？"><a href="#1-什么是金字塔买入法？它只针对宽基吗？" class="headerlink" title="1. 什么是金字塔买入法？它只针对宽基吗？"></a>1. 什么是金字塔买入法？它只针对宽基吗？</h3><p><strong>大白话解释</strong>：<br>想象一座金字塔，底座宽大，塔尖很小。金字塔买入法就是：<strong>价格越跌，你买入的份数就越多</strong>。<br>比如，你打算买一只基金，现在跌了 10%，你买入 1 份的钱；如果再跌 10%，你买入 2 份；如果再暴跌 10%，你直接买入 4 份。<br><strong>好处</strong>：这能极大地摊低你的平均成本。只要稍微反弹一点点，你就能迅速回本甚至盈利。</p>
+<p><strong>它只针对宽基吗？</strong><br>理论上什么资产都能用，但<strong>强烈建议只用在“宽基指数”（如沪深300、中证500）上</strong>。<br>为什么？因为单个公司的股票（个股）是有可能破产退市的，如果公司基本面烂了，你越跌越买，最后可能血本无归（这叫“接飞刀”）。但宽基指数代表的是国家整体经济里最大的一批公司，不可能全部倒闭清零。所以对宽基用金字塔买入，只要有耐心，风险极低。</p>
+<h3 id="2-如何止盈？有哪些策略呢？"><a href="#2-如何止盈？有哪些策略呢？" class="headerlink" title="2. 如何止盈？有哪些策略呢？"></a>2. 如何止盈？有哪些策略呢？</h3><p><strong>大白话解释</strong>：<br>止盈就是“见好就收，把账面上的数字变成口袋里的真金白银”。A 股是个典型的“牛短熊长、来回震荡”的市场，如果不止盈，赚到的钱很容易又吐回去，坐了一趟过山车。</p>
+<p><strong>常用的止盈策略</strong>：</p>
+<ul>
+<li><strong>目标止盈法（最适合新手）</strong>：提前设定一个目标。比如“这笔钱赚够 20% 我就全部卖掉，绝不贪心”。卖掉之后重新开始下一轮定投。</li>
+<li><strong>估值止盈法（进阶）</strong>：看当前市场是“便宜”还是“贵”。比如你看跟踪指数的市盈率（PE），如果发现它到了历史高位（比如超过了历史 80% 的时间），说明泡沫很大了，这时候就分批卖出。</li>
+<li><strong>移动回撤止盈法（吃大肉）</strong>：比如大牛市来了，你现在赚了 50%，你不想卖太早错过后面的暴涨。你可以定个规矩：“只要从最高点往下跌超过 10%，我就无脑清仓”。这样既能跟着牛市一起飞，又能在拐点出现时保住大部分利润。</li>
+</ul>
+<h3 id="3-什么是可转债？"><a href="#3-什么是可转债？" class="headerlink" title="3. 什么是可转债？"></a>3. 什么是可转债？</h3><p><strong>大白话解释</strong>：<br>一句话概括，<strong>它是债券和股票的“私生子”</strong>。</p>
+<ul>
+<li><strong>它的“债券”属性（用来保底）</strong>：它首先是一张借条。上市公司找你借钱，一般面值是 100 元，约定几年后还本付息。只要这个公司不倒闭，哪怕它的股票跌成了渣，到期它也得把 100 多块钱还给你。这就是“下有保底”。</li>
+<li><strong>它的“股票”属性（用来发财）</strong>：这不仅仅是借条，它还附赠了一个权利——你可以按约定价格把这借条“换成公司的股票”。如果遇到大牛市，公司股票暴涨，你手里的可转债也会跟着暴涨（涨到 130元、200元甚至更高都有可能）。这就是“上不封顶”。</li>
+</ul>
+<p>在 A 股，低价买入可转债（价格在 100 元附近），是非常经典的低风险投资策略。</p>
+<h3 id="4-什么是纯债基金或存定期？"><a href="#4-什么是纯债基金或存定期？" class="headerlink" title="4. 什么是纯债基金或存定期？"></a>4. 什么是纯债基金或存定期？</h3><p>这两者都是我们资产配置里的“防守牌”和“安全垫”。</p>
+<ul>
+<li><strong>纯债基金</strong>：就是基金经理把大家凑起来的钱，<strong>100% 全部拿去借给国家（买国债）、地方政府或者信誉极好的大央企（买信用债）</strong>。这里面一分钱的股票都没有。因为借钱的对象很难违约，所以它几乎稳赚不赔，每年能给你提供 3% - 5% 左右的稳定收益，波动极小。</li>
+<li><strong>存定期</strong>：这个最接地气，就是你去银行，把钱死死存上 1 年、3 年或 5 年。银行给你固定的利息。这是全宇宙最安全的投资（受存款保险制度保护，50万以内就算银行倒闭也全额赔），但缺点是利息太低，通常跑不过真实的通货膨胀。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%95%E8%B5%84/" rel="tag"># 投资</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/A%E8%82%A1/" rel="tag"># A股</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/4949d96f.html" rel="prev" title="2026-08-28-AI-Agent-English-Learning">
+                  <i class="fa fa-angle-left"></i> 2026-08-28-AI-Agent-English-Learning
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/710a1229.html" rel="next" title="股票投资基础知识学习笔记（二）">
+                  股票投资基础知识学习笔记（二） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

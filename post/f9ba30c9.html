@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="贪婪算法：只接受更优的结果 📌 任意选择一条路径——不管它有多长、多么低效，然后随机交换两个客户。如果交换的结果是路径变短了，就留下这条路径，反之则回到原点。然后随机交换其他两个客户，如果路径变短了，就再把它留下。重复这些步骤。每一次成功的交换都会改变路径在景观中的位置。一步接一步，一次成功的交换接着一次成功的交换，最终你将得到一条不能再通过交换而缩短的路径。这种算法在景观中保持着下降的趋势，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《如何解决复杂问题》3星">
+<meta property="og:url" content="https://www.readwrite.fun/post/f9ba30c9.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="贪婪算法：只接受更优的结果 📌 任意选择一条路径——不管它有多长、多么低效，然后随机交换两个客户。如果交换的结果是路径变短了，就留下这条路径，反之则回到原点。然后随机交换其他两个客户，如果路径变短了，就再把它留下。重复这些步骤。每一次成功的交换都会改变路径在景观中的位置。一步接一步，一次成功的交换接着一次成功的交换，最终你将得到一条不能再通过交换而缩短的路径。这种算法在景观中保持着下降的趋势，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/69/YueWen_36816861/t7_YueWen_36816861.jpg">
+<meta property="article:published_time" content="2025-03-05T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-26T08:09:11.083Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.weread.qq.com/weread/cover/69/YueWen_36816861/t7_YueWen_36816861.jpg">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/f9ba30c9.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/f9ba30c9.html","path":"post/f9ba30c9.html","title":"《如何解决复杂问题》3星"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《如何解决复杂问题》3星 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95%EF%BC%9A%E5%8F%AA%E6%8E%A5%E5%8F%97%E6%9B%B4%E4%BC%98%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-text">贪婪算法：只接受更优的结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95%EF%BC%9A%E5%8D%B3%E4%BD%BF%E7%BB%93%E6%9E%9C%E5%8F%98%E5%B7%AE%EF%BC%8C%E4%B9%9F%E6%9A%82%E6%97%B6%E6%8E%A5%E5%8F%97%E5%AE%83"><span class="nav-text">模拟退火算法：即使结果变差，也暂时接受它</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%EF%BC%9A%E6%A8%A1%E6%8B%9F%E7%89%A9%E7%A7%8D%E8%BF%9B%E5%8C%96%EF%BC%8C%E6%89%BE%E5%88%B0%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88"><span class="nav-text">遗传算法：模拟物种进化，找到最佳方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC9%E7%AB%A0-%E6%95%99%E8%82%B2%E6%99%AF%E8%A7%82%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9F%B9%E5%85%BB%E5%88%9B%E9%80%A0%E6%80%A7%E4%BA%BA%E6%89%8D%E5%92%8C%E5%BB%BA%E7%AB%8B%E5%88%9B%E9%80%A0%E6%80%A7%E7%BB%84%E7%BB%87"><span class="nav-text">第9章 教育景观：如何培养创造性人才和建立创造性组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BF%80%E5%8F%91%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA%EF%BC%8C%E5%BC%BA%E5%8C%96%E8%87%AA%E4%B8%BB%E6%80%A7"><span class="nav-text">激发内在动机，强化自主性</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/f9ba30c9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《如何解决复杂问题》3星 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《如何解决复杂问题》3星
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-05T00:00:00+00:00">2025-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-08-26 08:09:11" itemprop="dateModified" datetime="2025-08-26T08:09:11+00:00">2025-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/1-read/" itemprop="url" rel="index"><span itemprop="name">1_read</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/1-read/09-%E6%80%9D%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">09_思维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="https://cdn.weread.qq.com/weread/cover/69/YueWen_36816861/t7_YueWen_36816861.jpg" alt=" 如何解决复杂问题|200"></p>
+<h4 id="贪婪算法：只接受更优的结果"><a href="#贪婪算法：只接受更优的结果" class="headerlink" title="贪婪算法：只接受更优的结果"></a>贪婪算法：只接受更优的结果</h4><ul>
+<li><p>📌 任意选择一条路径——不管它有多长、多么低效，然后随机交换两个客户。如果交换的结果是路径变短了，就留下这条路径，反之则回到原点。然后随机交换其他两个客户，如果路径变短了，就再把它留下。重复这些步骤。每一次成功的交换都会改变路径在景观中的位置。一步接一步，一次成功的交换接着一次成功的交换，最终你将得到一条不能再通过交换而缩短的路径。这种算法在景观中保持着下降的趋势，目的是寻找最低点 </p>
+<ul>
+<li>⏱ 2025-03-04 23:44:02</li>
+</ul>
+</li>
+<li><p>📌 计算机科学家给它们取了一个“贪婪”的称号，而贪婪不一定是坏事。 </p>
+<ul>
+<li>⏱ 2025-03-04 23:44:23</li>
+</ul>
+</li>
+<li><p>📌 复杂问题还有另一个令人讨厌的特性：它们会越来越复杂，这是因为它们的规模会越来越大。随着客户、发电厂、护士或者武器数量的增加，陨石坑的数量会呈指数级增长。将陨石坑“翻译”为技术术语，就是局部极小值（local minima）。就像分子能量景观中的极小值一样，其数量很快就会超过最强大的计算机的处理能力。在一个有10个客户的车辆路径景观中，存在着大约100个局部极小值，对于15个客户来说，相同的景观内存在超过1 000个局部极小值。9而对于具有实际意义的客户数目而言，这些极小值的数目是数不清的。在这么多极小值中，只有一条属于最佳路径，或者说全局极小值（global minimum），要找到它如同大海捞针。在现实中，人们所期望的往往只是一个“够好”的答案，即一个在众多极小值中“比较深”的答案，而并不需要那个最优的答案。雪花，才是复杂问题的解决之道 </p>
+<ul>
+<li>⏱ 2025-03-04 23:45:45</li>
+</ul>
+</li>
+</ul>
+<h4 id="模拟退火算法：即使结果变差，也暂时接受它"><a href="#模拟退火算法：即使结果变差，也暂时接受它" class="headerlink" title="模拟退火算法：即使结果变差，也暂时接受它"></a>模拟退火算法：即使结果变差，也暂时接受它</h4><ul>
+<li>📌 幸运的是，在贪婪算法失败的地方，其他的算法还能够完成接力。其中一种算法叫作模拟退火（simulated annealing）。退火一词来自冶金业，指的是一种降低钢和其他金属的脆性，增加其可塑性的处理工艺。例如，剑匠在锻造剑的时候就会使用这种工艺。当一个铁块被退火时，它首先会被加热到一定的温度，在这个温度下，铁原子会强烈振动，发生移位。如果以非常慢的速度使铁块冷却，这会使原子形成小晶体，进而使铁更具延展性。这种处理方法的核心是“热”，也就是使分子能够探索能量景观，发现巴基球、金团簇和钻石的方法。这不是巧合，创造力的不同领域之间本来就有着深入的联系。 <ul>
+<li>⏱ 2025-03-04 23:46:19</li>
+</ul>
+</li>
+</ul>
+<h4 id="遗传算法：模拟物种进化，找到最佳方案"><a href="#遗传算法：模拟物种进化，找到最佳方案" class="headerlink" title="遗传算法：模拟物种进化，找到最佳方案"></a>遗传算法：模拟物种进化，找到最佳方案</h4><ul>
+<li><p>📌 达尔文的进化论本身就可以看作一种算法，只不过步骤简单得多：突变、选择、重复。只是这个算法转换的不是比特和字节，而是生物，所以它可以用于模拟DNA、模拟表现型以及模拟生物体。在这样的模拟中，我们可以控制每一个细节——突变多久发生一次，以何种标准选择最佳变体，是否允许交配和重组等 </p>
+<ul>
+<li>⏱ 2025-03-04 23:47:11</li>
+</ul>
+</li>
+<li><p>📌 1987年，一条能够将全世界666个旅游目的地都连接起来的最短路径被世人广泛熟知。这是在超过101 500种可能路径中找到的最优解。到了1998年，经过10年的算法设计和算力提升，莱斯大学的研究人员终于发现了连接美国13 509座城镇的最短路径。 </p>
+<ul>
+<li>⏱ 2025-03-04 23:48:41</li>
+</ul>
+</li>
+</ul>
+<h3 id="第9章-教育景观：如何培养创造性人才和建立创造性组织"><a href="#第9章-教育景观：如何培养创造性人才和建立创造性组织" class="headerlink" title="第9章 教育景观：如何培养创造性人才和建立创造性组织"></a>第9章 教育景观：如何培养创造性人才和建立创造性组织</h3><ul>
+<li><p>📌 目前过度竞争的教育体系的最大缺点，就是它强加在失败上的惩罚性后果，以及它对标准化测试的极端重视。像学术能力评估测试这样的强制性考试，由于利害关系重大，对学习和教学都产生了导向作用。这种导向是一种缓慢的侵蚀，从幼儿园开始一直持续到大学，数学和语言方面的训练取代了音乐、艺术和游戏。4推行高风险的标准化测试的后果并不理想，并不只是因为它侵蚀了本可用于真正的学习的时间，还因为它把教育同质化了。从景观的角度来看，这种做法犹如暗疾，隐秘地堵上了思维重组的可能性 </p>
+<ul>
+<li>⏱ 2025-03-04 23:39:36</li>
+</ul>
+</li>
+<li><p>📌 过度竞争的教育模式所忽视的，其实是我们在景观中的一个核心发现：为了达到顶峰，人们需要自由探索的时间，而且是不用做出选择和评判的时间。 </p>
+<ul>
+<li>⏱ 2025-03-05 10:26:47</li>
+</ul>
+</li>
+<li><p>📌 学龄前儿童通过自由探索实现的学习效果比在教室上课要好。一项针对343名儿童的研究把两类孩子进行了比较，一类孩子参加了一项学术导向（academically oriented）的学前班，老师们采取了在教室授课的方式；另一类孩子参加了允许他们自己主导的活动（child-directed activities），大多是一些普通的游戏。到四年级时，上过学前班的孩子的成绩比那些“纯玩”的孩子的成绩要低。更重要的是，上学前班的孩子错过了那段关键的探索期，而这种探索对人类的成长是不可或缺的，就跟游戏对其他许多物种来说必不可少一样。 </p>
+<ul>
+<li>⏱ 2025-03-04 23:55:05</li>
+</ul>
+</li>
+</ul>
+<h4 id="激发内在动机，强化自主性"><a href="#激发内在动机，强化自主性" class="headerlink" title="激发内在动机，强化自主性"></a>激发内在动机，强化自主性</h4><ul>
+<li><p>📌 内在动机的力量到底有多大，看看那些在年少时期就找到了自己毕生梦想的杰出创造者就知道了。例如，哈佛大学的生物学家爱德华·威尔逊（Edward Wilson）在10岁前就是一名博物学家了；诺贝尔化学奖得主莱纳斯·鲍林（Linus Pauling）13岁时就开始了他的第一次化学实验；天文学家薇拉·鲁宾（Vera Rubin）在10岁前就发现了自己对天文学的热爱。 </p>
+<ul>
+<li>⏱ 2025-03-05 10:33:30</li>
+</ul>
+</li>
+<li><p>📌 但这种内在的驱动力却有可能被僵化的课程所摧毁，更有可能毁于严厉的老师、乏味的课堂、死板的背诵，以及沉闷压抑的官僚和日复一日的重复任务。用爱因斯坦说过的一句话来形容最合适不过了：“现代的教学方法竟然还没有把研究问题的可贵好奇心完全扼杀掉，真可以说是一个奇迹。” </p>
+<ul>
+<li>⏱ 2025-03-05 10:33:17</li>
+</ul>
+</li>
+<li><p>📌 景观思维传达了关于儿童教育的一种简单、普遍的信息：培养多样性和自主能力。这样的教育能使每一个人都具备多样的技能，而且不同的人还要具备不同的技能，也只有这样的教育，才能为知识和思维的重组做好准备。在获取这些技能的过程中，学生与其将时间浪费在当今过度竞争的各种考试当中，不如将时间花在创造力的培养和趣味性的学习上。接下来我们将看到，在培养面向未来的创造性人才的大学当中，此原则同样适用，只不过形式有所不同。 </p>
+<ul>
+<li>⏱ 2025-03-05 10:33:50</li>
+</ul>
+</li>
+<li><p>📌 这些孩子聪慧、勤奋，却只会像机器人一样开展研究，我很难在他们身上看到创造力的火花（如果他们所受的教育还孕育过这样的火花的话）。一想到他们未来的样子，我就感到很难过。 </p>
+<ul>
+<li>⏱ 2025-03-05 10:34:12</li>
+</ul>
+</li>
+<li><p>📌 第一个经验是耐心。很多人都认为紧迫的截止日期会激发创造力，但根据阿玛贝尔的研究，巨大的压力会抑制我们的创造性思维。那些有足够时间解决问题的员工通常能找到更多新颖的解决方案，相比而言，那些在导致肾上腺素上升的压力下工作的员工则表现差些。而且，一旦不堪重负的员工遇到了紧迫的时间点，他们往往会经历一段创造力的“宿醉期”，在整整几天的时间里，都只能产生一些毫无新意的想法。4 </p>
+<ul>
+<li>⏱ 2025-03-04 23:41:10</li>
+</ul>
+</li>
+</ul>
+<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/f85cebc0.html" rel="prev" title="《打造第二大脑》3星">
+                  <i class="fa fa-angle-left"></i> 《打造第二大脑》3星
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/4f38b067.html" rel="next" title="《别把想法一直放在脑子里》3星">
+                  《别把想法一直放在脑子里》3星 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="小张是后端工程师，工作 5 年，工资跑不赢北京房租。每月炒股凭感觉，越炒越亏。 去年他想：天天写自动化测试，能不能把交易策略也写成代码、跑回测、上线？他踩了一年坑才摸到门。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="量化投资">
+<meta property="og:url" content="https://www.readwrite.fun/post/7a534757.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="小张是后端工程师，工作 5 年，工资跑不赢北京房租。每月炒股凭感觉，越炒越亏。 去年他想：天天写自动化测试，能不能把交易策略也写成代码、跑回测、上线？他踩了一年坑才摸到门。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-04T17:27:08.000Z">
+<meta property="article:modified_time" content="2026-05-06T03:30:32.941Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/7a534757.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/7a534757.html","path":"post/7a534757.html","title":"量化投资"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>量化投资 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA%EF%BC%9A%E5%B0%8F%E5%BC%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5"><span class="nav-text">演示：小张的第一个量化策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%86%E8%A7%A3%EF%BC%9A5-%E6%AD%A5%E8%83%8C%E5%90%8E%E7%9A%84-4-%E6%9D%A1%E8%A7%84%E5%88%99"><span class="nav-text">拆解：5 步背后的 4 条规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8A%E7%BB%83%EF%BC%9A%E5%B0%8F%E5%BC%A0%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%9C%BA%E6%99%AF"><span class="nav-text">半练：小张的下一个场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8B%AC%E6%8C%91%EF%BC%9A%E4%BD%A0%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="nav-text">独挑：你的场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E9%97%AE%E7%AD%94"><span class="nav-text">扩展问答</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%8F%E6%99%AE%E6%AF%94%E7%8E%87%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">1. 夏普比率到底是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%87%8F%E5%8C%96%E5%9C%A8-A-%E8%82%A1%E8%83%BD%E5%81%9A%E5%90%97%EF%BC%9F%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-text">2. 量化在 A 股能做吗？怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E8%B4%B9%E4%BC%9A%E5%BE%88%E5%A4%9A%E5%90%97%EF%BC%9F"><span class="nav-text">3. 量化交易费会很多吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%B7%E5%80%BC%E6%8A%95%E8%B5%84-Vs-%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%9B%B4%E6%9C%89%E9%81%93%E7%90%86%EF%BC%9F"><span class="nav-text">4. 价值投资 Vs 量化投资，哪个更有道理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-text">附录：核心术语速查表</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/7a534757.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="量化投资 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          量化投资
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-05-04 17:27:08" itemprop="dateCreated datePublished" datetime="2026-05-04T17:27:08+00:00">2026-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-05-06 03:30:32" itemprop="dateModified" datetime="2026-05-06T03:30:32+00:00">2026-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/701-%E6%8A%95%E8%B5%84/" itemprop="url" rel="index"><span itemprop="name">701_投资</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>小张是后端工程师，工作 5 年，工资跑不赢北京房租。每月炒股凭感觉，越炒越亏。</p>
+<p>去年他想：天天写自动化测试，能不能把交易策略也写成代码、跑回测、上线？他踩了一年坑才摸到门。</p>
+<span id="more"></span>
+
+<h1 id="演示：小张的第一个量化策略"><a href="#演示：小张的第一个量化策略" class="headerlink" title="演示：小张的第一个量化策略"></a>演示：小张的第一个量化策略</h1><p><strong>量化投资就是把交易策略当软件来开发</strong>——写代码、跑测试、上预发、灰度发布、监控告警。每个程序员都熟。</p>
+<p>小张选了一个最简策略：周线均线突破。周 5 日均线上穿 20 日均线就买入，下穿就卖出。标的是沪深 300 ETF，本金 10 万。</p>
+<p><strong>步骤 1：选标的——沪深 300 ETF，不选小盘股</strong><br>   → 为什么这么选：流动性大、数据干净、滑点低，新手回测最可信<br>   → 类比映射：等于挑一个稳定的成熟 API，不挑刚发布的 beta 版</p>
+<p><strong>步骤 2：定信号——5 上穿 20 买入</strong><br>   → 为什么这么选：先做最简单可验证的版本，跑通再说<br>   → 类比映射：先写最小 demo，别一上来就微服务化</p>
+<p><strong>步骤 3：跑回测——2010 到 2024 共 14 年数据</strong><br>   → 为什么这么选：跨牛熊周期才能看出策略真实性格<br>   → 类比映射：等于跑全量集成测试，不只跑单元测试</p>
+<p><strong>步骤 4：扣成本——每笔交易 0.2% 滑点加佣金</strong><br>   → 为什么这么选：免费午餐先被市场吃掉<br>   → 类比映射：性能测试必须带真实网络延迟，不能假设零延迟</p>
+<p><strong>步骤 5：留 20% 样本外——2022-2024 数据不参与调参</strong><br>   → 为什么这么选：用全数据调参等于背答案<br>   → 类比映射：测试集和训练集分开，机器学习铁律</p>
+<p>最后结果：年化 9%、最大回撤 18%、夏普 0.6。比直接持有沪深 300 强一点点，扣完成本几乎打平。小张差点把电脑砸了——花一个月，跑出来基本等于躺平。</p>
+<p>但这才是诚实结果。绝大多数公开策略的真实样子，就是平庸或微负。</p>
+<h1 id="拆解：5-步背后的-4-条规则"><a href="#拆解：5-步背后的-4-条规则" class="headerlink" title="拆解：5 步背后的 4 条规则"></a>拆解：5 步背后的 4 条规则</h1><p>回看小张的 5 步，背后是 4 条规则：</p>
+<p><strong>规则 1：先做最小可验证版，再迭代复杂度</strong><br>   ← 来自步骤 2：他没一上来上 50 个因子，从 1 条信号起步<br>   边界：极简策略大概率不赚钱，目的是先打通流程</p>
+<p><strong>规则 2：回测必须扣回所有真实交易成本</strong><br>   ← 来自步骤 4：不扣成本的策略数据都是漂亮废纸<br>   边界：低频策略受成本影响小，高频策略可能直接转负</p>
+<p><strong>规则 3：永远留一份 “ 调参从没碰过 “ 的数据</strong><br>   ← 来自步骤 5：这是检验策略是否真有效的唯一方法<br>   边界：留太多数据用于验证会让训练数据不够，通常 20-30%</p>
+<p><strong>规则 4：用风险调整收益评估，不只看绝对数</strong><br>   ← 来自步骤 1 选 ETF 而非杠杆品种：稳健胜过刺激<br>   边界：风险偏好不同，长线资金看夏普，短线资金更看回报</p>
+<p><strong>易混点</strong>：高夏普 vs 真有效</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>高夏普未必真好</th>
+<th>真有效的标志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>样本时长</td>
+<td>1-2 年高夏普</td>
+<td>跨过 3 个完整周期</td>
+</tr>
+<tr>
+<td>实盘验证</td>
+<td>只有回测数据</td>
+<td>实盘走过 1 年以上</td>
+</tr>
+<tr>
+<td>策略来源</td>
+<td>网上抄的或反复调参</td>
+<td>有清晰的赚钱逻辑</td>
+</tr>
+<tr>
+<td>容量测试</td>
+<td>只跑 100 万</td>
+<td>跑过亿级真实流动性</td>
+</tr>
+</tbody></table>
+<p>类比一下：测试覆盖率 100% 不代表代码没 bug，可能只是测试本身写错了。</p>
+<h1 id="半练：小张的下一个场景"><a href="#半练：小张的下一个场景" class="headerlink" title="半练：小张的下一个场景"></a>半练：小张的下一个场景</h1><p>小张策略跑了一年。朋友甩给他一个 “ 火爆策略 “：加密货币网格交易。回测 6 个月，年化 200%，最大回撤 5%，夏普 8.5。问他要不要 all in。</p>
+<p><strong>问题</strong>：小张该看到的最大红旗是什么？</p>
+<blockquote>
+<p>💡 先想 30 秒再展开。</p>
+</blockquote>
+<p><strong>回测时长 6 个月就是头号红旗</strong>。</p>
+<ul>
+<li>6 个月覆盖不了一个完整周期，可能正好抓在单边涨势里</li>
+<li>200% 收益配 5% 回撤太完美，违反风险收益对应的常识</li>
+<li>夏普 8.5 在量化界是顶级机构传说级别——业余做出来概率约等于 0</li>
+<li>经验法则：回测期 &lt; 完整一轮周期，看到的都是幻觉</li>
+</ul>
+<p>小张当年也差点上头。他做了对照实验：用同样 6 个月数据随机模拟 1000 次，发现 5% 的 “ 假策略 “ 也能跑出年化 100% 以上。这就是过拟合的真面目——把噪声当信号。</p>
+<p>类比一下：等于一个新功能只在 dev 环境跑了一周，就要直接灰度全量——任何一个 SRE 看了都会拒签。</p>
+<h1 id="独挑：你的场景"><a href="#独挑：你的场景" class="headerlink" title="独挑：你的场景"></a>独挑：你的场景</h1><p>你刷到一家量化私募的宣传：成立 3 年，年化 25%，最大回撤 8%，夏普 2.5。基金经理是某海归博士，最低门槛 100 万。朋友问你能不能投。</p>
+<p><strong>问题 1（闭合）</strong>：这 3 年业绩（2022-2024）的最大盲点是什么？</p>
+<p><strong>问题 2（开放）</strong>：你还会问哪些问题来评估这家私募？</p>
+<p><strong>问题 1 参考答案：这 3 年没经过真正的全市场杀跌</strong>。</p>
+<p>2022-2024 是 A 股结构性行情，量化容易出业绩。没看到这家在 2018 单边熊市或 2015 急速崩盘里的表现，等于只跑过晴天的飞行测试。</p>
+<p>3 年在量化界算 “ 刚够看 “，但远不到能下结论的长度。</p>
+<p><strong>问题 2 思考方向</strong>：不必有唯一答案，关键是看你能不能想到这几个维度：</p>
+<ul>
+<li>资金管理规模和策略容量：太小没意义，太大可能打满流动性</li>
+<li>策略原理是否能说清：说不清的别投，可能在裸跑</li>
+<li>是否有存活者偏差控制：失败的产品会不会被悄悄关掉</li>
+<li>实盘 vs 回测的差距：差距越大越可疑</li>
+<li>团队稳定性：核心策略写手离职策略可能就死</li>
+<li>是否经历过黑天鹅：去年没经历过的是 “ 还没到时候 “，不是 “ 扛得住 “</li>
+</ul>
+<p>经验法则：把它当作面试一家技术公司——业绩报告是简历，你要做尽调。</p>
+<h1 id="扩展问答"><a href="#扩展问答" class="headerlink" title="扩展问答"></a>扩展问答</h1><h2 id="1-夏普比率到底是什么？"><a href="#1-夏普比率到底是什么？" class="headerlink" title="1. 夏普比率到底是什么？"></a>1. 夏普比率到底是什么？</h2><p><strong>单位风险下的超额收益</strong>。公式：(策略年化收益 − 无风险利率) &#x2F; 收益年化波动率。</p>
+<p>它惩罚的是 “ 不稳定 “——同样赚 10%，平稳曲线的夏普高于过山车曲线。猛涨也算抖动。</p>
+<p>经验对照：</p>
+<table>
+<thead>
+<tr>
+<th>夏普</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; 0.5</td>
+<td>不如躺平买指数</td>
+</tr>
+<tr>
+<td>0.5–1</td>
+<td>业余水平</td>
+</tr>
+<tr>
+<td>1–2</td>
+<td>合格，可拿出去募资</td>
+</tr>
+<tr>
+<td>2–3</td>
+<td>头部私募水平</td>
+</tr>
+<tr>
+<td>&gt; 3</td>
+<td>警惕：要么真神，要么数据有问题</td>
+</tr>
+<tr>
+<td>&gt; 5</td>
+<td>99% 是过拟合或诈骗</td>
+</tr>
+</tbody></table>
+<p>两个误区：夏普高 ≠ 安全（不抓尾部风险，LTCM 爆雷前夏普 4.x）；夏普高 ≠ 赚得多（夏普 3 但年化 5% 也存在）。</p>
+<h2 id="2-量化在-A-股能做吗？怎么做？"><a href="#2-量化在-A-股能做吗？怎么做？" class="headerlink" title="2. 量化在 A 股能做吗？怎么做？"></a>2. 量化在 A 股能做吗？怎么做？</h2><p>能做，但 A 股的硬约束决定了玩法和美股不同：</p>
+<table>
+<thead>
+<tr>
+<th>约束</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T+1</td>
+<td>当天买当天不能卖，股票日内高频死路一条</td>
+</tr>
+<tr>
+<td>不能裸卖空</td>
+<td>中性策略难做，融券池小且贵</td>
+</tr>
+<tr>
+<td>±10% 涨跌停</td>
+<td>极端行情下流动性蒸发</td>
+</tr>
+<tr>
+<td>印花税 0.1%（卖出）</td>
+<td>高频被税收死</td>
+</tr>
+</tbody></table>
+<p>个人路径（从轻到重）：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>门槛</th>
+<th>适合</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>聚宽 &#x2F; 米筐 &#x2F; 优矿</td>
+<td>0 元</td>
+<td>入门、回测验证</td>
+</tr>
+<tr>
+<td>券商 API（华泰 MATIC、东方等）</td>
+<td>几十万本金 + 会写代码</td>
+<td>自己跑实盘</td>
+</tr>
+<tr>
+<td>私募基金备案</td>
+<td>团队 + 合规</td>
+<td>机构化运作</td>
+</tr>
+</tbody></table>
+<p>A 股能做的几类（按主流度）：股票多因子选股（私募 80% 在做）、指数增强、CTA 商品期货（不受 T+1 约束）、可转债 &#x2F; ETF 套利、打新策略。</p>
+<p>新手路径建议：聚宽免费学 → 券商模拟盘验证 → 实盘小钱跑满 1 年 → 加仓。</p>
+<h2 id="3-量化交易费会很多吗？"><a href="#3-量化交易费会很多吗？" class="headerlink" title="3. 量化交易费会很多吗？"></a>3. 量化交易费会很多吗？</h2><p><strong>取决于策略频率</strong>。新手最大的误解是把 “ 量化 “ 等同于 “ 高频 “。</p>
+<p>A 股一笔交易的成本：印花税 0.1%（卖出）+ 佣金 万 1.5–万 3（双向）+ 滑点 0.05%–0.3%。一买一卖一轮约 0.2%–0.5%。</p>
+<p>不同频率的成本拖累：</p>
+<table>
+<thead>
+<tr>
+<th>策略类型</th>
+<th>调仓频率</th>
+<th>成本拖累&#x2F;年</th>
+<th>可行性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>长线价值</td>
+<td>季&#x2F;年</td>
+<td>0.5%</td>
+<td>几乎可忽略</td>
+</tr>
+<tr>
+<td>中频多因子</td>
+<td>月度</td>
+<td>3–6%</td>
+<td>主流私募档位</td>
+</tr>
+<tr>
+<td>周线择时</td>
+<td>周</td>
+<td>10–15%</td>
+<td>必须 alpha 强</td>
+</tr>
+<tr>
+<td>日内高频</td>
+<td>分钟&#x2F;秒</td>
+<td>单边吃光</td>
+<td>个人玩不了</td>
+</tr>
+</tbody></table>
+<p><strong>个人在 A 股做高频几乎不可能</strong>：T+1 堵死股票日内、佣金谈不到机构价、印花税躲不掉。机构高频靠的是万 0.5 佣金、自营席位免印花、期货市场无 T+1、机房直连交易所。</p>
+<p>新手做月度调仓的多因子，成本是小事。</p>
+<h2 id="4-价值投资-Vs-量化投资，哪个更有道理？"><a href="#4-价值投资-Vs-量化投资，哪个更有道理？" class="headerlink" title="4. 价值投资 Vs 量化投资，哪个更有道理？"></a>4. 价值投资 Vs 量化投资，哪个更有道理？</h2><p>不是对立关系，是两套工具。问 “ 哪个更有道理 “ 约等于问 “ 扳手和螺丝刀哪个更有道理 “。</p>
+<p>两边都赚到过钱：巴菲特 60 年年化 ~20%，西蒙斯大奖章扣费后 39 年年化 ~39%。所以 “ 哪个更对 “ 是伪问题。</p>
+<p><strong>对个人的现实差异</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>价值投资</th>
+<th>个人做量化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>信息公平度</td>
+<td>财报公开可读</td>
+<td>高质量数据要花钱买</td>
+</tr>
+<tr>
+<td>基础设施</td>
+<td>一个手机一个券商</td>
+<td>数据源 + 算力 + 低延迟通道</td>
+</tr>
+<tr>
+<td>容量</td>
+<td>几乎无上限</td>
+<td>百万级还行，亿级 alpha 消失</td>
+</tr>
+<tr>
+<td>心理压力</td>
+<td>时间是朋友</td>
+<td>连亏 3 个月时不知道该不该停</td>
+</tr>
+</tbody></table>
+<p><strong>真正有道理的事是 “ 知道自己在赚什么钱 “</strong>：价值投资赚的是企业未来现金流折现 + 市场错杀的折扣；量化赚的是市场摩擦、行为偏差、统计规律。</p>
+<p>最危险的姿势：价值派把 “ 长期持有 “ 当作不止损的借口；量化派把回测漂亮的策略当成印钞机。</p>
+<p>程序员个人投资的一种参考姿势：80% 被动指数定投打底，20% 拿来玩量化或选股当学费——你不是巴菲特，也不是西蒙斯。</p>
+<h2 id="附录：核心术语速查表"><a href="#附录：核心术语速查表" class="headerlink" title="附录：核心术语速查表"></a>附录：核心术语速查表</h2><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>人话解释</th>
+<th>类比</th>
+<th>常见误解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>因子</td>
+<td>影响股价的特征</td>
+<td>选水果看大小甜度</td>
+<td>越多越好</td>
+</tr>
+<tr>
+<td>回测</td>
+<td>用历史数据验证策略</td>
+<td>跑全量集成测试</td>
+<td>漂亮就一定赚</td>
+</tr>
+<tr>
+<td>夏普比率</td>
+<td>单位风险下的收益率</td>
+<td>性价比指标</td>
+<td>越高越安全</td>
+</tr>
+<tr>
+<td>过拟合</td>
+<td>参数贴历史不贴未来</td>
+<td>测试只覆盖 happy path</td>
+<td>只是参数太多</td>
+</tr>
+<tr>
+<td>最大回撤</td>
+<td>历史最深的下跌幅度</td>
+<td>跌得最惨那次</td>
+<td>等同于平均亏损</td>
+</tr>
+<tr>
+<td>滑点</td>
+<td>实际成交比预期差</td>
+<td>标价 10 块买进 11 块</td>
+<td>小钱可忽略</td>
+</tr>
+<tr>
+<td>Alpha</td>
+<td>跑赢市场的超额部分</td>
+<td>比平均强多少</td>
+<td>等于绝对收益</td>
+</tr>
+<tr>
+<td>样本外</td>
+<td>调参时没碰过的数据</td>
+<td>留的最终考试卷</td>
+<td>占比越多越好</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/f8h2g7h7.html" rel="prev" title="008_康德">
+                  <i class="fa fa-angle-left"></i> 008_康德
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/e320b47d.html" rel="next" title="6_Clash本地订阅转换">
+                  6_Clash本地订阅转换 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

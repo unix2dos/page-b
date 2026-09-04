@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Quantumult X 是目前 iOS 平台主流的全能网络工具，提供 MitM、HTTP Debug 乃至 JS 脚本等诸多功能，同时保持了相当高的易用性。 这是一个付费软件，需要在 App Store 进行购买才能使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="quantumultX神器的使用">
+<meta property="og:url" content="https://www.readwrite.fun/post/6f2c88a8.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="Quantumult X 是目前 iOS 平台主流的全能网络工具，提供 MitM、HTTP Debug 乃至 JS 脚本等诸多功能，同时保持了相当高的易用性。 这是一个付费软件，需要在 App Store 进行购买才能使用。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-22T16:00:01.000Z">
+<meta property="article:modified_time" content="2026-06-12T10:22:30.774Z">
+<meta property="article:author" content="readwrite">
+<meta property="article:tag" content="ios">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/6f2c88a8.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/6f2c88a8.html","path":"post/6f2c88a8.html","title":"quantumultX神器的使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>quantumultX神器的使用 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE"><span class="nav-text">1. 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E9%A2%84%E9%85%8D%E7%BD%AE"><span class="nav-text">1.1 预配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Icon-%E5%BA%93"><span class="nav-text">1.2 Icon 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E8%AE%A2%E9%98%85%E8%BD%AC%E6%8D%A2"><span class="nav-text">1.3 订阅转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B%E6%8C%87%E5%AE%9A%E6%9C%BA%E5%9C%BA%E7%AD%96%E7%95%A5"><span class="nav-text">1.4 自动检测指定机场策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3"><span class="nav-text">2. 软件破解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%BD%91%E6%98%93%E4%BA%91"><span class="nav-text">2.1 网易云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Tiktok"><span class="nav-text">2.2 Tiktok</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%8A%9F%E8%83%BD"><span class="nav-text">3. 功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%8A%93%E5%8C%85"><span class="nav-text">3.1 抓包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99"><span class="nav-text">3.2 重写规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Vless-%E5%8D%8F%E8%AE%AE%E9%85%8D%E7%BD%AE"><span class="nav-text">4. Vless 协议配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Quanx-%E9%85%8D%E7%BD%AE%E8%87%AA%E5%B7%B1%E7%9A%84%E8%8A%82%E7%82%B9%E5%92%8C%E7%AD%96%E7%95%A5"><span class="nav-text">5. Quanx 配置自己的节点和策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">6. 参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/6f2c88a8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="quantumultX神器的使用 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          quantumultX神器的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-22 16:00:01" itemprop="dateCreated datePublished" datetime="2021-11-22T16:00:01+00:00">2021-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-12 10:22:30" itemprop="dateModified" datetime="2026-06-12T10:22:30+00:00">2026-06-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/" itemprop="url" rel="index"><span itemprop="name">04_沟通世界</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Quantumult X 是目前 iOS 平台主流的全能网络工具，提供 MitM、HTTP Debug 乃至 JS 脚本等诸多功能，同时保持了相当高的易用性。</p>
+<p>这是一个付费软件，需要在 App Store 进行购买才能使用。</p>
+<span id="more"></span>
+
+<h1 id="1-配置"><a href="#1-配置" class="headerlink" title="1. 配置"></a>1. 配置</h1><h2 id="1-1-预配置"><a href="#1-1-预配置" class="headerlink" title="1.1 预配置"></a>1.1 预配置</h2><p><a target="_blank" rel="noopener" href="https://github.com/Orz-3/QuantumultX">https://github.com/Orz-3/QuantumultX</a></p>
+<p>先下载预配置后，再导入自己的节点。</p>
+<h2 id="1-2-Icon-库"><a href="#1-2-Icon-库" class="headerlink" title="1.2 Icon 库"></a>1.2 Icon 库</h2><p><a target="_blank" rel="noopener" href="https://github.com/Koolson/Qure">https://github.com/Koolson/Qure</a></p>
+<p>建议直接导入 json。</p>
+<h2 id="1-3-订阅转换"><a href="#1-3-订阅转换" class="headerlink" title="1.3 订阅转换"></a>1.3 订阅转换</h2><p>魅影极速机场官方订阅转换。</p>
+<p><a target="_blank" rel="noopener" href="https://api.nameless13.com/">https://api.nameless13.com/</a></p>
+<p>早期是 Dler Cloud 机场官方的订阅转换网站，后来独立出来了。现在应该是和 Dler 无关。</p>
+<p><a target="_blank" rel="noopener" href="https://sub.dler.io/">https://sub.dler.io/</a></p>
+<p>更加强大的转换</p>
+<p><a target="_blank" rel="noopener" href="https://sub.v1.mk/">https://sub.v1.mk/</a></p>
+<h2 id="1-4-自动检测指定机场策略"><a href="#1-4-自动检测指定机场策略" class="headerlink" title="1.4 自动检测指定机场策略"></a>1.4 自动检测指定机场策略</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[policy]</span></span><br><span class="line"><span class="attr">url-latency-benchmark</span>=不值钱节点, resource-tag-regex=^(?!.*Amy), check-interval=<span class="number">300</span>, tolerance=<span class="number">0</span>, alive-checking=<span class="literal">false</span>, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Media.png</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-软件破解"><a href="#2-软件破解" class="headerlink" title="2. 软件破解"></a>2. 软件破解</h1><h2 id="2-1-网易云"><a href="#2-1-网易云" class="headerlink" title="2.1 网易云"></a>2.1 网易云</h2><p>注意 Quanx 并不能直接解锁网易云，还是需要搭建代理转发服务器的。参见：<a target="_blank" rel="noopener" href="https://www.liuvv.com/p/3a9129d9.html">https://www.liuvv.com/p/3a9129d9.html</a></p>
+<p>a. 下载证书</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/UnblockNeteaseMusic/server/enhanced/ca.crt">https://raw.githubusercontent.com/UnblockNeteaseMusic/server/enhanced/ca.crt</a></p>
+<p>b. 配置， http 处是自己的服务器地址</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[server_local]</span></span><br><span class="line"><span class="attr">http</span>=<span class="number">152.136</span>.<span class="number">138.232</span>:<span class="number">8080</span>, fast-open=<span class="literal">false</span>, udp-relay=<span class="literal">false</span>, tag=🎧 解锁网易云音乐</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">[policy]</span></span><br><span class="line"><span class="attr">static</span>=解锁网易云音乐, direct, proxy, 🎧 解锁网易云音乐, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music_Unlock.png</span><br><span class="line"></span><br><span class="line"><span class="section">[filter_remote]</span></span><br><span class="line">https://raw.githubusercontent.com/GeQ1an/Rules/master/QuantumultX/Filter/Optional/Netease%20Music.list, <span class="attr">tag</span>=解锁网易云音乐, force-policy=解锁网易云音乐, update-interval=<span class="number">172800</span>, opt-parser=<span class="literal">false</span>, enabled=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-Tiktok"><a href="#2-2-Tiktok" class="headerlink" title="2.2 Tiktok"></a>2.2 Tiktok</h2><p>a. 注意 TikTok Version 21.1.0 ，最好不要升级</p>
+<p>b. 配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[rewrite_local]</span></span><br><span class="line">(?&lt;=<span class="attr">_region</span>=)CN(?=&amp;) url <span class="number">307</span> KR</span><br><span class="line">(?&lt;=&amp;<span class="attr">mcc_mnc</span>=)<span class="number">4</span> url <span class="number">307</span> <span class="number">2</span></span><br><span class="line">^(https?:\/\/(tnc|dm)<span class="section">[\w-]</span>+\.\w+\.com\/.+)(\?)(.+) url 302  $1$3</span><br><span class="line">(?&lt;=\d\/\?\w&#123;7&#125;_\w&#123;4&#125;=)1<span class="section">[6-9]</span>..(?=.?.?&amp;) url 307 17</span><br><span class="line"></span><br><span class="line"><span class="section">[mitm]</span></span><br><span class="line"><span class="attr">hostname</span> = *.tiktokv.com, *.byteoversea.com, *.tik-tokapi.com</span><br><span class="line"></span><br><span class="line"><span class="section">[filter_remote]</span></span><br><span class="line">https://raw.githubusercontent.com/Semporia/TikTok-Unlock/master/Quantumult-X/TikTok.list, <span class="attr">tag</span>=TikTok, force-policy=TikTok, update-interval=<span class="number">86400</span>, opt-parser=<span class="literal">false</span>, enabled=<span class="literal">true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>c. 换区</p>
+<p>换区：在 [rewrite_local] 中添加下句重写，并将 <code>CN</code> 改为想看的国家&#x2F;地区的 2 位 <code>大写</code> 英文简写 JP（日本）｜KR（韩国）｜UK（英国）｜US（美国）｜TW（台湾）</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;=<span class="attr">_region</span>=)CN(?=&amp;) url <span class="number">307</span> CN</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-功能"><a href="#3-功能" class="headerlink" title="3. 功能"></a>3. 功能</h1><h2 id="3-1-抓包"><a href="#3-1-抓包" class="headerlink" title="3.1 抓包"></a>3.1 抓包</h2><ol>
+<li>开始 HTTP 抓取</li>
+<li>全部走代理</li>
+</ol>
+<h2 id="3-2-重写规则"><a href="#3-2-重写规则" class="headerlink" title="3.2 重写规则"></a>3.2 重写规则</h2><p>quanx 要想规则生效，需要确保 MitM 右侧的开关是开启状态。绝大多数重写规则（如去广告、解锁会员、京东脚本等）都需要解密 HTTPS 流量，否则 QuanX 无法查看并修改数据包。</p>
+<ol>
+<li>总开关 (右上角)：必须开启 —— 让流量流经 Quantumult X。</li>
+<li>MitM 开关 (右下角菜单内)：必须开启 —— 让软件有权 “ 拆开 “ 加密数据。</li>
+<li>Rewrite 开关 (右下角菜单内)：必须开启 —— 让软件执行修改&#x2F;去广告的指令。</li>
+</ol>
+<ul>
+<li>重写规则需要要开启 Mitm + 重写（Rewrite），一旦关闭，QuanX 就变成了普通的 VPN 代理工具，只能翻墙，没有任何 “ 魔改 “ 能力了。</li>
+<li>右上角的总开关 (VPN) 打开：就算你在 QuanX 内部把 MitM 和 Rewrite 开得再好，它们也接触不到任何网络数据，因此绝对不会生效。</li>
+</ul>
+<h1 id="4-Vless-协议配置"><a href="#4-Vless-协议配置" class="headerlink" title="4. Vless 协议配置"></a>4. Vless 协议配置</h1><ul>
+<li>vless 协议<br>vless&#x3D;example.com:443, method&#x3D;none, password&#x3D;pwd, obfs&#x3D;wss, obfs-host&#x3D;example.com, obfs-uri&#x3D;&#x2F;gnofws, tls-verification&#x3D;false, fast-open&#x3D;false, udp-relay&#x3D;false, tag&#x3D;vless-ws-tls</li>
+<li>quanx 的分流规则是怎么走的<ul>
+<li>你访问 Netflix</li>
+<li>分流规则里应该有一条（通常是订阅自带的）：<code>host-keyword, netflix, 国际媒体</code>。</li>
+<li>流量进入 -&gt; <code>国际媒体</code> 策略组。</li>
+<li>你在国际媒体里如果选了自动选择，它就会走测速最快的节点。</li>
+</ul>
+</li>
+<li>quanx 如何实时显示速率<ul>
+<li>mac 是可以显示的</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-Quanx-配置自己的节点和策略"><a href="#5-Quanx-配置自己的节点和策略" class="headerlink" title="5. Quanx 配置自己的节点和策略"></a>5. Quanx 配置自己的节点和策略</h1><p>在 QuanX 中，你不需要去找 “TUN 模式 “ 的开关，只要运行起来，它就是 TUN 模式。</p>
+<ul>
+<li>配置节点 (Proxies)<ul>
+<li>在配置文件中找到 <code>[server_local]</code> 这一栏（如果没有可以自己写），将以下内容添加进去。这是将 VLESS 和 Trojan 翻译成 QuanX 专用 URI 格式的结果。</li>
+</ul>
+</li>
+<li>配置策略组 (Proxy Groups)<ul>
+<li>在 Clash 中你有一个叫 <code>AWS-VPC</code> 的组，里面包含两个节点和 DIRECT。在 QuanX 中，我们要在 <code>[policy]</code> 栏下添加。 Clash 的 <code>select</code> 类型对应 QuanX 的 <code>static</code> 类型。</li>
+</ul>
+</li>
+<li>配置分流规则 (Rules)<ul>
+<li>在配置文件中找到 <code>[filter_local]</code> 这一栏。QuanX 的规则关键字与 Clash 略有不同：</li>
+<li><code>DOMAIN-SUFFIX</code> -&gt; <code>host-suffix</code></li>
+<li><code>DOMAIN</code> -&gt; <code>host</code></li>
+<li><code>IP-CIDR</code> -&gt; <code>ip-cidr</code></li>
+<li><code>DIRECT</code> -&gt; <code>direct</code></li>
+<li>请将以下内容添加到 <code>[filter_local]</code> 的顶部（因为 QuanX 也是从上往下匹配，建议放在通用规则之前）：</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-参考资料"><a href="#6-参考资料" class="headerlink" title="6. 参考资料"></a>6. 参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://uzbox.com/tech/quanx.html">https://uzbox.com/tech/quanx.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.notion.so/Quantumult-X-1d32ddc6e61c4892ad2ec5ea47f00917">https://www.notion.so/Quantumult-X-1d32ddc6e61c4892ad2ec5ea47f00917</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ios/" rel="tag"># ios</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/dbe32653.html" rel="prev" title="元宇宙">
+                  <i class="fa fa-angle-left"></i> 元宇宙
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/853e67f9.html" rel="next" title="熵">
+                  熵 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

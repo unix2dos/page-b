@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="学习高数不需要完全懂。当做马上考试，前半小时的时间，去学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高数01-函数">
+<meta property="og:url" content="https://www.readwrite.fun/post/2319f478.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="学习高数不需要完全懂。当做马上考试，前半小时的时间，去学习。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-08T16:00:01.000Z">
+<meta property="article:modified_time" content="2025-08-26T08:09:11.097Z">
+<meta property="article:author" content="readwrite">
+<meta property="article:tag" content="高数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/2319f478.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/2319f478.html","path":"post/2319f478.html","title":"高数01-函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>高数01-函数 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%87%BD%E6%95%B0"><span class="nav-text">1. 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%AE%9A%E4%B9%89%E5%9F%9F"><span class="nav-text">1.1 定义域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="nav-text">1.2 函数的关键特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%A5%87%E5%81%B6%E6%80%A7%EF%BC%9F"><span class="nav-text">1.3 如何判断奇偶性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%80%E5%80%BC-Maximum-Minimum-Value"><span class="nav-text">1.4 函数的最值 (Maximum&#x2F;Minimum Value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E9%85%8D%E6%96%B9%E6%B3%95"><span class="nav-text">1.5 配方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E5%B9%B3%E7%A7%BB%E6%B3%95%E5%88%99-%E2%80%94%E2%80%94-%E2%80%9C-%E5%B7%A6%E5%8A%A0%E5%8F%B3%E5%87%8F%EF%BC%8C%E4%B8%8A%E5%8A%A0%E4%B8%8B%E5%87%8F-%E2%80%9C"><span class="nav-text">1.6 平移法则 —— “ 左加右减，上加下减 “</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-%E6%94%B9%E5%8F%98%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%B8%E7%BC%A9%E4%B8%8E%E7%BF%BB%E8%BD%AC%E6%B3%95%E5%88%99"><span class="nav-text">1.7 改变函数的伸缩与翻转法则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AF%BC%E6%95%B0"><span class="nav-text">1. 导数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97"><span class="nav-text">2. 计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%85%AC%E5%BC%8F"><span class="nav-text">2.1 公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%B3%95%E5%88%99"><span class="nav-text">2.2 法则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%84%8F%E4%B9%89"><span class="nav-text">3. 意义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%8D%95%E8%B0%83%E6%80%A7"><span class="nav-text">3.1 单调性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%9E%81%E5%A4%A7%E5%80%BC%E7%82%B9"><span class="nav-text">3.2 极大值点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%9C%80%E5%80%BC"><span class="nav-text">3.3 最值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">4. 参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/2319f478.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="高数01-函数 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高数01-函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-08 16:00:01" itemprop="dateCreated datePublished" datetime="2022-07-08T16:00:01+00:00">2022-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-08-26 08:09:11" itemprop="dateModified" datetime="2025-08-26T08:09:11+00:00">2025-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/100-%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">100_数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>学习高数不需要完全懂。当做马上考试，前半小时的时间，去学习。</p>
+<span id="more"></span>
+
+<h1 id="1-函数"><a href="#1-函数" class="headerlink" title="1. 函数"></a>1. 函数</h1><p>任何一个函数，都由这三个部分牢牢锁定，缺一不可：</p>
+<ol>
+<li><strong>定义域 (Domain)</strong></li>
+<li><strong>对应法则 (Correspondence Rule)</strong></li>
+<li><strong>值域 (Range)</strong></li>
+</ol>
+<p>在数学中有一个约定俗成的规矩：<strong>如果没有人为指定定义域，那么定义域就是能让这个算式有意义的所有实数的集合。</strong> 这被称为 “<strong>自然定义域</strong>“。</p>
+<h2 id="1-1-定义域"><a href="#1-1-定义域" class="headerlink" title="1.1 定义域"></a>1.1 定义域</h2><p><strong>求函数 <code>y = 1 / √(x + 2)</code> 的定义域。</strong></p>
+<ul>
+<li>x+2 &gt;&#x3D; 0</li>
+<li>x+2 !&#x3D; 0</li>
+<li>定义域是 （-2，正无穷）</li>
+</ul>
+<h2 id="1-2-函数的关键特性"><a href="#1-2-函数的关键特性" class="headerlink" title="1.2 函数的关键特性"></a>1.2 函数的关键特性</h2><ul>
+<li><strong>奇偶性 (Parity):</strong> 函数的图像是否对称？它是 “ 偶函数 “（像 <code>y=x²</code>，图像关于 y 轴对称），还是 “ 奇函数 “（像 <code>y=x³</code>，图像关于原点对称）？这能帮我们快速把握函数的整体形态。</li>
+<li><strong>单调性 (Monotonicity):</strong> 函数在它的定义域内，是 “ 一路向上 “（增函数），还是 “ 一路向下 “（减函数），或者是有增有减？这描述了函数的 “ 走势 “。</li>
+<li><strong>周期性 (Periodicity):</strong> 函数的行为是否会一遍遍地重复？（比如三角函数 <code>y=sin(x)</code>）</li>
+<li><strong>有界性 (Boundedness):</strong> 函数的值会不会被限制在一个范围内，永远飞不出一个 “ 天花板 “ 或跌不破一个 “ 地板 “？</li>
+</ul>
+<h2 id="1-3-如何判断奇偶性？"><a href="#1-3-如何判断奇偶性？" class="headerlink" title="1.3 如何判断奇偶性？"></a>1.3 如何判断奇偶性？</h2><p>一个函数能谈论奇偶性的<strong>必要条件</strong>是，它的<strong>定义域必须关于原点对称</strong>。例如 <code>(-5, 5)</code>, <code>[-10, 10]</code>, <code>(-∞, +∞)</code> 都是对称的。而像 <code>[0, 5)</code> 或者 <code>(-1, 2)</code> 这种不对称的定义域，其上的函数<strong>一定是非奇非偶函数</strong>，直接下结论即可，无需后续步骤！</p>
+<ol>
+<li><strong>第一步：检查定义域</strong>。看它是否关于原点对称。如果不是，直接宣布 “ 非奇非偶 “，任务结束。</li>
+<li><strong>第二步：计算 <code>f(-x)</code></strong>。将函数表达式中所有的 <code>x</code> 都换成 <code>(-x)</code>，然后化简得到的结果。</li>
+<li><strong>第三步：比对结果</strong>。</li>
+</ol>
+<ul>
+<li>如果化简后的 <code>f(-x)</code> 和原来的 <code>f(x)</code> <strong>一模一样</strong>，即 <code>f(-x) = f(x)</code>，则为<strong>偶函数</strong>。</li>
+<li>如果化简后的 <code>f(-x)</code> 和原来的 <code>f(x)</code> <strong>每一项都正好差个负号</strong>，即 <code>f(-x) = -f(x)</code>，则为<strong>奇函数</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实战演练：判断函数 `f(x) = x² - 4` 的奇偶性。</span></span><br><span class="line"></span><br><span class="line">1. 定义域: `f(x)` 是一个多项式函数，其定义域为 `(-∞, +∞)`，关于原点对称。可以继续！</span><br><span class="line">2. 计算 `f(-x)`:</span><br><span class="line">    `f(-x) = (-x)² - 4`  </span><br><span class="line">    `= x² - 4`</span><br><span class="line">3. 比对结果:  </span><br><span class="line">    我们发现，计算出的 `f(-x) = x² - 4`，这和原来的 `f(x) = x² - 4` 完全一样。  </span><br><span class="line">    即 `f(-x) = f(x)`。</span><br><span class="line"></span><br><span class="line">结论：`f(x) = x² - 4` 是一个偶函数。** 它的图像是一条开口向上，顶点在(0, -4)的抛物线，显然是关于Y轴对称的。</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-函数的最值-Maximum-Minimum-Value"><a href="#1-4-函数的最值-Maximum-Minimum-Value" class="headerlink" title="1.4 函数的最值 (Maximum&#x2F;Minimum Value)"></a>1.4 函数的最值 (Maximum&#x2F;Minimum Value)</h2><p>一个<strong>闭区间 <code>[a, b]</code></strong> 上，连续函数的最大值和最小值一定存在。它们只可能在两个地方出现：</p>
+<ol>
+<li><strong>区间的端点：</strong> 即 <code>f(a)</code> 和 <code>f(b)</code>。</li>
+<li><strong>区间内部的 “ 拐点 “：</strong> 即函数单调性发生改变的点（从增到减形成 “ 山顶 “，或从减到增形成 “ 谷底 “）。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">实战演练：求函数 `f(x) = x² - 4x + 3` 在区间 `[1, 5]` 上的最大值和最小值。</span><br><span class="line"></span><br><span class="line">1. 分析单调性： </span><br><span class="line">    这是一个二次函数，我们可以通过**配方法**找到它的对称轴（也就是拐点）。  </span><br><span class="line">    `f(x) = x² - 4x + 4 - 4 + 3`  </span><br><span class="line">    `f(x) = (x - 2)² - 1`  </span><br><span class="line">    这是一个开口向上，对称轴为 `x = 2` 的抛物线。  </span><br><span class="line">    所以，函数在 `x=2` 处取得“谷底”。</span><br><span class="line">    </span><br><span class="line">    - 在 `(-∞, 2]` 上单调递减。</span><br><span class="line">    - 在 `[2, +∞)` 上单调递增。</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">2. 找到“嫌疑犯”：</span><br><span class="line">    我们的研究区间是 `[1, 5]`。</span><br><span class="line">    </span><br><span class="line">    - 左端点：`x = 1`</span><br><span class="line">    - 右端点：`x = 5`</span><br><span class="line">    - 区间内的拐点：`x = 2` （正好在 `[1, 5]` 区间内部！）</span><br><span class="line">3. 计算并比较：</span><br><span class="line">    </span><br><span class="line">    - `f(1) = (1 - 2)² - 1 = 1 - 1 = 0`</span><br><span class="line">    - `f(5) = (5 - 2)² - 1 = 9 - 1 = 8`</span><br><span class="line">    - `f(2) = (2 - 2)² - 1 = 0 - 1 = -1`</span><br><span class="line">    </span><br><span class="line">    比较这三个值 `0`, `8`, `-1`：</span><br><span class="line">    </span><br><span class="line">    - 最大的是 `8`。</span><br><span class="line">    - 最小的是 `-1`。    </span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-配方法"><a href="#1-5-配方法" class="headerlink" title="1.5 配方法"></a>1.5 配方法</h2><p>“ 配方法 “ 是一种代数技巧，它的<strong>目标</strong>非常明确：<strong>创造出一个完全平方三项式</strong>。</p>
+<p>什么是 “ 完全平方三项式 “？就是可以写成 <code>(A + B)²</code> 或 <code>(A - B)²</code> 形式的多项式。</p>
+<ul>
+<li><code>(x + 3)² = x² + 6x + 9</code></li>
+<li><code>(x - 5)² = x² - 10x + 25</code></li>
+</ul>
+<p>你发现规律了吗？常数项（<code>9</code>, <code>25</code>）正好是 <code>x</code> 项系数（<code>6</code>, <code>-10</code>）的<strong>一半的平方</strong>。</p>
+<ul>
+<li><code>9 = (6 / 2)²</code></li>
+<li><code>25 = (-10 / 2)²</code></li>
+</ul>
+<p><strong>配方法的精髓：</strong> 对于 <code>x² + bx</code>，我们给它配上一个 <code>(b/2)²</code>，它就能变成一个完美的 <code>(x + b/2)²</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">g(x) = -x² + 6x</span><br><span class="line">g(x) = -(x² - 6x)</span><br><span class="line">g(x) = -（x² - 6x + 9 - 9）</span><br><span class="line">g(x) = -（(x-3)² - 9）</span><br><span class="line">g(x) = -(x-3)² + 9</span><br><span class="line"></span><br><span class="line">拐点是 3</span><br><span class="line"></span><br><span class="line">1     5</span><br><span class="line">4     -16 + 24 = 8</span><br><span class="line">3      -9 + 18 = 9</span><br><span class="line"></span><br><span class="line">最大值是 9</span><br><span class="line">最小值是 5</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-平移法则-——-“-左加右减，上加下减-“"><a href="#1-6-平移法则-——-“-左加右减，上加下减-“" class="headerlink" title="1.6 平移法则 —— “ 左加右减，上加下减 “"></a>1.6 平移法则 —— “ 左加右减，上加下减 “</h2><p>这是图像平移中最最核心、最最重要的法则，一定要记牢！</p>
+<p>假设我们有一个基础函数 <code>y = f(x)</code>。</p>
+<ul>
+<li><p><strong>上下平移（改变 y）：</strong></p>
+<ul>
+<li><code>y = f(x) + c</code> (c&gt;0): 图像向上平移 <code>c</code> 个单位。</li>
+<li><code>y = f(x) - c</code> (c&gt;0): 图像向下平移 <code>c</code> 个单位。</li>
+<li><strong>记忆口诀：上加下减，简单直接。</strong></li>
+</ul>
+</li>
+<li><p><strong>左右平移（改变 x）：</strong></p>
+<ul>
+<li><code>y = f(x - c)</code> (c&gt;0): 图像向<strong>右</strong>平移 <code>c</code> 个单位。</li>
+<li><code>y = f(x + c)</code> (c&gt;0): 图像向<strong>左</strong>平移 <code>c</code> 个单位。</li>
+<li><strong>记忆口诀：左加右减，符号相反。</strong> (注意！这里是反直觉的，<code>x</code> 旁边的 <code>+</code> 号代表向左，<code>-</code> 号代表向右，要特别小心！)</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-7-改变函数的伸缩与翻转法则"><a href="#1-7-改变函数的伸缩与翻转法则" class="headerlink" title="1.7 改变函数的伸缩与翻转法则"></a>1.7 改变函数的伸缩与翻转法则</h2><p>这里的关键是看那个改变的数字是作用在<strong>函数外部 (y)</strong>，还是作用在<strong>函数内部 (x)</strong>。</p>
+<p><strong>1. 改变函数外部：<code>y = a * f(x)</code> (影响垂直方向)</strong></p>
+<ul>
+<li><strong>垂直伸缩 (Vertical Stretch&#x2F;Compression):</strong><ul>
+<li><code>a &gt; 1</code>：图像沿 <code>y</code> 轴方向被<strong>拉长</strong>为原来的 <code>a</code> 倍 (变瘦)。例如 <code>y = 2x²</code>。</li>
+<li><code>0 &lt; a &lt; 1</code>：图像沿 <code>y</code> 轴方向被<strong>压缩</strong>为原来的 <code>a</code> 倍 (变胖)。例如 <code>y = 0.5x²</code>。</li>
+</ul>
+</li>
+<li><strong>关于 x 轴翻转 (Reflection across x-axis):</strong><ul>
+<li><code>a = -1</code>：<code>y = -f(x)</code>，图像关于 <code>x</code> 轴<strong>上下翻转</strong>。例如 <code>y = -x²</code>。</li>
+<li>如果 <code>a</code> 是负数（如 -2），则可以看作是先拉长 2 倍，再上下翻转。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 改变函数内部：<code>y = f(b * x)</code> (影响水平方向，同样反直觉！)</strong></p>
+<ul>
+<li><strong>水平伸缩 (Horizontal Stretch&#x2F;Compression):</strong><ul>
+<li><code>b &gt; 1</code>：图像沿 <code>x</code> 轴方向被<strong>压缩</strong>为原来的 <code>1/b</code> 倍 (变窄)。例如 <code>y = sin(2x)</code> 的周期是 <code>sin(x)</code> 的一半。</li>
+<li><code>0 &lt; b &lt; 1</code>：图像沿 <code>x</code> 轴方向被<strong>拉长</strong>为原来的 <code>1/b</code> 倍 (变宽)。例如 <code>y = sin(0.5x)</code> 的周期是 <code>sin(x)</code> 的两倍。</li>
+</ul>
+</li>
+<li><strong>关于 y 轴翻转 (Reflection across y-axis):</strong><ul>
+<li><code>b = -1</code>：<code>y = f(-x)</code>，图像关于 <code>y</code> 轴<strong>左右翻转</strong>。例如 <code>y = (-x)³</code> 就是 <code>y = x³</code> 关于 y 轴的翻转。</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-导数"><a href="#1-导数" class="headerlink" title="1. 导数"></a>1. 导数</h1><ul>
+<li>tan 函数</li>
+<li>点是直线的斜率</li>
+</ul>
+<h1 id="2-计算"><a href="#2-计算" class="headerlink" title="2. 计算"></a>2. 计算</h1><h2 id="2-1-公式"><a href="#2-1-公式" class="headerlink" title="2.1 公式"></a>2.1 公式</h2><h2 id="2-2-法则"><a href="#2-2-法则" class="headerlink" title="2.2 法则"></a>2.2 法则</h2><p>符合函数求导：链式法则：一定是从外到内。</p>
+<h1 id="3-意义"><a href="#3-意义" class="headerlink" title="3. 意义"></a>3. 意义</h1><h2 id="3-1-单调性"><a href="#3-1-单调性" class="headerlink" title="3.1 单调性"></a>3.1 单调性</h2><p>导数&gt;0，原函数单调递增，导数&lt;0，原函数单调递减。</p>
+<h2 id="3-2-极大值点"><a href="#3-2-极大值点" class="headerlink" title="3.2 极大值点"></a>3.2 极大值点</h2><p>极大值点，是 x 轴，不是 y 轴。</p>
+<ul>
+<li>导函数为 0</li>
+<li>比附近的值都要大</li>
+<li>左边递增右边递减</li>
+</ul>
+<h2 id="3-3-最值"><a href="#3-3-最值" class="headerlink" title="3.3 最值"></a>3.3 最值</h2><p>最大值，要么是极大值，要么是端点。</p>
+<h1 id="4-参考资料"><a href="#4-参考资料" class="headerlink" title="4. 参考资料"></a>4. 参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ff4y1d7i7">https://www.bilibili.com/video/BV1Ff4y1d7i7</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E6%95%B0/" rel="tag"># 高数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3e9cda3d.html" rel="prev" title="命运之手">
+                  <i class="fa fa-angle-left"></i> 命运之手
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/e94b30a4.html" rel="next" title="高数03-微积分">
+                  高数03-微积分 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

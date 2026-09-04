@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1. 股票1.1 复利想象一下你在山顶滚一个雪球。一开始雪球很小，滚一圈粘上的雪也不多。但随着雪球越滚越大，它每一圈能粘上的雪也越来越多，体积会呈指数级增长。 股票复利就是这个道理。它的收益主要来自两个部分，而复利就是将这两部分收益进行再投资，让你的 “ 雪球 “ 越滚越大。  资本利得 (Capital Gains) 的再投资： 你以 100 元买了一只股票，它涨到了 110 元，你就有了 10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="股票投资">
+<meta property="og:url" content="https://www.readwrite.fun/post/f1a61bed.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="1. 股票1.1 复利想象一下你在山顶滚一个雪球。一开始雪球很小，滚一圈粘上的雪也不多。但随着雪球越滚越大，它每一圈能粘上的雪也越来越多，体积会呈指数级增长。 股票复利就是这个道理。它的收益主要来自两个部分，而复利就是将这两部分收益进行再投资，让你的 “ 雪球 “ 越滚越大。  资本利得 (Capital Gains) 的再投资： 你以 100 元买了一只股票，它涨到了 110 元，你就有了 10">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-11T16:19:36.000Z">
+<meta property="article:modified_time" content="2025-12-09T09:08:46.776Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/f1a61bed.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/f1a61bed.html","path":"post/f1a61bed.html","title":"股票投资"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>股票投资 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%82%A1%E7%A5%A8"><span class="nav-text">1. 股票</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%A4%8D%E5%88%A9"><span class="nav-text">1.1 复利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%80%BA%E5%88%B8"><span class="nav-text">1.2 债券</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%AD%E5%9B%BD%E4%BD%A0%E8%83%BD%E4%B9%B0%E5%88%B0%E7%9A%84-%E2%80%9C-%E5%80%BA%E5%88%B8-%E2%80%9C-%E4%BA%A7%E5%93%81"><span class="nav-text">在中国你能买到的 “ 债券 “ 产品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%99%E9%A2%9D%E5%AE%9D%E6%98%AF%E4%B9%B0%E7%9A%84%E5%80%BA%E6%9D%83%E5%90%97%EF%BC%9F"><span class="nav-text">余额宝是买的债权吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%9F%BA%E9%87%91%E5%92%8C%E5%9F%BA%E9%87%91-ETF"><span class="nav-text">1.3 基金和基金 ETF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E4%BB%98%E5%AE%9D%E9%87%8C%E4%B9%B0%E7%9A%84%E6%98%AF%E5%9F%BA%E9%87%91%E8%BF%98%E6%98%AF%E5%9F%BA%E9%87%91-ETF"><span class="nav-text">支付宝里买的是基金还是基金 ETF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%93%AA%E9%87%8C%E4%B9%B0-ETF"><span class="nav-text">在哪里买 ETF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E5%9F%BA%E9%87%91%E9%9A%94%E6%97%A5%E7%BB%93%E7%AE%97"><span class="nav-text">传统基金隔日结算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%82%A1%E7%A5%A8%E5%88%86%E7%BA%A2"><span class="nav-text">2. 股票分红</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E9%99%A4%E6%9D%83%E9%99%A4%E6%81%AF%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D"><span class="nav-text">2.1 除权除息是什么意思</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BA%A2%E5%90%8E%E6%80%BB%E8%B5%84%E4%BA%A7%E6%B2%A1%E6%9C%89%E5%8F%98%E5%8C%96"><span class="nav-text">分红后总资产没有变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BA%A2%E7%9A%84%E6%84%8F%E4%B9%89%E4%BD%95%E5%9C%A8%EF%BC%9F"><span class="nav-text">分红的意义何在？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-A-%E8%82%A1%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%82%A1%E6%81%AF%E5%86%8D%E6%8A%95%E8%B5%84%E5%90%97%EF%BC%9F"><span class="nav-text">2.2 A 股可以直接股息再投资吗？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E9%97%AE%E9%97%AE%E9%A2%98"><span class="nav-text">提问问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E8%82%A1%E7%9A%84%E5%A4%8D%E5%88%A9%E8%AE%A1%E7%AE%97%E9%97%B4%E9%9A%94"><span class="nav-text">A 股的复利计算间隔</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/f1a61bed.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="股票投资 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          股票投资
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-11 16:19:36" itemprop="dateCreated datePublished" datetime="2025-09-11T16:19:36+00:00">2025-09-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-09 09:08:46" itemprop="dateModified" datetime="2025-12-09T09:08:46+00:00">2025-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/402-%E9%87%91%E8%9E%8D%E8%82%A1%E7%A5%A8/" itemprop="url" rel="index"><span itemprop="name">402_金融股票</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-股票"><a href="#1-股票" class="headerlink" title="1. 股票"></a>1. 股票</h1><h2 id="1-1-复利"><a href="#1-1-复利" class="headerlink" title="1.1 复利"></a>1.1 复利</h2><p>想象一下你在山顶滚一个雪球。一开始雪球很小，滚一圈粘上的雪也不多。但随着雪球越滚越大，它每一圈能粘上的雪也越来越多，体积会呈指数级增长。</p>
+<p>股票复利就是这个道理。它的收益主要来自两个部分，而复利就是将这两部分收益进行再投资，让你的 “ 雪球 “ 越滚越大。</p>
+<ol>
+<li>资本利得 (Capital Gains) 的再投资：<ul>
+<li>你以 100 元买了一只股票，它涨到了 110 元，你就有了 10 元的 “ 资本利得 “。</li>
+<li>复利的核心在于，你没有把这 10 元利润拿出来消费，而是让它继续留在市场里。</li>
+<li>现在你的本金变成了 110 元。下一次如果再涨 10%，你赚到的就是 11 元（110 * 10%），而不是原来的 10 元了。你的 “ 本金 “ 在不断变大。</li>
+</ul>
+</li>
+<li>股息 (Dividends) 的再投资：<ul>
+<li>假设你收到了 1000 元的股息。你可以选择拿这笔钱去吃饭购物，也可以用它买入更多的该公司股票（或者其他你看好的股票）。</li>
+<li>如果你选择买入更多股票，那么你持有的股票数量就增加了。下次分红时，你会获得更多的股息；如果股价上涨，你也能享受更多的资本利得。</li>
+<li>很多成熟的公司会定期把一部分利润以 “ 股息 “ 的形式分给股东。</li>
+</ul>
+</li>
+</ol>
+<p>总而言之，股票复利就是通过 “ 资本利得 “ 和 “ 股息 “ 这两种方式让你的资产增值，然后你又把这些增值的部分（利润）重新投入，作为新的本金，去赚取更多的收益。</p>
+<span id="more"></span>
+
+<h2 id="1-2-债券"><a href="#1-2-债券" class="headerlink" title="1.2 债券"></a>1.2 债券</h2><ul>
+<li>本质：债权凭证，说白了就是一张 “ 借条 “（IOU）。借钱给公司或政府</li>
+<li>比喻：你的 “ 披萨公司 “ 想开分店，钱不够，于是向你借钱。它给你开了一张借条，上面写着 “2025 年 9 月 11 日借到 XXX 元，承诺每年支付 5% 的利息，2028 年 9 月 11 日连本带利还清 “。这张借条就是债券。</li>
+<li>收益来源：<br>  1. 固定利息：无论公司经营好坏，只要它不破产，就必须按时支付给你承诺的利息。<br>  2. 本金归还：到期后，拿回你当初借出去的本金。</li>
+<li>风险：较低。如果公司破产，需要先还清借款（债券持有者），剩下的钱才轮到老板（股票持有者）分。所以债券的安全性远高于股票。</li>
+</ul>
+<h3 id="在中国你能买到的-“-债券-“-产品"><a href="#在中国你能买到的-“-债券-“-产品" class="headerlink" title="在中国你能买到的 “ 债券 “ 产品"></a>在中国你能买到的 “ 债券 “ 产品</h3><p>个人投资者直接去买单一的一张 “ 债券 “ 比较少见，我们通常是通过购买以下产品来间接持有债券：</p>
+<ol>
+<li>国债 (Treasury Bonds)：这是最常见的，由国家财政部发行的 “ 借条 “，被认为是最安全的投资品。<ul>
+<li>储蓄国债（凭证式&#x2F;电子式）：专门面向个人投资者，不能上市交易，但利息比同期银行存款高。你可以在银行柜台或网上银行直接购买，就像定期存款一样，但利率更高。</li>
+<li>记账式国债：可以在证券交易所上市交易，价格会波动。你需要开通一个股票账户，像买卖股票一样买卖它。</li>
+</ul>
+</li>
+<li>地方政府债券 (Local Government Bonds)：省市政府为了一些公共项目（比如修路、建医院）发的 “ 借条 “。个人直接买比较困难，通常是通过购买债券基金来间接持有。</li>
+<li>金融债券、公司债券：银行、证券公司或大企业发的 “ 借条 “。风险比国债高，但利息也相应更高。个人投资者也大多是通过债券基金来参与。<br>所以，对普通人来说，最直接的 “ 买债券 “ 方式就是去银行买国债，或者开个股票账户。但更普遍、更方便的方式是购买债券基金。</li>
+</ol>
+<h3 id="余额宝是买的债权吗？"><a href="#余额宝是买的债权吗？" class="headerlink" title="余额宝是买的债权吗？"></a>余额宝是买的债权吗？</h3><p>你的直觉非常准！余额宝买的资产里，有很大一部分是债券，但它不全是债券，它的真实身份是一种 “ 货币基金 “。</p>
+<ul>
+<li><p>什么是货币基金 (Money Market Fund)？ 你可以把它想象成一个专门采购 “ 超级安全、超级短期 “ 的借条的基金。它的目标不是追求高收益，而是追求极致的安全和流动性（方便随时取用）。</p>
+</li>
+<li><p>余额宝的 “ 购物篮 “ 里都装了些什么？ 它主要投资于：<br>  1. 银行同业存单：银行之间互相借钱的 “ 存单 “，期限很短。<br>  2. 短期国债和央行票据：国家和央妈的 “ 短期借条 “。<br>  3. 高信用等级的企业短期债券：信誉极好的大公司发的 “ 超短期借条 “。<br>  4. 银行存款等等。</p>
+</li>
+</ul>
+<p><strong>结论：</strong> 余额宝 ≈ 一个装满了各种 “ 短期、高信用借条 “ 的篮子。所以你把钱放进余额宝，就相当于把钱借给了银行、国家和最顶尖的那批公司，期限都非常短，所以风险极低，利息比银行活期高。你说它买的是债券，在方向上是完全正确的！</p>
+<h2 id="1-3-基金和基金-ETF"><a href="#1-3-基金和基金-ETF" class="headerlink" title="1.3 基金和基金 ETF"></a>1.3 基金和基金 ETF</h2><table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th><strong>传统基金 (以支付宝上常见的为例)</strong></th>
+<th><strong>ETF 基金 (交易型开放式指数基金)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>交易场所</strong></td>
+<td>基金公司、银行、<strong>支付宝&#x2F;天天基金等第三方平台</strong></td>
+<td><strong>股票交易所</strong> (和股票在同一个地方)</td>
+</tr>
+<tr>
+<td><strong>交易方式</strong></td>
+<td><strong>申购 &#x2F; 赎回</strong> (你向基金公司申请购买&#x2F;卖出)</td>
+<td><strong>买入 &#x2F; 卖出</strong> (你和另一个投资者在场内交易)</td>
+</tr>
+<tr>
+<td><strong>交易价格</strong></td>
+<td><strong>每天只有一个价</strong> (收盘后的基金净值 NAV)</td>
+<td><strong>实时价格</strong> (盘中价格像心电图一样不停变动)</td>
+</tr>
+<tr>
+<td><strong>交易效率</strong></td>
+<td><strong>慢</strong> (T+1 日确认份额，赎回资金 T+N 日到账)</td>
+<td><strong>快</strong> (像股票一样，卖出后资金立即可用，次日可取)</td>
+</tr>
+<tr>
+<td><strong>资金门槛</strong></td>
+<td><strong>极低</strong> (支付宝上通常 1 元、10 元起购)</td>
+<td><strong>相对高一点</strong> (最少买 1 手&#x3D;100 份，价格几十到几百元)</td>
+</tr>
+<tr>
+<td><strong>简单比喻</strong></td>
+<td><strong>网上预订 “ 生鲜包 “</strong><br>你下单，商家晚上配好货，按当日统一价结算，明天发货。</td>
+<td><strong>去超市现场买 “ 商品 “</strong><br>你在货架上看到明码标价的商品，拿去收银台，实时成交，立即拿走。</td>
+</tr>
+</tbody></table>
+<h3 id="支付宝里买的是基金还是基金-ETF"><a href="#支付宝里买的是基金还是基金-ETF" class="headerlink" title="支付宝里买的是基金还是基金 ETF"></a>支付宝里买的是基金还是基金 ETF</h3><p>绝大多数情况下，你在支付宝的 “ 基金 “ 频道里买到的，是 “ 传统基金 “。你可以通过以下几点来验证：</p>
+<ul>
+<li>1 元起购：这是传统基金在互联网平台的典型特征。</li>
+<li>下午 3 点前的交易按当日净值，3 点后算下一个交易日：这是传统基金 “ 申购&#x2F;赎回 “ 的规则。</li>
+<li>T+1 确认：你今天买了，明天才能在持仓里看到份额和确认的价格。</li>
+</ul>
+<p>那么，支付宝里完全买不到 ETF 吗？也不是，但方式比较 “ 绕 “。支付宝上有一种特殊产品叫 “ETF 联接基金 “。</p>
+<ul>
+<li>ETF 联接基金是什么？ 它是一种 “ 传统基金 “，但它的唯一任务就是去买它所对应的那个 ETF。</li>
+<li>比喻：你想去一个只对会员开放的 “ 批发市场 “（股票交易所）买东西（ETF），但你不是会员。于是你找到了一个叫 “ 联接基金 “ 的专业代购，你把钱给这个代购，让他去帮你买。</li>
+<li>如何识别？ 它们的名字通常都带有 “ 联接 “ 二字，比如 “ 天弘沪深 300ETF 联接 C”、” 易方达创业板 ETF 联接 A”。</li>
+</ul>
+<ol>
+<li>你直接在 “ 基金 “ 里搜索购买的，大概率是传统基金。</li>
+<li>如果你买的是名字带 “ 联接 “ 的，那你买的是一个专门去替你买 ETF 的传统基金。</li>
+<li>如果你想直接买卖真正的 ETF（有实时价格、像股票一样交易），你需要开通一个证券账户（股票账户），在券商的 App 里进行操作。</li>
+</ol>
+<h3 id="在哪里买-ETF"><a href="#在哪里买-ETF" class="headerlink" title="在哪里买 ETF"></a>在哪里买 ETF</h3><ol>
+<li>在股票账户里买 ETF 的费用： 你的总成本 &#x3D; ① 交易佣金 + ② ETF 自身费用</li>
+</ol>
+<ul>
+<li>① 交易佣金：买入和卖出时，券商收取的费用。现在竞争激烈，通常在万分之 0.5 到万分之 3 之间，很多券商单笔最低收费不足 5 元时按 5 元收。卖出 ETF 时免印花税！（卖出股票要收千分之 0.5 印花税）</li>
+<li>② ETF 自身费用：这是 ETF 本身运作就要收的钱，已经每天从基金净值里扣除了，你无感知。<ul>
+<li>管理费（给基金经理发工资）</li>
+<li>托管费（给保管资产的银行的费用）<br>总费用结构：简单清晰，主要是交易佣金。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>在支付宝买 ETF 联接基金的费用： 你的总成本 &#x3D; ① 申购&#x2F;赎回费 + ② 联接基金自身费用 + ③ 它投资的那个 ETF 的自身费用</li>
+</ol>
+<ul>
+<li>① 申购&#x2F;赎回费：你买入 (申购) 和卖出 (赎回) 时平台收取的费用。支付宝上很多 C 类份额会免申购费，但持有时间短的话，赎回费会比较高。</li>
+<li>② 联接基金自身费用：这个 “ 代购基金 “ 自己也要运作，所以它也有一套管理费和托管费。</li>
+<li>③ 被投资的 ETF 自身费用：这个 “ 代购基金 “ 把你的钱买成了 ETF，那个 ETF 本身的管理费和托管费也需要你承担。</li>
+</ul>
+<p>看明白了吗？你付了两层管理费和托管费！ 一层给了 “ 代购基金 “，另一层给了它去买的那个 “ETF 商品 “。虽然联接基金的管理费通常很低（比如 0.1%），但这仍然是一笔额外的、可以被省掉的成本。</p>
+<h3 id="传统基金隔日结算"><a href="#传统基金隔日结算" class="headerlink" title="传统基金隔日结算"></a>传统基金隔日结算</h3><p>首先，最关键的一点是：你卖出基金的价格，是按照你发起卖出操作当天（T 日）收盘后计算出来的净值，而不是第二天的价格！</p>
+<ol>
+<li>保证公平性：如果基金可以实时交易，那么有信息优势或者技术优势的机构投资者就可以利用盘中的微小波动进行快速套利，这会损害普通投资者的利益。每天只用一个收盘价，保证了在同一天申购或赎回的所有投资者，都享有完全相同的价格。</li>
+<li>运作复杂性：一只基金可能持有上百只甚至更多的股票和债券。实时、精确地计算整个投资组合的总价值，在技术上非常复杂且成本极高。在收盘后，所有资产都有了固定的价格，计算就变得可行和准确。</li>
+<li>鼓励长期投资：这种交易机制天然地 “ 劝退 “ 了那些想做短线高抛低吸的交易者，因为它无法让你抓住盘中的高点或低点。这更符合基金作为一种长期投资工具的定位。</li>
+</ol>
+<h1 id="2-股票分红"><a href="#2-股票分红" class="headerlink" title="2. 股票分红"></a>2. 股票分红</h1><h2 id="2-1-除权除息是什么意思"><a href="#2-1-除权除息是什么意思" class="headerlink" title="2.1 除权除息是什么意思"></a>2.1 除权除息是什么意思</h2><p>想象你持有的一家公司的全部股票，就是一个完整的、价值 2000 元的大披萨。</p>
+<ul>
+<li>除息 (chú xī - Ex-dividend)：公司决定从这个大披萨上切下一小块（比如价值 100 元的现金），直接递到你手上。披萨本身是不是就变小了？它的价值就只剩 1900 元了。<ul>
+<li>对应到股票：公司分红，把一部分现金利润发给你。公司的净资产减少了，所以股价也必须相应下调，来反映公司价值的减少。</li>
+</ul>
+</li>
+<li>除权 (chú quán - Ex-rights)：公司不给你现金，而是把你的披萨切成更多的小块。比如，原来是 8 大块，现在给你切成 16 小块。整个披萨的大小没变，但每一块的尺寸变小了。<ul>
+<li>对应到股票：公司送股或转增股本，你的股票数量增加了。但公司总市值没变，所以每股的单价就必须相应降低。</li>
+</ul>
+</li>
+</ul>
+<p>“ 除权除息 “ 就是一个会计上的技术调整，确保在分红&#x2F;送股的那一瞬间，你手里的总资产 &#x3D; 调整后的股票市值 + 你收到的东西（现金或新股）。这样可以防止有人在分红前一天买入，第二天拿到分红后立刻卖出，凭空套利。</p>
+<h3 id="分红后总资产没有变化"><a href="#分红后总资产没有变化" class="headerlink" title="分红后总资产没有变化"></a>分红后总资产没有变化</h3><p>我们回到你的核心问题。就用刚才的 “ 除息 “ 例子来分解：</p>
+<p>情景： 你持有 100 股 “ 披萨公司 “ 的股票，每股 20 元。你的股票市值是 100 股 × 20 元&#x2F;股 &#x3D; 2000 元。</p>
+<p>公司宣布： 每股分红 1 元现金。</p>
+<p>发生了什么：</p>
+<p>分红前 (股权登记日收盘)：</p>
+<ul>
+<li>你的股票账户显示：持有 100 股，股价 20 元，总市值 2000 元。</li>
+</ul>
+<p>分红后 (除息日开盘)：</p>
+<ol>
+<li>股价下调：股价会自动从 20 元调整为 19 元 (20 元 - 1 元分红)。</li>
+<li>现金到账：你的证券账户的 “ 可用资金 “ 里会增加 100 股 × 1 元&#x2F;股 &#x3D; 100 元现金 (暂不考虑税)。</li>
+<li>计算你的总资产：<br> - 新的股票市值 &#x3D; 100 股 × 19 元&#x2F;股 &#x3D; 1900 元<br> - 你收到的现金 &#x3D; 100 元<br> - 你的总资产 &#x3D; 1900 元 (股票) + 100 元 (现金) &#x3D; 2000 元</li>
+</ol>
+<p>看到了吗？在除息完成的那一刹那，你的总资产不多不少，还是 2000 元。只是它的形态发生了变化：</p>
+<p>从【2000 元的股票】变成了【1900 元的股票 + 100 元的现金】。</p>
+<h3 id="分红的意义何在？"><a href="#分红的意义何在？" class="headerlink" title="分红的意义何在？"></a>分红的意义何在？</h3><p>这才是问题的关键！如果总资产不变，分红的意义是什么？意义在于，你得到了真正的 “ 果实 “，并且迎来了盈利的真正机会——“ 填权 “。</p>
+<ol>
+<li>你得到了选择权和流动性： 那 100 元现金是实实在在打到你账户里的钱，是公司经营赚来的真金白银。这笔钱你可以自由支配：<ul>
+<li>可以花掉，作为生活收入。</li>
+<li>可以再投资，用这 100 元买入更多的股票（比如买 5 股 19 元的股票，还剩 5 元），实现复利。</li>
+<li>可以买别的公司的股票，优化你的投资组合。</li>
+</ul>
+</li>
+<li>真正的盈利来自 “ 填权 “： 除息之后，股价从 20 元掉到了 19 元，留下了一个 1 元的 “ 缺口 “。<ul>
+<li>如果这家公司是一家好公司，它在分红之后还会继续赚钱，它的内在价值会继续增长。投资者也会看好它，愿意继续买入，从而推动股价上涨。</li>
+<li>当股价从 19 元涨回到 20 元时，这个过程就叫做 “ 填权 (tián quán)”。</li>
+<li>一旦完成填权，你的利润就实现了！届时你的总资产会变成：100 股 × 20 元&#x2F;股 + 之前收到的 100 元现金 &#x3D; 2100 元。这多出来的 100 元，才是你这次分红的真正收益。</li>
+<li>如果公司发展更好，股价涨到 21 元，那你的收益就更多了！</li>
+</ul>
+</li>
+</ol>
+<p>反之，如果是一家差公司，分红后经营不善，股价没能涨回 19 元，反而继续下跌，比如跌到 18 元，这个过程就叫 “ 贴权 (tiē quán)”。这时你的总资产就是 1800 元股票 + 100 元现金 &#x3D; 1900 元，你就实际亏损了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>分红那一刻，你的总资产不变，只是从 “100% 股票 “ 变成了 “ 股票 + 现金 “ 的组合。</li>
+<li>分红本身不是利润，它只是利润的搬运工，把公司账上的钱搬到了你的口袋里。</li>
+<li>真正的利润，来自于分红之后，股价上涨并 “ 填满 “ 除息缺口的过程 (“ 填权 “)。</li>
+</ul>
+<p>所以，评价一次分红好不好，关键不是看分了多少钱，而是看公司分红后，有没有能力让股价涨回来。这考验的是公司的持续盈利能力和成长性。</p>
+<ul>
+<li>从数学上分析，分红后我并没有多得任何收益对吗？****<ul>
+<li>从纯粹、瞬时的数学角度来看，在除息那一刻，你没有多得一分钱的收益。</li>
+<li>收益不是在分红那一刻产生的，而是由分红这个行为所引发的后续事件和它所传递的信号决定的。</li>
+<li>分红后，它的价值会自我修复，并继续向上。</li>
+<li>对分红不利的因素：税。你收到的现金分红是需要交税的（在中国 A 股，根据持股时间长短，税率不同）。</li>
+<li>从避税的角度看，不分红、让公司用利润回购股票或进行内部投资以推高股价，对投资者更有利。这也是为什么很多科技成长股（如早期的亚马逊、谷歌）长期不分红的原因。</li>
+</ul>
+</li>
+<li>把它想象成一棵苹果树：摘下一个苹果（分红）并不会让你立刻变得更富有，因为你的总财富（树 + 苹果）没变。但这个动作证明了这棵树是健康的、能结果的。只要它明年能长出更多的苹果，你摘苹果的决定就是明智的。</li>
+</ul>
+<h2 id="2-2-A-股可以直接股息再投资吗？"><a href="#2-2-A-股可以直接股息再投资吗？" class="headerlink" title="2.2 A 股可以直接股息再投资吗？"></a>2.2 A 股可以直接股息再投资吗？</h2><p>在国内 A 股市场，情况和美股等成熟市场有些不同。</p>
+<p>直接的答案是：对于个股（单个公司的股票），目前绝大部分券商并不提供类似美股市场那样的 “ 股息自动再投资计划 “（DRIP）。</p>
+<p>也就是说，你收到上市公司的现金分红后，系统不会自动帮你把这笔钱买成该公司的股票。</p>
+<ul>
+<li>例外情况：基金可以</li>
+<li>你在购买基金时，通常可以选择一种 “ 分红方式 “：<ul>
+<li>现金分红：和股票一样，基金分红的钱直接发到你的账户。</li>
+<li>红利再投资：这是自动复利的选项！选择这种方式后，基金分红的钱不会变成现金给你，而是由基金公司自动帮你转换成对应基金的份额，直接加到你的持仓里。</li>
+</ul>
+</li>
+</ul>
+<h1 id="提问问题"><a href="#提问问题" class="headerlink" title="提问问题"></a>提问问题</h1><h2 id="A-股的复利计算间隔"><a href="#A-股的复利计算间隔" class="headerlink" title="A 股的复利计算间隔"></a>A 股的复利计算间隔</h2><p>股票的复利既不是真正意义上的 “ 实时 “ 计算，更不是像银行那样 “ 按日结息 “。它是一种更自然、更内嵌于市场价格波动中的过程。它的本质是价值的连续变化，而不是利息的结算。想象一下：</p>
+<ul>
+<li>你用 100 元买了一只股票。</li>
+<li>今天上午，它涨了 1%，变成了 101 元。现在你的 “ 本金 “ 就是 101 元了。</li>
+<li>下午，它又在 101 元的基础上，再涨了 1%，它会变成 101 * (1 + 1%) &#x3D; 102.01 元。</li>
+</ul>
+<p>你看，第二次增长的基础是第一次增长后的新价格。这个过程在交易时间内是持续发生的。从这个角度看，它有点像 “ 实时 “ 的，因为股价每时每刻都在变。</p>
+<p>但关键区别在于：</p>
+<ul>
+<li>没有 “ 结息 “ 这个动作：银行会在每天或每月给你结算利息，变成你可以支配的现金。但股票上涨的这 2.01 元，只是账面上的 “ 浮动盈利 “(Unrealized Gain)。它没有变成现金打到你的账户里，它只是你持有资产的价值增加了。</li>
+<li>你无法取出 “ 利息 “：你不能只把赚到的 2.01 元卖掉，而保留原来的 100 元本金。你只能选择卖出部分或全部股票，来将浮动盈利 “ 变现 “(Realize)。<br>所以，你可以把资本利得的复利理解为一种价值上的、连续的、自动的 “ 利滚利 “，但它不是现金的结算。</li>
+</ul>
+<p>股息的复利：周期性且需要主动操作</p>
+<ul>
+<li>它是周期性的：公司派发股息通常是按季度、半年或年度。这有一个明确的时间点。</li>
+<li>复利需要 “ 再投资 “：收到这笔现金股息后，复利并不会自动发生。你需要用这笔钱重新买入股票（买原来的股票或其他股票都行）。当你完成购买后，这次股息的 “ 复利 “ 才算完成。因为你增加了持有的股票数量，这些新买入的股票未来也能为你带来资本利得和新的股息。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/39b55f24.html" rel="prev" title="《投资第1课》5星">
+                  <i class="fa fa-angle-left"></i> 《投资第1课》5星
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/57d154e5.html" rel="next" title="酒店品牌">
+                  酒店品牌 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

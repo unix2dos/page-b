@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="序 📌 本书中对众多概念的讨论与推论均为作者个人观点，不代表人民邮电出版社的立场。  ⏱ 2024-11-29 19:58:35    第1章 初始之旅 📌 在法国高中课程里，贝叶斯公式是一个简明扼要的数学定理，是一个紧凑的等式。其证明只需要一行，而且只需要用到乘法、除法和有关概率的概念。特别是，比起要求高中生和大学生掌握的许多其他数学概念来说，这个公式似乎远远更容易学会。   ⏱ 2024">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《贝叶斯的博弈：数学、思维与人工智能》2星">
+<meta property="og:url" content="https://www.readwrite.fun/post/c604297e.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="序 📌 本书中对众多概念的讨论与推论均为作者个人观点，不代表人民邮电出版社的立场。  ⏱ 2024-11-29 19:58:35    第1章 初始之旅 📌 在法国高中课程里，贝叶斯公式是一个简明扼要的数学定理，是一个紧凑的等式。其证明只需要一行，而且只需要用到乘法、除法和有关概率的概念。特别是，比起要求高中生和大学生掌握的许多其他数学概念来说，这个公式似乎远远更容易学会。   ⏱ 2024">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wfqqreader-1252317822.image.myqcloud.com/cover/786/37067786/t6_37067786.jpg">
+<meta property="article:published_time" content="2025-09-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-09T09:22:18.649Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wfqqreader-1252317822.image.myqcloud.com/cover/786/37067786/t6_37067786.jpg">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/c604297e.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/c604297e.html","path":"post/c604297e.html","title":"《贝叶斯的博弈：数学、思维与人工智能》2星"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《贝叶斯的博弈：数学、思维与人工智能》2星 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F"><span class="nav-text">序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%88%9D%E5%A7%8B%E4%B9%8B%E6%97%85"><span class="nav-text">第1章 初始之旅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86"><span class="nav-text">第2章 贝叶斯定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E4%BB%8E%E9%80%BB%E8%BE%91%E4%B8%8A%E6%9D%A5%E8%AF%B4%E2%80%A6%E2%80%A6"><span class="nav-text">第3章 从逻辑上来说……</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%BF%85%E9%A1%BB%EF%BC%88%E6%AD%A3%E7%A1%AE%E5%9C%B0%EF%BC%89%E6%B3%9B%E5%8C%96%EF%BC%81"><span class="nav-text">第4章 必须（正确地）泛化！</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA"><span class="nav-text">本书评论</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/c604297e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《贝叶斯的博弈：数学、思维与人工智能》2星 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《贝叶斯的博弈：数学、思维与人工智能》2星
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-18T00:00:00+00:00">2025-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-09 09:22:18" itemprop="dateModified" datetime="2025-12-09T09:22:18+00:00">2025-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/1-read/" itemprop="url" rel="index"><span itemprop="name">1_read</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/1-read/06-%E7%A4%BE%E7%A7%91/" itemprop="url" rel="index"><span itemprop="name">06_社科</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="https://wfqqreader-1252317822.image.myqcloud.com/cover/786/37067786/t6_37067786.jpg" alt=" 贝叶斯的博弈：数学、思维与人工智能|200"></p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><ul>
+<li>📌 本书中对众多概念的讨论与推论均为作者个人观点，不代表人民邮电出版社的立场。 <ul>
+<li>⏱ 2024-11-29 19:58:35</li>
+</ul>
+</li>
+</ul>
+<h2 id="第1章-初始之旅"><a href="#第1章-初始之旅" class="headerlink" title="第1章 初始之旅"></a>第1章 初始之旅</h2><ul>
+<li><p>📌 在法国高中课程里，贝叶斯公式是一个简明扼要的数学定理，是一个紧凑的等式。其证明只需要一行，而且只需要用到乘法、除法和有关概率的概念。特别是，比起要求高中生和大学生掌握的许多其他数学概念来说，这个公式似乎远远更容易学会。 </p>
+<ul>
+<li>⏱ 2024-11-29 20:01:02</li>
+</ul>
+</li>
+<li><p>📌 然而我敢说，即使是最好的数学家也未必理解这个贝叶斯公式——甚至有数学定理解释了为什么我们无法掌握这个公式！ </p>
+<ul>
+<li>⏱ 2024-11-29 20:01:45</li>
+</ul>
+</li>
+<li><p>📌 刚开始写这本书的时候，我是一个狂热的贝叶斯主义者。此后，我完全确信贝叶斯主义，特别是跟其他自称贝叶斯主义者的人相比，我甚至可以说是极端贝叶斯主义者。但我尤其希望有朝一日能成为一名合格的贝叶斯主义者。我的梦想就是能够正确应用贝叶斯公式，因为我确信，只有这样，我才能成为一个理性的人！ </p>
+<ul>
+<li>⏱ 2024-11-29 20:03:41</li>
+</ul>
+</li>
+<li><p>📌 读这本书的时候请不要急躁，要多花点时间思考，但也不要轻易放弃。这本书并不是越往后面越难，你可以在没有阅读之前章节的情况下享受每一章——虽然按顺序阅读每一章可能更好。这不是一本教材，也没有考试。我不会要求你理解所有内容，甚至强烈建议你跳过那些太复杂的段落继续阅读（如果你之后肯回到这些难度较大的段落的话）。我的目标不是让你成为贝叶斯主义的专家。 </p>
+<ul>
+<li>⏱ 2024-11-29 20:05:22</li>
+</ul>
+</li>
+</ul>
+<h2 id="第2章-贝叶斯定理"><a href="#第2章-贝叶斯定理" class="headerlink" title="第2章 贝叶斯定理"></a>第2章 贝叶斯定理</h2><ul>
+<li><p>📌 我们回到那位“钓鱼”学生的谜题上。一位父亲有两个孩子，至少一个孩子是男孩，那么另一个孩子也是男孩的概率是多少？我请你先尝试自己解决这个问题。即使你解不出来，这种智力锻炼对之后的阅读也可能有帮助。<br> 我现在向你展示这个问题的解答，最简单的解法就是列出所有可能的情况。我们将两个孩子叫作小晨和小迪。可能的情况有四种：<br> •  小晨和小迪都是男孩；<br> •  小晨是男孩，小迪是女孩；<br> •  小晨是女孩，小迪是男孩；<br> •  小晨和小迪都是女孩。<br> 这四种情况是等可能的，也就是说，它们的概率都一样，虽然这也不太准确。生物学家会明确指出，事实上51%的新生儿是男孩——这个结果是拉普拉斯通过贝叶斯式的计算得到的。但我们先简化一下，假设每个孩子是男孩的先验概率是50%。<br> 但是我们知道小晨和小迪中至少有一个是男孩，前三种可能性符合这个新信息，第四种可能性不符合。所以，我们可以划掉第四种可能性。<br> 现在，如果已知小晨和小迪中至少有一个是男孩的话，那么另一个孩子也是男孩的可能性恰好对应小晨和小迪都是男孩的情况。这就是一个孩子是男孩，而另一个孩子也是男孩的唯一可能性。换句话说，我们尝试计算的，就是在已知其中至少一个孩子是男孩的情况下，两个孩子都是男孩的概率。<br> 这对应剩下三种可能性中的一种。于是，要计算的概率就等于1&#x2F;3，而不是1&#x2F;2！惊不惊人 </p>
+<ul>
+<li>⏱ 2025-09-18 10:03:02</li>
+</ul>
+</li>
+<li><p>📌 即使是著名数学家埃尔德什·帕尔，也就是数学史上发表论文最多的人，也不相信沃斯·萨万特的严谨证明。只有在看到模拟结果之后，大为惊讶的埃尔德什才认输。大数学家埃尔德什也不理解贝叶斯公式，他也不是唯一一个不理解的人。 </p>
+<ul>
+<li>⏱ 2025-01-12 19:21:13</li>
+</ul>
+</li>
+<li><p>📌 事实上，英国索尔福德大学数学教授雷·希尔进行的近似计算证明，虽然两名新生儿由于自然原因死亡的概率很低，但这也要比双重谋杀的概率高5～10倍。换句话说，贝叶斯公式会迫使我们更强烈倾向于自然死亡的假设，而不是双重谋杀——顺带一提，希尔同时指出了儿科医生梅多的计算中的一个重大错误，那就是他没有考虑两名新生儿的死亡之间的相关性，这一相关性会使贝叶斯计算的最终结论更利于自然死亡的假设。 </p>
+<ul>
+<li>⏱ 2025-01-12 19:23:03</li>
+</ul>
+</li>
+<li><p>📌 极端简化的贝叶斯计算有着很大的局限性，即使对于最聪明的人来说，正确的贝叶斯计算也过于复杂，难以完成。所以，这本书的目的绝对不是让你成为能应用贝叶斯公式的机器，那只会徒劳无功。<br> 然而，我认为要是真正花时间思考的话，每个人都能掌握那些简单的例子。当在最实际的情况下进行近似的贝叶斯思考时，这些例子可以作为参照或者练习。我不会强求你成为纯粹贝叶斯主义者，但我希望你成为成熟的思考者，希望能帮助你（掌握如何）将直觉贝叶斯化。 </p>
+<ul>
+<li>⏱ 2025-09-18 10:04:38</li>
+</ul>
+</li>
+<li><p>📌 贝叶斯公式对所有人来说都很难理解。即使是大数学家也难以将它应用到类似蒙蒂·霍尔问题这样的简化情况中。即使毅力再强，你也不能完全理解贝叶斯公式，但你可以在对它的理解上取得长足的进展。 </p>
+<ul>
+<li>⏱ 2025-01-12 19:24:47</li>
+</ul>
+</li>
+</ul>
+<h2 id="第3章-从逻辑上来说……"><a href="#第3章-从逻辑上来说……" class="headerlink" title="第3章 从逻辑上来说……"></a>第3章 从逻辑上来说……</h2><ul>
+<li><p>📌 我经常觉得，他们对“科学”的定义背后隐藏着某种“科学流氓”的行径，在保卫科学共同体的愿望驱使下将错误的事情合理化。这种“流氓”行径尤其喜欢遮掩归纳推理中的困难，对我来说这是个相当严重的问题。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:30:32</li>
+</ul>
+</li>
+<li><p>📌 我们先回到演绎推理和归纳推理的区别上。对于今天受过正式训练的科学工作者来说，这个区别似乎是显然的。但有趣的是，纯粹贝叶斯主义者并不会做出这样的区分。对她来说，推理方式只有一种，那就是贝叶斯公式。更准确地说，整个归纳推理系统都只是贝叶斯公式的特例，而人们常用的归纳推理则不过是贝叶斯公式的一种错误近似。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:30:59</li>
+</ul>
+</li>
+<li><p>📌 ？毕竟我们早就知道亚里士多德的三段论是对的，不是吗？当然是，但我们也要看到，它的正确性是基于对逻辑规则的承认。否定这些逻辑规则对你来说也许并不现实，然而逻辑学家的严谨迫使他们质疑这些规则。同样惊人的是，某些被称为直觉主义者或构造主义者的逻辑学家不接纳某些特定的逻辑规则，即使这些规则对应的真值表中的每一格都为真。与之相对，遵循传统的逻辑学家有时候又被称为柏拉图主义者。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:36:30</li>
+</ul>
+</li>
+<li><p>📌 对于柏拉图主义者来说，自然数，或者说自然数的集合，实际存在于理念世界￼之中，而其中的所有命题必然或真或假。不巧的是，因为语汇和符号都是有限的，这让我们只能描述这个理念世界的一部分。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:37:30</li>
+</ul>
+</li>
+<li><p>📌 对于柏拉图主义者来说，哥德尔的定理证明了存在不能被证明的正确定理。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:37:44</li>
+</ul>
+</li>
+<li><p>📌 柏拉图主义者与直觉主义者论战的核心可以归结于排中律，这个逻辑定律断言“P或非P”是一个重言式。似乎只需要列出真值表就能理解这一点。如果P是真的，那么“P或非P”也是真的；如果P是假的，那么“非P”就是真的，所以“P或非P”也是真的。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:38:38</li>
+</ul>
+</li>
+<li><p>📌 对于直觉主义者来说还有第三种可能性：P既不能被证明，也无法被否定。这时我们就说P是不可判定的。这样一来，如果P不可判定，那么我们就能看到P和非P都不是真的，所以“P或非P”同样不可判定。的确，如果既没有P的证明，也没有非P的证明，那么我们就不可能构造“P或非P”的证明。所以，对于直觉主义者来说，“P或非P”不是重言式。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:39:16</li>
+</ul>
+</li>
+<li><p>📌 实际上纯粹贝叶斯主义者自己有一套演绎逻辑，它既不是经典逻辑，也不是直觉主义逻辑。我们可以称之为贝叶斯逻辑，它是贝叶斯公式的特例。在这套逻辑中，某个事件（比如￼）为真，对应着这个事件发生的概率为1的极端情况，也就是￼￼￼。另外，事件￼蕴涵另一个事件￼可以写成￼￼|￼￼，换句话说，用贝叶斯主义的话来说，当且仅当已知￼发生时￼也发生的概率等于1时，才能说￼蕴涵￼ </p>
+<ul>
+<li>⏱ 2025-01-16 09:39:45</li>
+</ul>
+</li>
+<li><p>📌 如果法国赢了2006年的世界杯，那么鸡就有牙齿”这句话在经典逻辑中是正确的，然而它似乎有些违背常识。我们更想说这句话在逻辑中非真非假，或者说它没有意义。这正是贝叶斯逻辑的结论，它断言当￼￼￼时，￼￼|￼￼没有定义。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:41:09</li>
+</ul>
+</li>
+<li><p>📌 贝叶斯逻辑让我们可以理解为什么这么多逻辑规则都似乎违反了直觉。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:41:38</li>
+</ul>
+</li>
+<li><p>📌 对纯粹贝叶斯主义者来说，“法国在2006年世界杯中落败”很有可能是真的，但我们不能完全否定它实际为假的可能性。这样一来，如果在法国赢得2006年世界杯的情况下，鸡长牙齿的概率不是1的话，那“如果法国赢了2006年的世界杯，那么鸡就有牙齿”这句话就不对了。换句话说，如果我们拒绝只有真与假的二元逻辑，转而借助置信度来判断的话，那么这个表面上的悖论就不攻自破了！无论是在逻辑中还是在政治中，两极分化都会导致谬论。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:44:05</li>
+</ul>
+</li>
+<li><p>📌 在符合命题逻辑的柏拉图世界以外，与其将命题的真与假一分为二，更合理的做法是考虑各种置信度。这样的话，逆否命题的等价性就不再正确了。从真与假的二分法中抽身也可以让我们理解一些被经典逻辑视为谬论的直觉。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:45:38</li>
+</ul>
+</li>
+<li><p>📌 假设￼→￼，也就是每次下雨我都带伞，那么，我们倾向于说如果不下雨的话，我带伞的可能性就更低。这种直觉结论在经典逻辑中无法衡量，但它是贝叶斯逻辑中的定理。这个定理断言，如果￼￼|￼￼那么￼￼|非￼￼￼￼。当然一般来说，某物存在的证明不存在，不能作为它不存在的证明，但这种证明的缺失只会让我们更怀疑它不存在。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:46:39</li>
+</ul>
+</li>
+<li><p>📌 拥抱贝叶斯逻辑和它带来的不确定性，能让我们透彻地理解黑乌鸦的神秘悖论。确实，用贝叶斯分析可以证明，每个红苹果的确都确认了乌鸦是黑色的，但这种确认非常弱，甚至极其微弱，要比观察到一只黑乌鸦带来的确认弱得多。这是因为不是乌鸦的事物在数量上比乌鸦多得多。对逆否命题的确认对于原命题也有效，但这种效果是如此微弱，大体上可以忽略不计。黑乌鸦悖论就属于这种情况！ </p>
+<ul>
+<li>⏱ 2025-01-16 09:47:02</li>
+</ul>
+</li>
+<li><p>📌 学习是一支舞蹈。跟股票走势或地球平均温度一样，纯粹贝叶斯主义者持有的置信度总会随着观察到的结果而上下浮动。在这场学习过程中，即使是最优秀的理论，它们的置信度也不会一直上升，而是非常可能遭受多次（微小的）损失，尤其是因为某些观察结果偶然会符合与之竞争的理论。然而，长期来说，如果某个理论真的比其竞争者更正确，那么它的置信度就倾向于上升到高位。<br> 不巧的是，不肯通融的科学方法无法描绘这种置信度的舞蹈。最适合描述它的似乎还是纯粹贝叶斯主义者的概率语言。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:48:21</li>
+</ul>
+</li>
+<li><p>📌 纯粹贝叶斯主义者的那种概率语言的另一个优点，就是能让我们同时思考多个理论，更能让我们将它们各自的预测组合起来。在机器学习中，这个技巧被重新发掘，被称为集成学习(ensembling)或者自助投票(bagging)。在实践中，它的效果令人吃惊。将不兼容的各种理论结合起来似乎通常能给出比最好的理论更好的预测结果！互不兼容的模型组成的森林要比其中每一棵树更有智慧￼。 </p>
+<ul>
+<li>⏱ 2025-01-16 09:48:47</li>
+</ul>
+</li>
+<li><p>📌 所有知识都会转化为概率，这些概率或大或小，依据的是亲身经历中自己的理解有多正确或者多错误，以及问题有多简单或者多复杂。<br> 大卫·休谟(1711—1776) </p>
+<ul>
+<li>⏱ 2025-01-16 09:49:59</li>
+</ul>
+</li>
+<li><p>📌 我们的大脑有种讨厌的倾向，认为(……)如果在某个假设下得到的某些结果发生的可能性很小，那么假设本身也极不可能正确。这是错的。<br> 克里斯托夫·米歇尔(1974—　) </p>
+<ul>
+<li>⏱ 2025-01-16 09:50:27</li>
+</ul>
+</li>
+</ul>
+<h2 id="第4章-必须（正确地）泛化！"><a href="#第4章-必须（正确地）泛化！" class="headerlink" title="第4章 必须（正确地）泛化！"></a>第4章 必须（正确地）泛化！</h2><ul>
+<li><p>📌 休谟着重强调了概率论在归纳问题的解决中占据中心地位，这可谓充满智慧的洞察。如果说拉普拉斯是贝叶斯主义之父，那么休谟可能算得上是“祖父”——所罗门诺夫则是那位聪明的“儿子”！ </p>
+<ul>
+<li>⏱ 2025-01-16 20:50:53</li>
+</ul>
+</li>
+<li><p>📌 但休谟那颗贝叶斯主义的种子没有开花结果。在他之后两个世纪中，鲜有人想到将他的想法形式化、数学化。更糟糕的是，在1934年，卡尔·波普尔发表了《科学发现的逻辑》，与休谟针锋相对。波普尔在这部著作中描绘了他所认为的科学哲学。波普尔认为，所有科学理论首先都应该拥有可以通过实验否定的可能性，我们称之为可证伪性原则：如果一个理论能对某些可以设想的实验观察结果给出某种限制，令它受制于被否定的可能性，那么我们可以说这一理论是科学的。然后重复这些实验，尝试明确否定对应的科学理论；或者在无法否定的情况下，这些实验就算是这个理论的佐证了。但对于波普尔来说，佐证并不能说明理论是正确的！ </p>
+<ul>
+<li>⏱ 2025-01-16 20:51:33</li>
+</ul>
+</li>
+<li><p>📌 有人也许会认为，这个故事的教训就是绝对不要质疑牛顿。但科学史似乎喜欢将我们搞得晕头转向。还是勒威耶，在成功预测到海王星的存在之后，他又研究了水星的轨道异常。这些轨道异常令他预言了太阳系第零行星的存在，他将其称为祝融星。<br> 然而没人观测到祝融星。也许，这颗行星由于太接近太阳而探测不到，太阳的亮度掩盖了其他光芒吗？或者，这一次可能真的需要将牛顿推下神坛？提出这个大胆想法的，正是阿尔伯特·爱因斯坦。 </p>
+<ul>
+<li>⏱ 2025-01-16 20:54:10</li>
+</ul>
+</li>
+<li><p>📌 一位学生询问爱因斯坦这位德国智者，如果观察结果没有证实他的理论，他会怎么做。爱因斯坦的回答是：“我会为上帝感到遗憾。理论是正确的。”<br> 阿尔伯特·爱因斯坦，这位科学超级巨星对康德和马赫等哲学家的工作有着浓厚的兴趣，而他并没有接受通过实验来证伪的想法。爱因斯坦似乎并没有遵循波普尔的哲学。 </p>
+<ul>
+<li>⏱ 2025-01-16 20:56:15</li>
+</ul>
+</li>
+<li><p>📌 波普尔自己也意识到他的哲学并不能在严格的意义上被应用到科学中。毕竟所有实验结果都受制于测量误差与随机因素，这都会让实验的结果至少带有一点随机性。所以，我们必须改造波普尔的哲学，以合理考虑科学实验中固有的统计误差。 </p>
+<ul>
+<li>⏱ 2025-01-16 20:57:51</li>
+</ul>
+</li>
+<li><p>📌 频率主义者的方法统治了20世纪的科学，毫无敌手。特别是费希尔对此非常投入，他对贝叶斯公式发起尖锐批评，而且为了封锁所有反对其天才想法的意见采用了毒辣而顽固的手段，让所有本想与他的频率主义哲学一争长短的理论都变成了禁忌。他这样断言：“逆概率理论（也就是贝叶斯定理）建基于一个错误，应该被完全否定。”如果要把统计学的历史写成摩尼教式的小说￼，把纯粹贝叶斯主义者看作小说的主角，那么费希尔和其他所有频率主义者就是黑恶势力。 </p>
+<ul>
+<li>⏱ 2025-01-16 20:58:49</li>
+</ul>
+</li>
+<li><p>📌 实际上显然的是，如果我们的科学理论仍然屹立不倒，那只是因为它还没有被充分测试过。但如果我们不停测试这些理论，那么终有一天会迎来对它们的否证，在劫难逃。这不是很奇怪吗？科学方法必然会否定所有正确的理论￼！ </p>
+<ul>
+<li>⏱ 2025-01-16 21:00:09</li>
+</ul>
+</li>
+<li><p>📌 对于纯粹贝叶斯主义者来说，所有知识哲学都可以归结为计算贝叶斯置信度。知识，就是对不同的理论赋予合适的置信度。 </p>
+<ul>
+<li>⏱ 2025-01-16 21:01:55</li>
+</ul>
+</li>
+<li><p>📌 在引力很“弱”时，爱因斯坦的广义相对论与牛顿的定律表现相同。实际上，在太阳系中，只有在靠近太阳的地方，引力才强得足以使爱因斯坦方程的预测偏离牛顿运动定律的预测，而当时这方面的数据还很欠缺。然而，牛顿的理论似乎不能完全解释水星的轨道，而水星是在最强的引力场中（或者用爱因斯坦的话来说，是在时空最弯曲的区域中）公转的行星。 </p>
+<ul>
+<li>⏱ 2025-01-16 21:04:07</li>
+</ul>
+</li>
+<li><p>📌 根据贝叶斯定理，任何理论都不完美。取而代之的是一项未竟的工作，它永远处于推敲与测试之中。<br> 内特·西尔弗(1978— </p>
+<ul>
+<li>⏱ 2025-09-18 09:58:01</li>
+</ul>
+</li>
+</ul>
+<h1 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h1><h1 id="本书评论"><a href="#本书评论" class="headerlink" title="本书评论"></a>本书评论</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/e553b02e.html" rel="prev" title="《黑客与画家》5星+">
+                  <i class="fa fa-angle-left"></i> 《黑客与画家》5星+
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/7cc0da56.html" rel="next" title="《下一次对话：不争不哄不解释，轻松搞定难搞定的人》3星">
+                  《下一次对话：不争不哄不解释，轻松搞定难搞定的人》3星 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

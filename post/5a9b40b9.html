@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第一篇的深挖篇——GFW 旁路注入怎么干活、fake-ip 把局域网整瘫痪怎么救、Navicat 直连域名怎么还原、fallback 三件套、TUN 三档力度、用脚本注入完整 dns 块。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2_DNS与FakeIP排障：污染、副作用、TUN调优">
+<meta property="og:url" content="https://www.readwrite.fun/post/5a9b40b9.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="第一篇的深挖篇——GFW 旁路注入怎么干活、fake-ip 把局域网整瘫痪怎么救、Navicat 直连域名怎么还原、fallback 三件套、TUN 三档力度、用脚本注入完整 dns 块。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-01T00:00:02.000Z">
+<meta property="article:modified_time" content="2026-06-12T10:22:30.774Z">
+<meta property="article:author" content="readwrite">
+<meta property="article:tag" content="Clash">
+<meta property="article:tag" content="ClashVerge">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="FakeIP">
+<meta property="article:tag" content="Mihomo">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="DoH">
+<meta property="article:tag" content="DoT">
+<meta property="article:tag" content="sing-box">
+<meta property="article:tag" content="Troubleshooting">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/5a9b40b9.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/5a9b40b9.html","path":"post/5a9b40b9.html","title":"2_DNS与FakeIP排障：污染、副作用、TUN调优"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2_DNS与FakeIP排障：污染、副作用、TUN调优 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-GFW-%E6%97%81%E8%B7%AF%E6%B3%A8%E5%85%A5%EF%BC%9A%E4%BD%A0%E8%A2%AB%E6%80%8E%E4%B9%88%E6%B1%A1%E6%9F%93%E7%9A%84"><span class="nav-text">1. GFW 旁路注入：你被怎么污染的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Fake-ip-%E5%89%AF%E4%BD%9C%E7%94%A8%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%98%AB%E7%97%AA-%E7%9B%B4%E8%BF%9E%E8%BF%98%E5%8E%9F"><span class="nav-text">2. Fake-ip 副作用：局域网瘫痪 + 直连还原</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA%E8%A2%AB%E7%9E%AC%E9%97%B4%E5%BA%9F%E6%8E%89"><span class="nav-text">2.1 局域网打印机被瞬间废掉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA%EF%BC%9ANavicat-%E8%BF%9E-AWS-RDS-%E8%A2%AB%E9%94%99%E4%BB%A3%E7%90%86%E5%88%B0-Netflix"><span class="nav-text">2.2 翻车现场：Navicat 连 AWS RDS 被错代理到 Netflix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Navicat-%E8%BF%9E-AWS-RDS-%E5%87%AD%E4%BB%80%E4%B9%88%E7%9B%B4%E8%BF%9E"><span class="nav-text">2.3 Navicat 连 AWS RDS 凭什么直连</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Fallback-Fallback-filter-Nameserver-policy-%E4%B8%89%E4%BB%B6%E5%A5%97"><span class="nav-text">3. Fallback &#x2F; Fallback-filter &#x2F; Nameserver-policy 三件套</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-TUN-%E4%B8%89%E6%A1%A3%E5%8A%9B%E5%BA%A6%EF%BC%9AgVisor-Mixed-System"><span class="nav-text">4. TUN 三档力度：gVisor &#x2F; Mixed &#x2F; System</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%AE%9E%E6%88%98%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF%EF%BC%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E5%AE%8C%E6%95%B4-Dns-%E5%9D%97"><span class="nav-text">5. 实战配置模板：用脚本注入完整 Dns 块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E9%80%9F%E6%9F%A5"><span class="nav-text">6. 常见问题速查</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/5a9b40b9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2_DNS与FakeIP排障：污染、副作用、TUN调优 | 趣读写">
+      <meta itemprop="description" content="第一篇的深挖篇——GFW 旁路注入怎么干活、fake-ip 把局域网整瘫痪怎么救、Navicat 直连域名怎么还原、fallback 三件套、TUN 三档力度、用脚本注入完整 dns 块。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2_DNS与FakeIP排障：污染、副作用、TUN调优
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-08-01 00:00:02" itemprop="dateCreated datePublished" datetime="2025-08-01T00:00:02+00:00">2025-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-12 10:22:30" itemprop="dateModified" datetime="2026-06-12T10:22:30+00:00">2026-06-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/" itemprop="url" rel="index"><span itemprop="name">04_沟通世界</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/2-%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">2_代理工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第一篇的深挖篇——GFW 旁路注入怎么干活、fake-ip 把局域网整瘫痪怎么救、Navicat 直连域名怎么还原、fallback 三件套、TUN 三档力度、用脚本注入完整 dns 块。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-GFW-旁路注入：你被怎么污染的"><a href="#1-GFW-旁路注入：你被怎么污染的" class="headerlink" title="1. GFW 旁路注入：你被怎么污染的"></a>1. GFW 旁路注入：你被怎么污染的</h1><p>明文 DNS 经过国际出口时，GFW 站在光纤旁边偷看。每个查询包它瞥一眼里面的域名，命中黑名单（<code>google.com</code>、<code>youtube.com</code> 这类），立刻伪造一个回包，源地址写成你查的 DNS 服务器 IP,发回给你。</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123;&#x27;actorBkg&#x27;: &#x27;#3B82F6&#x27;, &#x27;actorTextColor&#x27;: &#x27;#000&#x27;&#125;&#125;&#125;%%
+sequenceDiagram
+    autonumber
+    participant App as &quot;你的应用&quot;
+    participant DNS as &quot;上游 DNS&lt;br/&gt;(8.8.8.8 / 阿里)&quot;
+    participant GFW as &quot;GFW (旁路)&quot;
+
+    App-&gt;&gt;DNS: &quot;查 youtube.com (明文 UDP)&quot;
+    Note over GFW: &quot;偷看到域名命中黑名单&quot;
+
+    par 正常应答
+        DNS--&gt;&gt;App: &quot;真实 IP (慢)&quot;
+    and GFW 抢答
+        GFW--&gt;&gt;App: &quot;伪造 IP 93.46.8.x (更快到)&quot;
+    end
+
+    Note over App: &quot;UDP 没法验证哪个真&lt;br/&gt;用先到的那个&quot;
+    App-&gt;&gt;App: &quot;连了 93.46.8.x (打不开)&quot;</code></pre>
+
+<p>伪造包从 GFW 设备直接发出来，路径比 “ 真 DNS 服务器答复 “ 短得多，几乎总是先到。UDP 协议没法验证哪个是真，系统采信先到的那个。真答复后到时被当成 “ 重复包 “ 直接扔了。</p>
+<p><strong>“ 我换用 <code>8.8.8.8</code> 怎么也被污染 “？</strong> 因为 GFW 不管你查的是哪个 DNS,它只看请求里的<strong>域名</strong>。换 DNS 服务器没用，必须<strong>加密查询内容</strong>(让 GFW 看不到域名) 或<strong>绕开 UDP</strong>(用 TCP)。这就是为什么 DoH(DNS over HTTPS) 是默认推荐——HTTPS 加密之后 GFW 看不到里面查的是啥。</p>
+<span id="more"></span>
+
+<p>GFW 抢答的假 IP 不是随机的，集中在固定几段：</p>
+<table>
+<thead>
+<tr>
+<th>投毒 IP 段</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>93.46.8.x</code></td>
+<td>意大利</td>
+</tr>
+<tr>
+<td><code>203.98.7.x</code></td>
+<td>新西兰</td>
+</tr>
+<tr>
+<td><code>8.7.198.x</code></td>
+<td>Level3 网段</td>
+</tr>
+<tr>
+<td><code>240.0.0.0/4</code></td>
+<td>IANA 保留段（正常网络绝不会出现）</td>
+</tr>
+</tbody></table>
+<p>这个特征催生了第 3 章的 <code>fallback-filter</code>——“ 看到回来的是这几个段，当作被污染，用 fallback 的结果 “。</p>
+<h1 id="2-Fake-ip-副作用：局域网瘫痪-直连还原"><a href="#2-Fake-ip-副作用：局域网瘫痪-直连还原" class="headerlink" title="2. Fake-ip 副作用：局域网瘫痪 + 直连还原"></a>2. Fake-ip 副作用：局域网瘫痪 + 直连还原</h1><p>fake-ip 撒了个 “ 谎 “——它给应用的不是真 IP。多数场景这无所谓，但有两类场景会翻车。</p>
+<h2 id="2-1-局域网打印机被瞬间废掉"><a href="#2-1-局域网打印机被瞬间废掉" class="headerlink" title="2.1 局域网打印机被瞬间废掉"></a>2.1 局域网打印机被瞬间废掉</h2><p>家里的网络打印机叫 <code>printer.local</code>,NAS 叫 <code>nas.lan</code>,公司的代码服务器叫 <code>gitlab.internal.company.com</code>。它们都是域名。</p>
+<p>fake-ip 模式下 Clash 不管三七二十一：你查 <code>printer.local</code>,我发个 <code>198.18.0.7</code>。电脑收到 <code>198.18.0.7</code>,真的把打印任务发到这个地址。Clash 截胡这个连接，查表知道 “ 这个 IP 对应 printer.local”,然后……然后它去哪？打印机在你局域网，Clash 既不知道它真实 IP,也没法用代理节点访问。结果是打印机连不上、Bonjour 设备发现失败、AirPlay 投屏没设备。</p>
+<p>救法是告诉 fake-ip：” 这几个域名别给假 IP,放过 “。这就是 <code>fake-ip-filter</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">enhanced-mode:</span> <span class="string">fake-ip</span></span><br><span class="line">  <span class="attr">fake-ip-filter:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.lan&quot;</span>                   <span class="comment"># 路由器 / NAS 这种局域网域名</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.local&quot;</span>                 <span class="comment"># mDNS / Bonjour</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.internal.company.com&quot;</span>  <span class="comment"># 公司内网</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.msftncsi.com&quot;</span>          <span class="comment"># Windows 检测网络是否通的探针</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.pool.ntp.org&quot;</span>          <span class="comment"># NTP 校时（fake-ip 会让校时失败）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.stun.*&quot;</span>                <span class="comment"># WebRTC / 视频会议</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.music.163.com&quot;</span>         <span class="comment"># 网易云 IP 校验</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.srv.nintendo.net&quot;</span>      <span class="comment"># 任天堂游戏验证</span></span><br></pre></td></tr></table></figure>
+
+<p>匹配到这里的域名走 redir-host 路线——正常解析、拿到真 IP、走直连或代理规则。</p>
+<p>精心型机场订阅会写一份很全的 filter。敷衍型订阅没写，这就是为什么开了 TUN 之后 <code>printer.local</code> 突然找不到——不是 Clash 的锅，是订阅没写 filter。</p>
+<h2 id="2-2-翻车现场：Navicat-连-AWS-RDS-被错代理到-Netflix"><a href="#2-2-翻车现场：Navicat-连-AWS-RDS-被错代理到-Netflix" class="headerlink" title="2.2 翻车现场：Navicat 连 AWS RDS 被错代理到 Netflix"></a>2.2 翻车现场：Navicat 连 AWS RDS 被错代理到 Netflix</h2><p>上一节讲了直连分支怎么 “ 反查域名拿真 IP” 的机制，听起来 fake-ip + 域名规则配合得很好。但<strong>当分流规则用的是 IP 段而不是域名时</strong>,会出一类特别隐蔽的翻车。</p>
+<p>实例：你用 Navicat 连 AWS 中国区的 RDS,域名长这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx.cn-northwest-1.rds.amazonaws.com.cn</span><br></pre></td></tr></table></figure>
+
+<p>明明是国内服务（IP 在国内宁夏机房），却莫名其妙连不上。打开 Clash 日志一看：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[TCP] 198.18.0.1:51627(Navicat) --&gt; 34.208.231.7:22</span><br><span class="line">      match IPCIDR(34.208.0.0/12) using Netflix</span><br></pre></td></tr></table></figure>
+
+<p><code>34.208.0.0/12</code> 这条 IP 段规则把它当成了海外服务，丢给了 Netflix 节点。Netflix 节点在洛杉矶，绕地球半圈回宁夏，能连上才奇怪。</p>
+<p><strong>为什么会这样</strong>：</p>
+<ol>
+<li>Navicat 拿到的是 fake-ip <code>198.18.0.x</code>,真正去连接时 Clash 反查到 <code>amazonaws.com.cn</code></li>
+<li>但分流规则没有 <code>DOMAIN-SUFFIX,amazonaws.com.cn,DIRECT</code>,只有按 IP 段写的 <code>IP-CIDR,34.208.0.0/12,Netflix</code></li>
+<li>Clash 为了匹配 IP 段规则，调用本地 DNS 解析 <code>amazonaws.com.cn</code>,拿到 <code>34.208.231.7</code> (AWS 在全球用一张 IP 表)</li>
+<li>这个 IP 命中了 <code>34.208.0.0/12</code>,被分给 Netflix</li>
+</ol>
+<p>根因：<strong>AWS 在全球用一张 IP 表，34.208.x.x 在多数规则集里被划进 “ 海外 AWS”。但 AWS 中国是合资公司单独运营、用了另一套 IP 段</strong>——规则维护者不可能穷举，必然漏。</p>
+<p><strong>救场方法 1（推荐）</strong>：给目标 IP 加一条精确直连：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">IP-CIDR,34.208.231.7/32,DIRECT,no-resolve</span></span><br></pre></td></tr></table></figure>
+
+<p><code>no-resolve</code> 这个尾巴的意思是：” 这条规则按 IP 匹配，<strong>不要为了它去做 DNS 查询</strong>“。两个好处：</p>
+<ul>
+<li>对方本来就是 IP 连接（Navicat 配的就是 IP）——免去无意义解析</li>
+<li>对方是域名连接时，也不会因为这条 IP 规则触发反向解析，导致 fake-ip 的 <code>198.18.x.x</code> 被错误地交给 DNS 模块去查</li>
+</ul>
+<p><strong>救场方法 2（更通用）</strong>：给域名加一条直连，优先级放在 IP 规则之前：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">DOMAIN-SUFFIX,amazonaws.com.cn,DIRECT</span></span><br><span class="line"><span class="string">DOMAIN-SUFFIX,aliyuncs.com,DIRECT</span></span><br><span class="line"><span class="string">DOMAIN-SUFFIX,myqcloud.com,DIRECT</span></span><br><span class="line"><span class="comment"># 在所有 IP-CIDR 规则之前</span></span><br></pre></td></tr></table></figure>
+
+<p>域名规则优先级高、不依赖 GeoIP 数据库，是最稳的方法。</p>
+<p><strong>反面教材</strong>：很多人遇到这种情况会去切 Global 模式想 “ 全代理总行了吧 “,但 Global 反而把这台 RDS 强制扔到 Netflix,更连不上。Global ≠ 解决一切，见 <a href="../../../../posts/92c131e5.md">第一篇 ch.8</a> 的澄清。</p>
+<h2 id="2-3-Navicat-连-AWS-RDS-凭什么直连"><a href="#2-3-Navicat-连-AWS-RDS-凭什么直连" class="headerlink" title="2.3 Navicat 连 AWS RDS 凭什么直连"></a>2.3 Navicat 连 AWS RDS 凭什么直连</h2><p>Navicat 用域名连国内 AWS RDS,需要直连。fake-ip 模式下，Navicat 拿到的是 <code>198.18.0.x</code> 这种假 IP,怎么直连？</p>
+<p>关键在分流引擎做了一次 “ 反查 “:</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123; &#x27;primaryColor&#x27;: &#x27;#3B82F6&#x27;, &#x27;primaryTextColor&#x27;: &#x27;#fff&#x27;, &#x27;lineColor&#x27;: &#x27;#60A5FA&#x27;&#125;&#125;&#125;%%
+flowchart TD
+    A[&quot;Navicat 查 xxx.rds.amazonaws.com.cn&quot;] --&gt; B[&quot;Clash 发 198.18.0.9&quot;]
+    B --&gt; C[&quot;Navicat 连 198.18.0.9:3306&quot;]
+    C --&gt; D[&quot;Clash 截胡 → 查表知道是 amazonaws.com.cn&quot;]
+    D --&gt; E&#123;&quot;匹配规则&quot;&#125;
+    E --&gt;|&quot;DOMAIN-SUFFIX,amazonaws.com.cn,DIRECT&quot;| F[&quot;调本地 nameserver&lt;br/&gt;查真实 IP&quot;]
+    F --&gt; G[&quot;拿到 161.189.x.x&quot;]
+    G --&gt; H[&quot;直连 161.189.x.x:3306&quot;]
+
+    classDef key fill:#F59E0B,stroke:#D97706,color:#000
+    classDef ok fill:#10B981,stroke:#059669,color:#fff
+    class F key
+    class H ok</code></pre>
+
+<p>注意第 6 步——直连分支会<strong>临时绕开 fake-ip,真去解析一次</strong>。这就是为什么直连场景下，本地 <code>nameserver</code> 也得配对（多数机场订阅会指向国内 DNS 比如阿里）。</p>
+<p>如果日志报 “ 直连域名解析失败 “,通常是机场的 <code>nameserver</code> 全配的是境外 DNS（比如 8.8.8.8），国内域名走不通。解法是用脚本（见第 5 章）把 <code>nameserver-policy</code> 里 <code>geosite:cn</code> 单独指给国内 DNS。</p>
+<h1 id="3-Fallback-Fallback-filter-Nameserver-policy-三件套"><a href="#3-Fallback-Fallback-filter-Nameserver-policy-三件套" class="headerlink" title="3. Fallback &#x2F; Fallback-filter &#x2F; Nameserver-policy 三件套"></a>3. Fallback &#x2F; Fallback-filter &#x2F; Nameserver-policy 三件套</h1><p>精心型机场的 <code>dns:</code> 块通常长成这样，理解了这三件套就能看懂大部分配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">nameserver:</span>        <span class="comment"># 主用：国内 DNS,解析国内域名快</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://dns.alidns.com/dns-query</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">fallback:</span>          <span class="comment"># 备胎：境外 DNS,解析被污染域名</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://1.1.1.1/dns-query</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://8.8.8.8/dns-query</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">fallback-filter:</span>   <span class="comment"># 什么时候采用 fallback 的结果</span></span><br><span class="line">    <span class="attr">geoip:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">geoip-code:</span> <span class="string">CN</span>     <span class="comment"># 主用返回的 IP 不在 CN → 当作被污染，用 fallback</span></span><br><span class="line">    <span class="attr">ipcidr:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">240.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">/4</span>    <span class="comment"># 主用返回这些段 → 必是污染，用 fallback</span></span><br><span class="line">    <span class="attr">domain:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;+.google.com&quot;</span> <span class="comment"># 这些域名永远直接走 fallback</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;+.youtube.com&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">nameserver-policy:</span> <span class="comment"># 指定特定域名走特定 DNS</span></span><br><span class="line">    <span class="attr">&quot;geosite:cn&quot;:</span> <span class="string">&quot;https://dns.alidns.com/dns-query&quot;</span></span><br><span class="line">    <span class="string">&quot;+.internal.company.com&quot;</span><span class="string">:</span> <span class="string">&quot;10.0.0.1&quot;</span>  <span class="comment"># 公司内网域名走内网 DNS</span></span><br></pre></td></tr></table></figure>
+
+<p>工作流程：</p>
+<ol>
+<li><code>nameserver</code> 和 <code>fallback</code> <strong>并发</strong>发查询（不是串行）</li>
+<li>等 <code>nameserver</code> 先回，用 <code>fallback-filter</code> 判断：可信吗？</li>
+<li>可信 → 用 <code>nameserver</code> 的结果（快）</li>
+<li>不可信 → 等 <code>fallback</code> 的结果用（保险）</li>
+<li><code>nameserver-policy</code> 优先级最高，命中就跳过上面整套流程</li>
+</ol>
+<p>这套设计的核心思想：<strong>国内域名走国内 DNS（快），境外域名走境外 DNS（防污染）</strong>。判断 “ 这个域名是国内还是境外 “ 不靠你列名单，靠 GeoIP——看主用 DNS 给你的 IP 是不是中国。</p>
+<h1 id="4-TUN-三档力度：gVisor-Mixed-System"><a href="#4-TUN-三档力度：gVisor-Mixed-System" class="headerlink" title="4. TUN 三档力度：gVisor &#x2F; Mixed &#x2F; System"></a>4. TUN 三档力度：gVisor &#x2F; Mixed &#x2F; System</h1><p>Clash Verge 里 TUN 不止一个开关。点进 “ 虚拟网卡模式 “ 的齿轮，能选 “ 堆栈 “(stack)。这就是 TUN 的接管力度：</p>
+<table>
+<thead>
+<tr>
+<th>堆栈</th>
+<th>接管什么</th>
+<th>什么时候要</th>
+<th>代价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>gVisor</strong>（增强，默认）</td>
+<td>TCP 全管，UDP 基础管</td>
+<td>日常浏览 + 终端 + IDE</td>
+<td>几乎无</td>
+</tr>
+<tr>
+<td><strong>Mixed</strong>（混合）</td>
+<td>TCP + UDP 都更彻底</td>
+<td>需要 UDP 的应用：部分游戏 NAT、WebRTC、视频会议</td>
+<td>偶发兼容问题</td>
+</tr>
+<tr>
+<td><strong>System</strong>（系统栈 &#x2F; 游戏档）</td>
+<td>直接用操作系统的网络栈，接管最狠</td>
+<td>上面两档都搞不定的极端情况</td>
+<td>macOS 上偶尔崩、对系统侵入大</td>
+</tr>
+</tbody></table>
+<p>底层原理差异：</p>
+<ul>
+<li><strong>gVisor</strong>：Google 出的用户态 TCP&#x2F;IP 协议栈，Clash 自己解析 IP 包、TCP 握手、流量控制。优点是隔离性好、不依赖系统、跨平台。缺点是 UDP 性能一般、某些 UDP 协议（如 QUIC、游戏的自定义 UDP）兼容性差</li>
+<li><strong>Mixed</strong>：TCP 用 gVisor、UDP 用更激进的接管。多数 UDP 场景能跑，代价是出问题难定位</li>
+<li><strong>System</strong>：直接调用操作系统的 socket（macOS 上是 <code>utun</code> 设备 + PF 路由），等于让 Clash 用宿主机的协议栈。性能最好，但崩了可能影响系统网络栈，且不同 macOS 版本行为不一致</li>
+</ul>
+<p>兜底建议：<strong>默认用 gVisor,别折腾</strong>。除非：</p>
+<ul>
+<li>打游戏 NAT 卡了（典型：交换机 &#x2F; Switch 上联机 NAT 受限）→ 升级 Mixed</li>
+<li>WebRTC 视频会议有问题 → 升级 Mixed</li>
+<li>Mixed 也搞不定 → 试 System（自己评估系统稳定性风险）</li>
+</ul>
+<h1 id="5-实战配置模板：用脚本注入完整-Dns-块"><a href="#5-实战配置模板：用脚本注入完整-Dns-块" class="headerlink" title="5. 实战配置模板：用脚本注入完整 Dns 块"></a>5. 实战配置模板：用脚本注入完整 Dns 块</h1><p>如果你的订阅是上一篇 ch.6.3 里的 “ 中等型 “ 或 “ 敷衍型 “,直接开 DNS 覆写会把订阅里仅有的几行也盖掉。更好的做法是<strong>用 Verge 的全局扩展脚本注入</strong>——既补全缺失字段，又保留订阅原有的（比如机场专属 nameserver-policy）。</p>
+<p>操作位置：Clash Verge 订阅页底部 → “ 全局扩展脚本 “ → 点编辑图标 → 粘贴下面这段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> cnDns = [</span><br><span class="line">    <span class="string">&quot;https://223.5.5.5/dns-query&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://1.12.12.12/dns-query&quot;</span>,</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">const</span> trustDns = [</span><br><span class="line">    <span class="string">&quot;https://1.1.1.1/dns-query&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://8.8.8.8/dns-query&quot;</span>,</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合并而非替换：保留订阅原有的 nameserver-policy 等</span></span><br><span class="line">  <span class="keyword">const</span> existing = config.<span class="property">dns</span> || &#123;&#125;;</span><br><span class="line">  <span class="keyword">const</span> existingPolicy = existing[<span class="string">&quot;nameserver-policy&quot;</span>] || &#123;&#125;;</span><br><span class="line">  <span class="keyword">const</span> existingFilter = existing[<span class="string">&quot;fake-ip-filter&quot;</span>] || [];</span><br><span class="line"></span><br><span class="line">  config.<span class="property">dns</span> = &#123;</span><br><span class="line">    ...existing,</span><br><span class="line">    <span class="attr">enable</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;prefer-h3&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;enhanced-mode&quot;</span>: <span class="string">&quot;fake-ip&quot;</span>,</span><br><span class="line">    <span class="string">&quot;fake-ip-range&quot;</span>: <span class="string">&quot;198.18.0.1/15&quot;</span>,</span><br><span class="line">    <span class="string">&quot;fake-ip-filter&quot;</span>: [</span><br><span class="line">      ...existingFilter,       <span class="comment">// 保留订阅自带的 filter</span></span><br><span class="line">      <span class="string">&quot;*.lan&quot;</span>, <span class="string">&quot;*.local&quot;</span>, <span class="string">&quot;*.direct&quot;</span>,</span><br><span class="line">      <span class="string">&quot;+.msftncsi.com&quot;</span>, <span class="string">&quot;+.msftconnecttest.com&quot;</span>,</span><br><span class="line">      <span class="string">&quot;+.ntp.org&quot;</span>, <span class="string">&quot;+.pool.ntp.org&quot;</span>,</span><br><span class="line">      <span class="string">&quot;+.stun.*&quot;</span>, <span class="string">&quot;+.stun.*.*&quot;</span>,</span><br><span class="line">      <span class="string">&quot;*.music.163.com&quot;</span>, <span class="string">&quot;*.126.net&quot;</span>,</span><br><span class="line">      <span class="string">&quot;localhost.ptlogin2.qq.com&quot;</span>,</span><br><span class="line">      <span class="comment">// 这里加你自己的内网域名</span></span><br><span class="line">      <span class="string">&quot;+.internal.your-company.com&quot;</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;default-nameserver&quot;</span>: [<span class="string">&quot;223.5.5.5&quot;</span>, <span class="string">&quot;119.29.29.29&quot;</span>],</span><br><span class="line">    <span class="attr">nameserver</span>: cnDns,</span><br><span class="line">    <span class="attr">fallback</span>: trustDns,</span><br><span class="line">    <span class="string">&quot;fallback-filter&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">geoip</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;geoip-code&quot;</span>: <span class="string">&quot;CN&quot;</span>,</span><br><span class="line">      <span class="attr">ipcidr</span>: [<span class="string">&quot;240.0.0.0/4&quot;</span>, <span class="string">&quot;0.0.0.0/32&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;nameserver-policy&quot;</span>: &#123;</span><br><span class="line">      ...existingPolicy,       <span class="comment">// 保留订阅自带的 policy</span></span><br><span class="line">      <span class="string">&quot;geosite:cn&quot;</span>: cnDns,</span><br><span class="line">      <span class="string">&quot;geosite:geolocation-!cn&quot;</span>: trustDns,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要点：</p>
+<ul>
+<li><code>default-nameserver</code> 必须是<strong>纯 IP</strong>(不能是 <code>https://</code> 域名)，因为它专门用来解析其他 DNS 服务器的域名，鸡和蛋问题</li>
+<li><code>prefer-h3: true</code> 优先用 DoH3（最快的加密 DNS,见附录）</li>
+<li><code>nameserver-policy</code> 用 GeoSite 把国内外域名分给不同 DNS,避免国内域名走境外 DNS 慢</li>
+<li><code>fake-ip-filter</code> 用 spread 语法保留订阅原有条目，再追加你自己关心的</li>
+<li><strong>DNS 覆写开关要保持关</strong>——脚本注入和覆写是两条互斥路径，开覆写会让脚本白注</li>
+</ul>
+<p>保存后右键订阅 → “ 重新激活订阅 “ 才会生效。</p>
+<h1 id="6-常见问题速查"><a href="#6-常见问题速查" class="headerlink" title="6. 常见问题速查"></a>6. 常见问题速查</h1><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>原因</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ping</code> 域名返回 <code>198.18.x.x</code>,以为代理坏了</td>
+<td><code>ping</code> 用 ICMP 不走代理，看到的是 fake-ip。用 <code>curl -I https://xxx</code> 验代理</td>
+<td>不用解决，这是正常的</td>
+</tr>
+<tr>
+<td>内网打印机 &#x2F; NAS 找不到</td>
+<td>mDNS &#x2F; <code>.local</code> 被分配了假 IP</td>
+<td>加进 <code>fake-ip-filter</code></td>
+</tr>
+<tr>
+<td>双重 DNS 拦截，解析异常</td>
+<td>路由器 OpenClash + 设备 Verge 都接管了</td>
+<td>二选一，别套娃</td>
+</tr>
+<tr>
+<td>WebRTC 泄漏真实 IP</td>
+<td>浏览器 P2P 绕过代理</td>
+<td>浏览器装 WebRTC 防泄漏插件</td>
+</tr>
+<tr>
+<td>Verge 重启后短暂断网</td>
+<td>映射表清空，应用缓存的假 IP 失效</td>
+<td>开 <code>store-fake-ip: true</code></td>
+</tr>
+<tr>
+<td>银行 &#x2F; 金融 App 无法登录</td>
+<td>应用校验 IP 归属地，假 IP 不通过</td>
+<td>把该 App 域名加 <code>fake-ip-filter</code></td>
+</tr>
+<tr>
+<td><code>nslookup xxx 114.114.114.114</code> 返回 <code>198.18.x.x</code></td>
+<td>TUN 已经截胡所有 DNS,你指定的 DNS 服务器没用</td>
+<td>想看真 IP 把域名加 <code>fake-ip-filter</code></td>
+</tr>
+<tr>
+<td>国内域名访问慢、走了境外节点</td>
+<td>机场 nameserver 全是境外 DNS,国内域名也走 fallback</td>
+<td>用第 5 章脚本，给 <code>geosite:cn</code> 单独指国内 DNS</td>
+</tr>
+<tr>
+<td>直连域名报 “ 解析失败 “</td>
+<td>同上，机场 nameserver 配置不当</td>
+<td>同上</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Clash/" rel="tag"># Clash</a>
+              <a href="/tags/ClashVerge/" rel="tag"># ClashVerge</a>
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+              <a href="/tags/FakeIP/" rel="tag"># FakeIP</a>
+              <a href="/tags/Mihomo/" rel="tag"># Mihomo</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+              <a href="/tags/DoH/" rel="tag"># DoH</a>
+              <a href="/tags/DoT/" rel="tag"># DoT</a>
+              <a href="/tags/sing-box/" rel="tag"># sing-box</a>
+              <a href="/tags/Troubleshooting/" rel="tag"># Troubleshooting</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/f6143a1a.html" rel="prev" title="古代政府架构">
+                  <i class="fa fa-angle-left"></i> 古代政府架构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/92c131e5.html" rel="next" title="1_代理模式与DNS接管：Clash Verge实战入门">
+                  1_代理模式与DNS接管：Clash Verge实战入门 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

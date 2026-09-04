@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1. 正态分布样子：一口扣在地上的钟，想象一口钟，或者是《小王子》里那条像帽子的蛇。  中间高： 代表大部分数值都集中在中间的平均值附近。 两边低： 代表极端的数值非常少，且左右对称。  假设我们要统计全中国成年男性的身高：  中间最高点： 绝大多数人的身高都在 170cm 左右（假设这是平均值），这一块人数最多。 两边滑坡： 身高 160cm 的人和 180cm 的人也有不少，但比 170cm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学概率基础">
+<meta property="og:url" content="https://www.readwrite.fun/post/39adeab0.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="1. 正态分布样子：一口扣在地上的钟，想象一口钟，或者是《小王子》里那条像帽子的蛇。  中间高： 代表大部分数值都集中在中间的平均值附近。 两边低： 代表极端的数值非常少，且左右对称。  假设我们要统计全中国成年男性的身高：  中间最高点： 绝大多数人的身高都在 170cm 左右（假设这是平均值），这一块人数最多。 两边滑坡： 身高 160cm 的人和 180cm 的人也有不少，但比 170cm">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-12-13T15:43:48.000Z">
+<meta property="article:modified_time" content="2025-12-16T16:34:56.047Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/39adeab0.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/39adeab0.html","path":"post/39adeab0.html","title":"数学概率基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数学概率基础 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-text">1. 正态分布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%A7%AF%E5%88%86%E5%92%8C%E6%A6%82%E7%8E%87%E9%9D%A2%E7%A7%AF"><span class="nav-text">2. 积分和概率面积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87-%E9%9D%A2%E7%A7%AF%EF%BC%88%E7%A7%AF%E5%88%86%EF%BC%89"><span class="nav-text">概率 &#x3D; 面积（积分）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7"><span class="nav-text">3. 数学符号</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/39adeab0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数学概率基础 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数学概率基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-12-13 15:43:48" itemprop="dateCreated datePublished" datetime="2025-12-13T15:43:48+00:00">2025-12-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-16 16:34:56" itemprop="dateModified" datetime="2025-12-16T16:34:56+00:00">2025-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/100-%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">100_数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-正态分布"><a href="#1-正态分布" class="headerlink" title="1. 正态分布"></a>1. 正态分布</h1><p>样子：一口扣在地上的钟，想象一口钟，或者是《小王子》里那条像帽子的蛇。</p>
+<ul>
+<li>中间高： 代表大部分数值都集中在中间的平均值附近。</li>
+<li>两边低： 代表极端的数值非常少，且左右对称。</li>
+</ul>
+<p>假设我们要统计全中国成年男性的身高：</p>
+<ul>
+<li>中间最高点： 绝大多数人的身高都在 170cm 左右（假设这是平均值），这一块人数最多。</li>
+<li>两边滑坡： 身高 160cm 的人和 180cm 的人也有不少，但比 170cm 的少。</li>
+<li>极端的两边： 身高 2 米 2（姚明）和身高 1 米 4 的人都属于 “ 凤毛麟角 “，概率极低，所以在曲线这一块几乎贴近地面。</li>
+</ul>
+<p>为什么叫 “ 正态 “ (Normal)？因为这在自然界中太 “ 正常 “ 了。  </p>
+<span id="more"></span>
+
+<h1 id="2-积分和概率面积"><a href="#2-积分和概率面积" class="headerlink" title="2. 积分和概率面积"></a>2. 积分和概率面积</h1><p>想象你手头有一根形状很不规则的香肠。我们要算它的体积（概率）： 直接算很难。积分的做法： 把香肠切成无数个极薄的薄片。虽然香肠是弯的，但每一个极薄的切片可以近似看作一个标准的圆柱体&#x2F;长方体。把你切出来的这无数个薄片加在一起，就是积分。</p>
+<ul>
+<li>定积分<ul>
+<li>不定积分： 只是给你一个切片的公式。定积分： 是给你指定了范围。</li>
+<li>场景： 比如正态分布的钟形曲线。你想知道 “ 身高在 170cm 到 175cm 之间的人占多少比例？”</li>
+<li>操作： 你需要在横坐标 170 和 175 之间，把曲线下面围成的面积给算出来。</li>
+<li>这个算出面积的过程，就是定积分。</li>
+<li>一句话总结：在概率论里，定积分就是用来算 “ 某段范围内的概率大小 “ 的工具。</li>
+</ul>
+</li>
+<li>微分<ul>
+<li>不用像积分用得那么多。</li>
+<li>它是研究变化的快慢（斜率）。它也是积分的逆运算。</li>
+</ul>
+</li>
+</ul>
+<h2 id="概率-面积（积分）"><a href="#概率-面积（积分）" class="headerlink" title="概率 &#x3D; 面积（积分）"></a>概率 &#x3D; 面积（积分）</h2><p>有一趟公交车，它非常不准时。它可能在 0 分钟到 10 分钟内的任意一个时刻到达。而且，在这个时间段内，它在每一秒到达的可能性都是均等的（这叫 “ 均匀分布 “）。</p>
+<p>我们将这个问题变成一张图：</p>
+<ul>
+<li>横轴（X 轴）： 时间（0 到 10 分钟）。</li>
+<li>纵轴（Y 轴）： 概率密度（代表到达的可能性大小）。</li>
+</ul>
+<p>问题 1：公交车正好在第 5 分钟 00.0000… 秒到达的概率是多少？</p>
+<ul>
+<li>答案是 0。</li>
+<li>为什么？ 因为时间是可以无限分割的！它可以是 5.001 秒，5.0000001 秒……在无限个时刻中正好 “ 撞 “ 中那一个极小的点，概率就如同大海捞针，数学上视为 0。</li>
+<li>结论： 在连续概率里，问 “ 某一个点 “ 的概率是没有意义的。</li>
+</ul>
+<p>问题 2：公交车在前 5 分钟内（0 到 5 分）到达的概率是多少？</p>
+<ul>
+<li>直觉告诉我们： 既然是 0-10 分钟均匀分布，那前一半时间到达的概率肯定是 50% (0.5) 对吧？</li>
+<li>我们用图形（面积）来看：<ul>
+<li>为了让 “ 总概率 &#x3D; 1”（100%），我们画一个矩形。</li>
+<li>矩形底边宽是 10（分钟）。</li>
+<li>因为 $面积 &#x3D; 底 \times 高 &#x3D; 1$，所以高（概率密度）必须是 0.1。</li>
+<li>计算： 你想算 0 到 5 分钟的概率，就是算底边为 0-5 的这一块矩形面积。</li>
+<li>$面积 &#x3D; 宽度(5) \times 高度(0.1) &#x3D; 0.5$。</li>
+</ul>
+</li>
+</ul>
+<p>这就是积分的本质！</p>
+<ul>
+<li>刚才那个 $5 \times 0.1$ 的计算过程，就是一次最简单的定积分。</li>
+<li>积分无非就是帮你算这种面积的工具。<br>如果公交车到达的规律不是 “ 平顶 “ 的矩形，而是一座 “ 山峰 “（正态分布），此时你不能用 “ 长乘宽 “ 算面积了，这就必须用到微积分公式来算曲线下面的面积。</li>
+</ul>
+<h1 id="3-数学符号"><a href="#3-数学符号" class="headerlink" title="3. 数学符号"></a>3. 数学符号</h1><p>$\sum$ (Sigma &#x2F; 西格玛)</p>
+<ul>
+<li>含义： 代表离散求和 (Summation)。</li>
+<li>怎么理解： 想象这像是在数台阶。你把一系列的具体数字（比如第 1 个、第 2 个、第 3 个……）一个个加起来。</li>
+<li>例子： $\sum_{i&#x3D;1}^{3} i$ 意思就是 $1 + 2 + 3 &#x3D; 6$。</li>
+<li>“ 离散 “ 这个词在数学里，意思是分散的、个体的、断开的。<ul>
+<li>核心特征：有间隙，可数。</li>
+<li>教室里有 30 个人。不可能有 30.5 个人。</li>
+<li>你上楼必须踩在一个具体的台阶上，不能悬浮在第 1 级和第 2 级台阶之间。</li>
+</ul>
+</li>
+</ul>
+<p>$\int$ (Integral &#x2F; 积分)</p>
+<ul>
+<li>含义： 代表连续求和 (Integration)。</li>
+<li>怎么理解： 这个符号其实是一个拉长了的 “S” (Sum)。想象这像是一个光滑的坡道，或者是切苹果。它是把无数个无限小的部分加在一起，通常用来计算曲线下方的面积、体积或者物理中的累积量。</li>
+<li>关系： 当 $\sum$ 中加的每一项变得无限小、数量变得无限多时，它就变成了 $\int$。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>$\sum$ (离散求和)：堆砖块，像是在数数。</li>
+<li>$\int$ (连续求和 &#x2F; 积分)：刷油漆，积分就像是用一个无限细的刷子，从左到右扫过去，把所有扫过的 “ 无限细 “ 的线条面积加起来。像是在流淌。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/4ad51108.html" rel="prev" title="红楼梦解读">
+                  <i class="fa fa-angle-left"></i> 红楼梦解读
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/dfc3eaa7.html" rel="next" title="淝水之战">
+                  淝水之战 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

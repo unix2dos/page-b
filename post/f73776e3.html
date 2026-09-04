@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1. 论证的识别 当一个人提出了一个 “ 结论 “，并且给出了至少一个 “ 前提 “ 来支持它时，一个 “ 论证 “ (Argument) 就诞生了。 前提 1: 这部电影的视觉特效很逼真。 前提 2: 这部电影的故事情节充满了反转。 结论: 所以，这部电影很棒。   只要一个人试图用一些理由（前提）去支撑一个观点（结论），无论这些理由多么荒谬、多么不相干、多么错误，它在结构上已经是一个论证了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逻辑学基础">
+<meta property="og:url" content="https://www.readwrite.fun/post/f73776e3.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="1. 论证的识别 当一个人提出了一个 “ 结论 “，并且给出了至少一个 “ 前提 “ 来支持它时，一个 “ 论证 “ (Argument) 就诞生了。 前提 1: 这部电影的视觉特效很逼真。 前提 2: 这部电影的故事情节充满了反转。 结论: 所以，这部电影很棒。   只要一个人试图用一些理由（前提）去支撑一个观点（结论），无论这些理由多么荒谬、多么不相干、多么错误，它在结构上已经是一个论证了。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-26T11:31:09.000Z">
+<meta property="article:modified_time" content="2025-12-21T16:57:02.292Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/f73776e3.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/f73776e3.html","path":"post/f73776e3.html","title":"逻辑学基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>逻辑学基础 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%AE%BA%E8%AF%81%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-text">1. 论证的识别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%9C%89%E6%95%88%E6%80%A7%E4%B8%8E%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="nav-text">1.1 有效性与可靠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E4%B8%89%E6%AE%B5%E8%AE%BA"><span class="nav-text">1.2 三段论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E8%82%AF%E5%AE%9A%E5%90%8E%E4%BB%B6%E8%B0%AC%E8%AF%AF"><span class="nav-text">1.3 肯定后件谬误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF"><span class="nav-text">2.逻辑错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%A1%AE%E8%AE%A4%E5%81%8F%E8%AF%AF"><span class="nav-text">3. 确认偏误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%AB%98%E7%BA%A7%E6%80%9D%E7%BB%B4"><span class="nav-text">4. 高级思维</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/f73776e3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="逻辑学基础 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          逻辑学基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-10-26 11:31:09" itemprop="dateCreated datePublished" datetime="2025-10-26T11:31:09+00:00">2025-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-21 16:57:02" itemprop="dateModified" datetime="2025-12-21T16:57:02+00:00">2025-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/400-%E9%80%BB%E8%BE%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">400_逻辑学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-论证的识别"><a href="#1-论证的识别" class="headerlink" title="1. 论证的识别"></a>1. 论证的识别</h1><ul>
+<li>当一个人提出了一个 “ 结论 “，并且给出了至少一个 “ 前提 “ 来支持它时，一个 “ 论证 “ (Argument) 就诞生了。<ul>
+<li>前提 1: 这部电影的视觉特效很逼真。</li>
+<li>前提 2: 这部电影的故事情节充满了反转。</li>
+<li>结论: 所以，这部电影很棒。</li>
+</ul>
+</li>
+<li>只要一个人试图用一些理由（前提）去支撑一个观点（结论），无论这些理由多么荒谬、多么不相干、多么错误，它在结构上已经是一个论证了。<ul>
+<li>识别铁律： 先判断 “ 是不是 “ 论证，再判断 “ 好不好 “。一个坏论证，它首先也得是个论证。</li>
+<li>什么是论证？ &#x3D; 前提 + 结论 （一个支持，一个被支持）</li>
+</ul>
+</li>
+<li>评估一个论证核心工具<ul>
+<li>相关性 (Relevance): 前提跟结论有关系吗？</li>
+<li>可接受性 (Acceptability): 我们有理由相信前提是真的（或合理的）吗？</li>
+<li>充足性 (Good Grounds &#x2F; Sufficiency)</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="1-1-有效性与可靠性"><a href="#1-1-有效性与可靠性" class="headerlink" title="1.1 有效性与可靠性"></a>1.1 有效性与可靠性</h2><ul>
+<li>有效 (Valid) &#x3D; 结构正确 (如果前提为真 -&gt; 结论必为真)</li>
+<li>可靠 (Sound) &#x3D; 结构正确 + 前提为真</li>
+<li>一个论证可以是有效的，但不可靠。但一个可靠的论证，必须是有效的。这是我们评价一个演绎论证的终极标准。</li>
+<li>在生活中，很多听起来 “ 有道理 “ 的谬论，其实都只是有效的、但不可靠的论证。它们逻辑上能自洽，但起点就是错的。学会区分这两者，你就拥有了辨别它们火眼金睛！</li>
+</ul>
+<h2 id="1-2-三段论"><a href="#1-2-三段论" class="headerlink" title="1.2 三段论"></a>1.2 三段论</h2><ul>
+<li>一个标准的三段论，由三个部分组成：</li>
+<li>大前提 (Major Premise): 一个普遍性的陈述，通常包含结论的 “ 谓项 “。（例如：” 凡是人，都会死。”）</li>
+<li>小前提 (Minor Premise): 一个具体性的陈述，通常包含结论的 “ 主项 “。（例如：” 苏格拉底是人。”）</li>
+<li>结论 (Conclusion): 由两个前提逻辑推导出的结果。（例如：” 苏格拉底会死。”）</li>
+<li>为了更精确地分析它，逻辑学家们给其中的关键概念起了名字，就像生物学家给骨骼命名一样：<ul>
+<li>主项 (S): 结论中的主语。在我们的例子里是 “ 苏格拉底 “。</li>
+<li>谓项 (P): 结论中的谓语。在我们的例子里是 “ 会死（的东西）”。</li>
+<li>中项 (M): 在两个前提中都出现，但不在结论中出现，负责 “ 牵线搭桥 “ 的那个概念。在我们的例子里是 “ 人 “。</li>
+</ul>
+</li>
+<li>现在我们用代号把上面的例子 “ 翻译 “ 一下：<ul>
+<li>大前提： 所有的 M 都是 P。 (凡是人 (M)，都会死 (P)。)</li>
+<li>小前提： S 是 M。 (苏格拉底 (S) 是人 (M)。)</li>
+<li>结论： 所以，S 是 P。 (所以，苏格拉底 (S)<strong>会死 (P)</strong>。)</li>
+<li>看到了吗？中项 “M”（人） 就像一座至关重要的桥梁，它把 “ 苏格拉底 (S)” 和 “ 会死 (P)” 这两个原本孤立的概念完美地连接了起来。一旦桥梁搭建成功，从 S 到 P 的通路就打通了。这就是三段论的魔力所在。</li>
+</ul>
+</li>
+<li>如何寻找主项和谓项<ul>
+<li>锁定结论，找到 S 和 P。<ul>
+<li>主项 (Subject, S): 句子的主语，也就是我们在谈论的那个 对象 。这里是 “ 海豚 “。</li>
+<li>谓项 (Predicate, P): 用来描述主语的那个 属性或类别 。这里是 “ 需要呼吸（的东西） “。</li>
+</ul>
+</li>
+<li>第二步：寻找信使，揪出 M。</li>
+<li>中项 (Middle Term, M): 它是在两个 前提 中都出现，但在 结论 中神秘消失的那个 “ 中间人 “ 或 “ 信使 “。它的任务就是把 S 和 P 连接起来，任务完成后就功成身退。</li>
+</ul>
+</li>
+<li>怎么分清楚大前提和小前提<ul>
+<li>大前提 (Major Premise): 包含 谓项 (P) 的那个前提。</li>
+<li>小前提 (Minor Premise): 包含 主项 (S) 的那个前提。</li>
+</ul>
+</li>
+<li><strong>中项不周延谬误</strong><ul>
+<li><strong>想象一个巨大的房间，名字叫 “ 有四条腿的东西 (M)”。</strong></li>
+<li>大前提说：” 狗 (P)” 这个群体，全体都在这个 “ 四条腿 “ 的大房间里。</li>
+<li>小前提说：” 我的桌子 (S)” 这个东西，也在这个 “ 四条腿 “ 的大房间里。</li>
+<li>但是，两个群体&#x2F;东西碰巧在同一个大房间里，能证明它们就是同一个东西吗？完全不能！狗占了房间的一个角落，桌子占了另一个角落，它们之间可能毫无关系。</li>
+<li>这座逻辑之桥之所以断裂，是因为 中项 M” 有四条腿 “ 没有一次是涵盖其全部外延的 。换句话说，前提从没有谈及 “ 所有四条腿的东西 “。它只是把 “ 狗 “ 和 “ 桌子 “ 都归入了 “ 四条腿 “ 这个过于宽泛的集合里，却没有建立起 “ 狗 “ 和 “ 桌子 “ 之间的必然联系。</li>
+<li>这个经典的逻辑谬误，有一个专门的名字，叫做 “ 中项不周延谬误 “（The Fallacy of the Undistributed Middle）。当你发现一个论证的中项两次都只是作为一个属性、而没有一次是被 “ 所有 “ 所修饰时，就要亮起警灯了！</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-肯定后件谬误"><a href="#1-3-肯定后件谬误" class="headerlink" title="1.3 肯定后件谬误"></a>1.3 <strong>肯定后件谬误</strong></h2><ul>
+<li>前提 1： 如果 P，那么 Q。(如果天下雨 P，那么地会湿 Q)</li>
+<li>前提 2： Q 成立。(地是湿的 Q)</li>
+<li>【错误结论】: 所以，P 成立。(所以，天曾下过雨 P)</li>
+</ul>
+<h1 id="2-逻辑错误"><a href="#2-逻辑错误" class="headerlink" title="2.逻辑错误"></a>2.逻辑错误</h1><ul>
+<li>红鲱鱼谬误（转移话题）<ul>
+<li>“ 转移话题 “（Red Herring Fallacy，或称 “ 红鲱鱼谬误 “）。她巧妙地（或无意地）将讨论的焦点从 “ 电影本身好不好 “，转移到了 “ 我在电影院的整体经历爽不爽 “ 上。</li>
+<li>这个名字据说源于过去训练猎犬时，人们会用烟熏过的鲱鱼（气味浓烈）在路上拖拽，以此来干扰猎犬，考验它们能否不受干扰地继续追踪目标。在辩论中，” 红鲱鱼 “ 就是指那些被抛出来用以转移注意力、与主题无关的论据。</li>
+</ul>
+</li>
+<li>人身攻击（对人不对事）<ul>
+<li>这种 “ 对人不对事 “ 的逻辑错误，就是我们在谬误地图上要探索的第一个，也是最常见的一个著名谬误。</li>
+<li>当一个人不去正面回应对方的论证，而是通过攻击、侮辱、或揭露对方的品格、动机、背景、处境等方式，来试图贬低其论点，这就犯了 “ 人身攻击 “ 谬误。</li>
+<li>诉诸虚伪（子类型）<ul>
+<li>它的逻辑是：” 因为你自己也做不到，所以你的观点是错的。” 这在网络辩论中简直是泛滥成灾。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>稻草人谬误（X-&gt;Y）<ul>
+<li>同事 A： “ 我觉得我们应该引入一个项目审批的新流程，这样可以更好地追踪项目进展，避免资源浪费。”</li>
+<li>同事 B： （立刻反驳）” 我不同意！你的意思就是要给所有项目都增加一大堆繁文缛节，让我们把时间都浪费在填无穷无尽的表格上，什么事都干不了。这是在拖慢整个公司的效率！”</li>
+<li>看到问题了吗？同事 B 没有攻击 A 的真实想法，而是偷偷地把 A 的观点替换成了一个更极端、更荒谬、更容易被攻击的版本，然后对着这个虚假的版本重拳出击。</li>
+<li>通用公式： “ 你主张 X。我就把 X 歪曲成一个极端、荒谬、不堪一击的 Y。然后我来攻击 Y，并宣称我已经推翻了 X。”</li>
+<li>这就好比在田野里，你不敢去挑战一个真正的士兵，于是你自己动手扎了一个穿着盔甲的稻草人，然后得意洋洋地一拳把它打倒，并宣称自己战胜了那个士兵。</li>
+</ul>
+</li>
+<li>诉诸群众与诉诸权威<ul>
+<li>诉诸群众<ul>
+<li>因为很多人都相信或接受某件事，所以这件事就是对的、好的或真的。</li>
+</ul>
+</li>
+<li>诉诸不当权威谬误<ul>
+<li>诉诸 “ 合适的 “ 权威，并不是谬误。比如，我们相信医生对病情的诊断，相信工程师对桥梁安全的评估，这是理性和高效的。</li>
+<li>化学家（高分子材料领域）去为护肤品背书。他的诺奖光环是真的，但与皮肤科学无关。</li>
+<li>该 “ 权威 “ 是否因为收了钱、维护自身地位等原因而发表言论？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>预设性谬误<ul>
+<li>“ 他肯定是个不诚实的人，因为他总是撒谎。”</li>
+<li>这句话听起来好像有道理，但仔细想想，” 不诚实 “ 和 “ 总是撒谎 “ 几乎是同一件事。这句话等于在说 “ 他 A，因为他 A”，这是一种重复，而不是一个有效的论证。一个有效的论证需要提供具体的撒谎事例作为证据。</li>
+<li>滑坡谬误<ul>
+<li>这个链条中的每一步推导都是或然的（有可能发生），但妈妈却把它描述成了必然的（一定会发生）。她预设了一个因果链条的必然性，却没有为这种必然性提供任何证据。允许孩子晚回家一小时，并不等于他的人生就一定会滑向毁灭的深渊。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>歧义性谬误<ul>
+<li>偷换概念谬误<ul>
+<li>在同一个论证中，一个关键的词语或短语被赋予了多于一种的含义，而论证的有效性却依赖于这个词语的含义始终保持单一。论证者就像一个魔术师，利用词义的转换来误导听众。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-确认偏误"><a href="#3-确认偏误" class="headerlink" title="3. 确认偏误"></a>3. 确认偏误</h1><ul>
+<li>确认偏误，是指我们倾向于寻找、解释、偏爱并记住那些能够证实我们既有信念或假设的信息，同时忽视、轻视或扭曲那些与我们信念相悖的信息。<ul>
+<li>可以把它想象成我们的大脑雇佣了一个 “ 御用律师 “。这个律师唯一的任务不是寻找真相，而是 不惜一切代价为你已有的观点辩护 。</li>
+</ul>
+</li>
+<li>可得性启发，是指我们倾向于根据一个想法或案例在我们脑海中浮现的难易程度，来判断其可能性或频率。<ul>
+<li>换句话说， 我们的大脑将 “ 容易回忆 “ 错误地等同于 “ 频繁发生 “ 或 “ 非常重要 “。</li>
+</ul>
+</li>
+<li>锚定效应，是指我们在做决策时，会过度依赖最先获得的那份信息（这份信息就是 “ 锚 “），并以此为基准来调整后续的判断。即使这个初始信息与决策本身毫无关系，它也会产生巨大的影响。<ul>
+<li>如果你的餐厅是一家平价的快餐店，一个标价 3888 的菜肴可能会让顾客觉得 “ 太假了 “，反而产生不信任感。但如果你的餐厅本身就有一定的档次，或者你将这个折扣包装成 “ 周年庆限定 “、” 创始人特别推荐 “ 等特殊活动，那么这个锚的可信度就会大大增加，效果也会加倍。</li>
+<li>你可以在菜单上，紧挨着你的 “ 招牌豪华海鲜套餐（¥388）” 的上方，放一道极其奢华、几乎没人会点的菜。比如：<ul>
+<li>至尊帝王蟹海陆盛宴 ………………. ¥ 1888</li>
+<li>招牌豪华海鲜套餐 ………………….. ¥ 388</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>幸存者偏差<ul>
+<li>幸存者偏差，是指我们过度关注于在某一过程中 “ 幸存 “ 下来的人或事物（成功者、留下来的），而忽略了那些 “ 被淘汰 “ 的（失败者、消失的），从而得出了错误的结论。</li>
+<li>我们现在还能见到的几十年前的旧收音机、旧风扇，似乎质量都特别棒。—— 这是因为，那些质量差的早就坏掉、被扔掉了。我们能看到的，本身就是当年那批产品里质量最好的 “ 幸存者 “。</li>
+</ul>
+</li>
+<li>损失厌恶<ul>
+<li>对人类来说，失去一样东西所带来的负面情绪（痛苦），大约是得到同样东西所带来的正面情绪（快乐）的两倍。</li>
+<li>超市里的肉： “ 含 75% 瘦肉 “ 听起来比 “ 含 25% 脂肪 “ 健康得多。前者是收益框架，后者是损失框架。</li>
+<li>信用卡手续费： “ 使用信用卡加收 3% 手续费 “ 会让顾客很不爽（损失），但如果说 “ 使用现金可享受 3% 折扣 “ 则会让顾客很开心（收益）。虽然最终价格完全一样。</li>
+<li>金融投资： 股民们常常会死抱着亏损的股票不放，期待它 “ 回本 “。因为 “ 卖出 “ 意味着要直面并承认 “ 确定的损失 “，这在心理上太痛苦了。他们宁愿冒着股价继续下跌的风险（风险寻求），也不愿接受这个确定的损失。</li>
+<li>营销和心理学的奇妙之处就在于，有时候，利用人们的恐惧（损失厌恶）比激发他们的希望（获得收益）更有效。</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-高级思维"><a href="#4-高级思维" class="headerlink" title="4. 高级思维"></a>4. 高级思维</h1><ul>
+<li>贝叶斯思维</li>
+<li>黑天鹅<ul>
+<li>“ 黑天鹅 “ 事件提醒我们：我们不知道的事情，比我们知道的事情，影响可能要大得多。</li>
+</ul>
+</li>
+<li>论证工坊<ul>
+<li>一个好的论证，它的前提（论据）通常具备以下特点：</li>
+<li>真实性 (Truth): 论据本身是事实或被广泛接受的。比如，机票价格确实有折扣。</li>
+<li>相关性 (Relevance): 论据与结论是紧密相关的。比如，去冰岛可以看到独特的火山地貌，这和 “ 去冰岛旅行 “ 这个结论直接相关。</li>
+<li>充分性 (Sufficiency): 所有论据加在一起，足以让一个理性的人倾向于接受你的结论。</li>
+</ul>
+</li>
+<li>决策理论<ul>
+<li>尽管有 30% 的可能会被淋成落汤鸡，但从数学期望上看， “ 不带伞 “ 是更理性的选择 。</li>
+<li>有趣的是，很多人（包括我自己）在生活中可能会下意识地选择 “ 带伞 “。这恰好暴露了我们在 “ 认知魔镜 “ 模块学到的一个重要偏误：损失厌恶 (Loss Aversion)。我们对 “ 损失 “（-10 的痛苦）的感受强度，要远远大于对同等 “ 收益 “（+8 的快乐）的感受。为了避免那个最差的结果，我们宁愿接受一个更低的整体期望收益。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/e8263d17.html" rel="prev" title="《思维迷宫》3星">
+                  <i class="fa fa-angle-left"></i> 《思维迷宫》3星
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/b1b74149.html" rel="next" title="《不要担心2小时和8公里以外的事情》4星">
+                  《不要担心2小时和8公里以外的事情》4星 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

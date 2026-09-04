@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="跟着 git clone 走一遍代理工具的每一道关——TUN 怎么抓包、fake-ip 怎么工作、Clash Verge &quot;DNS 覆写&quot; 开关到底覆写什么、三份真实订阅 DNS 配置对照。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1_代理模式与DNS接管：Clash Verge实战入门">
+<meta property="og:url" content="https://www.readwrite.fun/post/92c131e5.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="跟着 git clone 走一遍代理工具的每一道关——TUN 怎么抓包、fake-ip 怎么工作、Clash Verge &quot;DNS 覆写&quot; 开关到底覆写什么、三份真实订阅 DNS 配置对照。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-01T08:00:01.000Z">
+<meta property="article:modified_time" content="2026-06-12T10:22:30.774Z">
+<meta property="article:author" content="readwrite">
+<meta property="article:tag" content="Clash">
+<meta property="article:tag" content="ClashVerge">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="FakeIP">
+<meta property="article:tag" content="Mihomo">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="Proxy">
+<meta property="article:tag" content="TUN">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/92c131e5.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/92c131e5.html","path":"post/92c131e5.html","title":"1_代理模式与DNS接管：Clash Verge实战入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1_代理模式与DNS接管：Clash Verge实战入门 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%B5%B0%E4%BB%A3%E7%90%86"><span class="nav-text">1. 浏览器为什么能走代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%BB%88%E7%AB%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B0%E4%BB%A3%E7%90%86"><span class="nav-text">2. 终端为什么不走代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-TUN-%E6%A8%A1%E5%BC%8F%EF%BC%9A%E8%A3%85%E4%B8%80%E5%BC%A0%E5%81%87%E7%BD%91%E5%8D%A1"><span class="nav-text">3. TUN 模式：装一张假网卡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%9C%89-IP-%E6%B2%A1%E6%9C%89%E5%9F%9F%E5%90%8D"><span class="nav-text">3.1 为什么只有 IP 没有域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-TUN-%E5%BC%80%E4%BA%86%E4%B9%8B%E5%90%8E%EF%BC%8CDNS-%E5%BF%85%E9%A1%BB%E6%9C%89%E4%BA%BA%E7%AE%A1"><span class="nav-text">4. TUN 开了之后，DNS 必须有人管</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-dns-enable-%E5%92%8C-%E2%80%9CDNS-%E8%A6%86%E5%86%99-%E2%80%9C-%E6%98%AF%E4%B8%A4%E5%9B%9E%E4%BA%8B"><span class="nav-text">4.1 dns.enable 和 “DNS 覆写 “ 是两回事</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E4%B8%A4%E7%A7%8D%E7%AD%94%E6%B3%95%EF%BC%9Aredir-host-%E5%92%8C-Fake-ip"><span class="nav-text">5. 两种答法：redir-host 和 Fake-ip</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E7%94%A8%E9%A4%90%E5%8E%85%E5%8F%96%E9%A4%90%E6%89%93%E6%AF%94%E6%96%B9"><span class="nav-text">5.1 用餐厅取餐打比方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E5%9B%9E%E5%88%B0%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-text">5.2 回到代理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="nav-text">5.3 两种模式对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E4%B8%80%E4%B8%AA%E8%AE%A9%E4%BA%BA%E5%9B%B0%E6%83%91%E7%9A%84%E7%8E%B0%E8%B1%A1"><span class="nav-text">5.4 一个让人困惑的现象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Clash-Verge-%E2%80%9CDNS-%E8%A6%86%E5%86%99-%E2%80%9C-%E5%88%B0%E5%BA%95%E8%A6%86%E5%86%99%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-text">6. Clash Verge “DNS 覆写 “ 到底覆写了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E4%B8%89%E7%A7%8D%E9%85%8D%E6%B3%95"><span class="nav-text">6.1 三种情况，三种配法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%80%8E%E4%B9%88%E7%9C%8B%E6%9C%80%E7%BB%88%E7%94%9F%E6%95%88%E7%9A%84-DNS%EF%BC%88%E5%BC%80%E4%BA%86%E8%A6%86%E5%86%99%E4%B9%9F%E9%80%82%E7%94%A8%EF%BC%89"><span class="nav-text">6.2 怎么看最终生效的 DNS（开了覆写也适用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E4%B8%89%E4%BB%BD%E7%9C%9F%E5%AE%9E%E8%AE%A2%E9%98%85%E5%AF%B9%E7%85%A7%EF%BC%88%E6%9C%BA%E5%9C%BA-Dns-%E9%85%8D%E7%BD%AE%E6%89%93%E5%88%86%EF%BC%89"><span class="nav-text">6.3 三份真实订阅对照（机场 Dns 配置打分）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A5%87-%E7%B2%BE%E5%BF%83%E5%9E%8B%EF%BC%9A%E5%AE%8C%E6%95%B4-Dns-%E5%9D%97"><span class="nav-text">🥇 精心型：完整 Dns 块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A5%88-%E4%B8%AD%E7%AD%89%E5%9E%8B%EF%BC%9A%E5%8D%8A%E6%88%90%E5%93%81"><span class="nav-text">🥈 中等型：半成品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A5%89-%E6%95%B7%E8%A1%8D%E5%9E%8B%EF%BC%9A4-%E8%A1%8C%E4%BA%A4%E5%B7%AE"><span class="nav-text">🥉 敷衍型：4 行交差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoH-DoT-DoQ-%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D"><span class="nav-text">DoH &#x2F; DoT &#x2F; DoQ 什么意思</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E6%9C%BA%E5%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8A%9D%E4%BD%A0%E5%85%B3"><span class="nav-text">6.4 机场为什么劝你关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Verge-%E5%85%B6%E4%BB%96%E5%87%A0%E4%B8%AA%E5%BC%80%E5%85%B3"><span class="nav-text">7. Verge 其他几个开关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E9%A1%BA%E6%89%8B%E6%BE%84%E6%B8%85%E4%B8%80%E4%B8%AA%E9%AB%98%E9%A2%91%E8%AF%AF%E4%BC%9A%EF%BC%9AGlobal-%E2%89%A0-%E5%85%A8%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86"><span class="nav-text">8. 顺手澄清一个高频误会：Global ≠ 全系统代理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/92c131e5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1_代理模式与DNS接管：Clash Verge实战入门 | 趣读写">
+      <meta itemprop="description" content="跟着 git clone 走一遍代理工具的每一道关——TUN 怎么抓包、fake-ip 怎么工作、Clash Verge &quot;DNS 覆写&quot; 开关到底覆写什么、三份真实订阅 DNS 配置对照。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1_代理模式与DNS接管：Clash Verge实战入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-08-01 08:00:01" itemprop="dateCreated datePublished" datetime="2025-08-01T08:00:01+00:00">2025-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-12 10:22:30" itemprop="dateModified" datetime="2026-06-12T10:22:30+00:00">2026-06-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/" itemprop="url" rel="index"><span itemprop="name">04_沟通世界</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/2-%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">2_代理工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">跟着 git clone 走一遍代理工具的每一道关——TUN 怎么抓包、fake-ip 怎么工作、Clash Verge "DNS 覆写" 开关到底覆写什么、三份真实订阅 DNS 配置对照。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>同一台 Mac，浏览器看 YouTube 顺畅得很，终端 <code>git clone github.com:xxx/yyy.git</code> 转半天超时。</p>
+<p>节点没坏，规则也对，问题出在更早一步：<strong>这个包根本没被送到代理。</strong></p>
+<p>这篇文章跟着两个具体请求走一遍——浏览器看 YouTube、终端 <code>git clone</code> GitHub——看清谁把包交给了 Clash、谁没交。看完你能回答：</p>
+<ul>
+<li>要不要开 TUN？</li>
+<li>fake-ip 到底是啥、为什么 <code>ping</code> 会返回 <code>198.18.x.x</code>？</li>
+<li>Clash Verge 那个 “DNS 覆写 “ 开关到底覆写什么？我的订阅该不该开？</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="1-浏览器为什么能走代理"><a href="#1-浏览器为什么能走代理" class="headerlink" title="1. 浏览器为什么能走代理"></a>1. 浏览器为什么能走代理</h1><p>打开 Clash Verge，点亮 “ 系统代理 “ 开关。它做的事其实很小——把系统里 “ 默认 HTTP 代理 “ 这个变量改成了 <code>127.0.0.1:7897</code>。</p>
+<p>仅此而已。系统不会强迫任何应用去用这个代理，它只是 “ 挂了张公告 “。</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123; &#x27;primaryColor&#x27;: &#x27;#3B82F6&#x27;, &#x27;primaryTextColor&#x27;: &#x27;#fff&#x27;, &#x27;lineColor&#x27;: &#x27;#60A5FA&#x27;&#125;&#125;&#125;%%
+flowchart LR
+    Browser[&quot;浏览器&lt;br/&gt;(守规矩)&quot;] --&gt;|&quot;读公告&quot;| Proxy[&quot;Clash&lt;br/&gt;127.0.0.1:7897&quot;]
+    Proxy --&gt; Remote1[&quot;远端&quot;]
+    Terminal[&quot;终端&lt;br/&gt;(不读公告)&quot;] --&gt; NIC[&quot;物理网卡&quot;]
+    NIC --&gt; Remote2[&quot;远端 (漏了)&quot;]
+
+    classDef ok fill:#10B981,stroke:#059669,color:#fff
+    classDef bad fill:#EF4444,stroke:#B91C1C,color:#fff
+    class Browser,Proxy,Remote1 ok
+    class Terminal,NIC,Remote2 bad</code></pre>
+
+<p>浏览器是守规矩的。它启动时读这张公告，看到代理地址，就把每个 HTTPS 请求改成下面这种格式发给 Clash:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT youtube.com:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>注意 <code>youtube.com</code> 这五个字——浏览器把<strong>域名原文</strong>直接交给了 Clash。Clash 一眼看到 “youtube.com”,立刻就知道：</p>
+<ul>
+<li>该走哪个节点（按域名匹配规则）</li>
+<li>域名对应的 IP 是什么（让节点那头去查，本地完全不解析）</li>
+</ul>
+<p>所以浏览器场景下：</p>
+<ul>
+<li>DNS 不用代理工具操心（域名已经送到代理了）</li>
+<li>分流不靠 IP 靠域名（精准）</li>
+<li>不会泄漏（你的 DNS 服务器看不到 <code>youtube.com</code>）</li>
+</ul>
+<p><strong>结论：纯浏览器用户开系统代理就够了，DNS 怎么配都没人在乎。</strong></p>
+<h1 id="2-终端为什么不走代理"><a href="#2-终端为什么不走代理" class="headerlink" title="2. 终端为什么不走代理"></a>2. 终端为什么不走代理</h1><p>切到终端，敲 <code>git clone https://github.com/xxx/yyy.git</code>。</p>
+<p>git 不读那张公告。它会直接调用系统的 socket 函数，先把 <code>github.com</code> 翻译成 IP（找系统 DNS,可能是 <code>8.8.8.8</code> 或 <code>223.5.5.5</code>），拿到 IP 后直接往物理网卡上送包。</p>
+<p>整个过程 Clash 从头到尾不知情。</p>
+<p>为什么 git 不读？因为读不读 “ 公告 “ 这件事，由每个应用自己决定。浏览器读，是因为 Chromium&#x2F;Firefox 写代码时主动支持。git、Docker、Navicat、绝大多数游戏、Java 程序的 socket、Go 程序的默认 HTTP client——大部分都不读。</p>
+<p>更糟的是：</p>
+<ul>
+<li>系统 DNS 查到的 <code>github.com</code> IP 可能被污染了，或者解析到 GitHub 在中国某个慢节点</li>
+<li>物理网卡那头是你家路由器 → 运营商 → 国际出口，每一跳都没经过代理</li>
+<li>你的运营商完全能看见 “ 这个 IP 去查了 github.com”</li>
+</ul>
+<p>终端超时只是表象。真正的问题是：<strong>这些请求从未被 Clash 看到过。</strong></p>
+<h1 id="3-TUN-模式：装一张假网卡"><a href="#3-TUN-模式：装一张假网卡" class="headerlink" title="3. TUN 模式：装一张假网卡"></a>3. TUN 模式：装一张假网卡</h1><p>要把终端的流量也抓住，得换个抓法——不靠应用配合，靠操作系统的路由。</p>
+<p>Clash 在系统里装一张<strong>虚拟网卡</strong>（macOS 下叫 <code>utun0</code>、<code>utun1</code> 这种名字），然后改路由表，告诉系统：” 以后所有发往外网的 IP 包，先送到这张虚拟网卡。”</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123; &#x27;primaryColor&#x27;: &#x27;#3B82F6&#x27;, &#x27;primaryTextColor&#x27;: &#x27;#fff&#x27;, &#x27;lineColor&#x27;: &#x27;#60A5FA&#x27;&#125;&#125;&#125;%%
+flowchart LR
+    subgraph 没开TUN
+        B1[&quot;浏览器&quot;] --&gt;|&quot;公告&quot;| C1[&quot;Clash&quot;]
+        T1[&quot;终端&quot;] --&gt; N1[&quot;物理网卡 (漏)&quot;]
+        C1 --&gt; N1
+    end
+    subgraph 开了TUN
+        B2[&quot;浏览器&quot;] --&gt;|&quot;公告&quot;| C2[&quot;Clash&quot;]
+        T2[&quot;终端&quot;] --&gt; U[&quot;utun0&lt;br/&gt;虚拟网卡&quot;]
+        U --&gt; C2
+        C2 --&gt; N2[&quot;物理网卡&quot;]
+    end
+
+    classDef bad fill:#EF4444,stroke:#B91C1C,color:#fff
+    classDef ok fill:#10B981,stroke:#059669,color:#fff
+    class N1 bad
+    class U,C2 ok</code></pre>
+
+<p>应用不需要任何配合。git 照旧把包送给系统、系统按路由表送给 <code>utun0</code>、<code>utun0</code> 把包交给 Clash。Clash 看完决定送哪个节点。</p>
+<p>代价是 Clash 拿到的是<strong>原始 IP 包</strong>——只有 “ 谁要去连 140.82.121.4”,<strong>没有域名信息</strong>。</p>
+<h2 id="3-1-为什么只有-IP-没有域名"><a href="#3-1-为什么只有-IP-没有域名" class="headerlink" title="3.1 为什么只有 IP 没有域名"></a>3.1 为什么只有 IP 没有域名</h2><p>你敲 <code>git clone https://github.com/...</code> 之后发生了什么：</p>
+<ol>
+<li>git 在内存里先做一件事：调用系统 resolver,把 <code>github.com</code> 翻译成 <code>140.82.121.4</code>(经典 <code>getaddrinfo()</code> 调用)</li>
+<li>翻译完，git 调用 <code>connect(140.82.121.4, 443)</code> 开 TCP socket。这一刻 <code>&quot;github.com&quot;</code> 这个字符串<strong>只活在 git 进程的局部变量里</strong>,从未离开 git</li>
+<li>内核打 TCP SYN 包，包头只装 IP（源 IP + 目的 IP + 端口号）。IP 协议本身就不携带域名字段——这是 TCP&#x2F;IP 几十年没变的层级约定</li>
+<li>内核按路由表把包送给 utun0</li>
+<li>Clash 从 utun0 收包，<strong>只能看到 IP</strong>——域名在第 1 步就被消化掉了</li>
+</ol>
+<p>类比：你寄快递时填了 “ 收件人姓名 + 详细地址 “。快递员路上只看地址（IP），姓名（域名）是给最终收件人核对用的，路上没人关心。TUN 就是路上拦快递的——看到地址，看不到姓名。</p>
+<p><strong>这就是为什么 Clash 必须自己接管 DNS</strong>——它要在第 1 步 “ 翻译 “ 时就介入，亲手把 <code>github.com → 140.82.121.4</code> 这层映射记下来。后面收包看到 <code>140.82.121.4</code>,反查就知道这是 github,可以按域名规则分流。</p>
+<h1 id="4-TUN-开了之后，DNS-必须有人管"><a href="#4-TUN-开了之后，DNS-必须有人管" class="headerlink" title="4. TUN 开了之后，DNS 必须有人管"></a>4. TUN 开了之后，DNS 必须有人管</h1><p>包到了 Clash 这只看得到 <code>140.82.121.4</code>。但你的代理规则多半是按域名写的：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="string">DOMAIN-SUFFIX,github.com,Proxy</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">DOMAIN-SUFFIX,amazonaws.com.cn,DIRECT</span></span><br></pre></td></tr></table></figure>
+
+<p><code>140.82.121.4</code> 怎么对上 <code>github.com</code>？答案是：<strong>Clash 必须把自己也变成一个 DNS 服务器，亲自拦截系统的每一次 DNS 查询，自己回应、自己记账</strong>。这样它就掌握了 “ 谁问过什么域名 “ 的全部历史，连接来的时候反查一下就能还原。</p>
+<p>这件事在 Mihomo 内核里叫 <code>dns.enable: true</code>(就是订阅 yaml <code>dns:</code> 块里那个 <code>enable</code> 字段)，几乎所有机场订阅都默认开着。<strong>TUN 模式 &#x3D; 必须有人接管 DNS,要么订阅 YAML 自带一份 <code>dns:</code> 块、要么你自己提供一份</strong>。</p>
+<h2 id="4-1-dns-enable-和-“DNS-覆写-“-是两回事"><a href="#4-1-dns-enable-和-“DNS-覆写-“-是两回事" class="headerlink" title="4.1 dns.enable 和 “DNS 覆写 “ 是两回事"></a>4.1 <code>dns.enable</code> 和 “DNS 覆写 “ 是两回事</h2><p>很多人一看到都有 “enable”,以为是同一个开关。其实在两个完全不同的层次：</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>在哪</th>
+<th>控制什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dns.enable: true</code></td>
+<td>订阅 yaml 的 <code>dns:</code> 块里</td>
+<td>Mihomo 内核 “ 要不要启动 DNS 接管模块 “</td>
+</tr>
+<tr>
+<td>“DNS 覆写 “(<code>enable_dns_settings</code>)</td>
+<td>Clash Verge GUI 设置页</td>
+<td>Verge “ 用哪份 yaml 喂给 Mihomo”</td>
+</tr>
+</tbody></table>
+<p>实际三种组合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DNS 覆写 = 关 + 订阅 dns.enable = true  → 用订阅的 dns 配置接管 ✓ (默认且推荐)</span><br><span class="line">DNS 覆写 = 关 + 订阅没写 dns 块         → Mihomo 没 DNS 模块，TUN 残废 ⚠</span><br><span class="line">DNS 覆写 = 开 + 任何订阅                → 用 Verge 的 dns_config.yaml 接管 ✓</span><br></pre></td></tr></table></figure>
+
+<p>dns 块怎么写、什么时候该开覆写、怎么看自己订阅的 dns 块写得好不好——下面几章一一回答。</p>
+<h1 id="5-两种答法：redir-host-和-Fake-ip"><a href="#5-两种答法：redir-host-和-Fake-ip" class="headerlink" title="5. 两种答法：redir-host 和 Fake-ip"></a>5. 两种答法：redir-host 和 Fake-ip</h1><p>Clash 接管 DNS 后，对每个域名查询有两种回应方式。一个慢但老实，一个快但耍滑头。看完你就知道为什么 95% 的机场都选了后者。</p>
+<h2 id="5-1-用餐厅取餐打比方"><a href="#5-1-用餐厅取餐打比方" class="headerlink" title="5.1 用餐厅取餐打比方"></a>5.1 用餐厅取餐打比方</h2><p>你在餐厅点了 “ 麻婆豆腐 “。</p>
+<p><strong>老实人（redir-host）</strong>：服务员真跑去厨房问主厨 “ 这道菜哪个灶台做 “,主厨说 “3 号灶台 “,服务员回来告诉你 “ 去 3 号灶台取 “。你过去等。</p>
+<p>问题来了——3 号灶台同时还做着鱼香肉丝、宫保鸡丁。菜端出来五盘，你不知道哪盘是自己的。</p>
+<p>这正是 redir-host 在 CDN 时代的尴尬：现代 CDN 一个 IP 服务几千个域名，<code>142.250.80.46</code> 到底是 youtube 还是 google？反查时根本分不清。</p>
+<p><strong>耍滑头（fake-ip）</strong>：服务员根本不去厨房，当场给你贴一个 “ 叫号牌 17 号 “。等灶台做好菜，广播 “17 号取餐 “。</p>
+<p>每个客人一个独立号牌，绝不混淆。服务员也省了跑厨房——你拿到号牌的瞬间 DNS 应答就完成了，零延迟。</p>
+<h2 id="5-2-回到代理工具"><a href="#5-2-回到代理工具" class="headerlink" title="5.2 回到代理工具"></a>5.2 回到代理工具</h2><p>你的浏览器查 <code>youtube.com</code> 时，fake-ip 模式下 Clash 是这么干的：</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123;&#x27;actorBkg&#x27;: &#x27;#10B981&#x27;, &#x27;actorTextColor&#x27;: &#x27;#fff&#x27;&#125;&#125;&#125;%%
+sequenceDiagram
+    autonumber
+    participant App as &quot;浏览器 (点菜的)&quot;
+    participant Clash as &quot;Clash (发号牌的服务员)&quot;
+    participant Remote as &quot;代理节点 (真厨房)&quot;
+
+    App-&gt;&gt;Clash: &quot;查 youtube.com (点麻婆豆腐)&quot;
+    Clash-&gt;&gt;Clash: &quot;从池里发一个: 198.18.0.5 (贴叫号牌 17)&quot;
+    Clash-&gt;&gt;Clash: &quot;记下 198.18.0.5 ↔ youtube.com&quot;
+    Clash--&gt;&gt;App: &quot;198.18.0.5 (拿到号牌, 零延迟)&quot;
+    App-&gt;&gt;Clash: &quot;连 198.18.0.5:443 (按号去取菜)&quot;
+    Clash-&gt;&gt;Clash: &quot;查表: 198.18.0.5 是 youtube.com&quot;
+    Clash-&gt;&gt;Remote: &quot;让节点那头去查真 IP 并连接&quot;</code></pre>
+
+<p>三个细节：</p>
+<ul>
+<li><code>198.18.0.5</code> 这种号牌从 <code>198.18.0.0/15</code> 这段 IP 池里发。IANA 把这段 IP 划给 “ 基准测试用 “—— 正常互联网根本不会出现这种地址，发再多号也不会撞到真实服务器</li>
+<li>你的应用拿着 <code>198.18.0.5</code> 去连接的瞬间，Clash 一眼就知道这是 <code>youtube.com</code>(号牌对应表)</li>
+<li>真正的 DNS 查询延迟到代理节点那边去做——你这边一点都不等</li>
+</ul>
+<h2 id="5-3-两种模式对比"><a href="#5-3-两种模式对比" class="headerlink" title="5.3 两种模式对比"></a>5.3 两种模式对比</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>redir-host（老实人）</th>
+<th>fake-ip（耍滑头）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DNS 应答速度</td>
+<td>慢（要去厨房问）</td>
+<td>零延迟（当场发号牌）</td>
+</tr>
+<tr>
+<td>给应用的 IP</td>
+<td>真实 IP</td>
+<td>假 IP（198.18.x.x）</td>
+</tr>
+<tr>
+<td>CDN 反查精度</td>
+<td>差（一个灶台多道菜）</td>
+<td>完美（一人一号绝不撞）</td>
+</tr>
+<tr>
+<td>泄漏风险</td>
+<td>较高</td>
+<td>极低（号牌不离店）</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>老应用 &#x2F; IP 敏感场景</td>
+<td><strong>95% 机场订阅默认这个</strong></td>
+</tr>
+</tbody></table>
+<p>实际上 95% 的机场订阅、所有主流配置示例，都用 fake-ip。所以你日后看到的 dns 块大概率长这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">enhanced-mode:</span> <span class="string">fake-ip</span></span><br><span class="line">  <span class="attr">fake-ip-range:</span> <span class="number">198.18</span><span class="number">.0</span><span class="number">.1</span><span class="string">/15</span></span><br><span class="line">  <span class="attr">fake-ip-filter:</span> [<span class="string">...</span>]</span><br><span class="line">  <span class="attr">nameserver:</span> [<span class="string">...</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-4-一个让人困惑的现象"><a href="#5-4-一个让人困惑的现象" class="headerlink" title="5.4 一个让人困惑的现象"></a>5.4 一个让人困惑的现象</h2><p><code>ping youtube.com</code> 返回 <code>198.18.0.5</code>,你以为代理坏了。</p>
+<p>其实那就是 fake-ip 给的叫号牌。<code>ping</code> 用的是 ICMP 协议，它不走代理（拿着号牌没去 “ 取餐 “），所以表现是 “ 不通 “。这是 fake-ip 的正常表现，不是故障。</p>
+<p>要测代理是不是真的工作，用 <code>curl -I https://youtube.com</code>——curl 走 TCP,会真去 “ 取餐 “,Clash 会按号牌还原成 youtube.com 走代理。</p>
+<p>fake-ip 也有副作用——比如局域网域名 <code>printer.local</code> 也会被发假 IP,瞬间废掉。怎么用 <code>fake-ip-filter</code> 救场、Navicat 直连域名怎么还原，这些细节在 <a href="/posts/5a9b40b9">下一篇</a> 详讲。</p>
+<h1 id="6-Clash-Verge-“DNS-覆写-“-到底覆写了什么"><a href="#6-Clash-Verge-“DNS-覆写-“-到底覆写了什么" class="headerlink" title="6. Clash Verge “DNS 覆写 “ 到底覆写了什么"></a>6. Clash Verge “DNS 覆写 “ 到底覆写了什么</h1><p>这是新手问得最多、机场文档说得最含糊、官方设置页起名最误导的开关。</p>
+<p>先看一眼源码里它的真名：在 Clash Verge Rev 仓库的 <code>verge.rs</code> 里，这个开关对应字段叫 <code>enable_dns_settings</code>。注释只有一行：</p>
+<blockquote>
+<p>this controls whether <code>dns_config.yaml</code> is applied</p>
+</blockquote>
+<p>翻译成人话：<strong>这个开关只控制一件事——要不要用 Verge 本地的那份 <code>dns_config.yaml</code>,去整块替换订阅 YAML 里的 <code>dns:</code> 块</strong>。</p>
+<pre><code class="highlight mermaid">%%&#123;init: &#123;&#x27;theme&#x27;: &#x27;base&#x27;, &#x27;themeVariables&#x27;: &#123; &#x27;primaryColor&#x27;: &#x27;#3B82F6&#x27;, &#x27;primaryTextColor&#x27;: &#x27;#fff&#x27;, &#x27;lineColor&#x27;: &#x27;#60A5FA&#x27;&#125;&#125;&#125;%%
+flowchart LR
+    Sub[&quot;订阅 YAML&lt;br/&gt;(含 dns 块)&quot;] --&gt; Merge[&quot;各种 merge / script&quot;]
+    Merge --&gt; Q&#123;&quot;DNS 覆写 = 开?&quot;&#125;
+    Q --&gt;|&quot;是&quot;| Replace[&quot;读 dns_config.yaml&lt;br/&gt;整块替换 dns 块&quot;]
+    Q --&gt;|&quot;否&quot;| Keep[&quot;啥也不做&lt;br/&gt;订阅的 dns 块保留&quot;]
+    Replace --&gt; Final[&quot;最终配置&quot;]
+    Keep --&gt; Final
+    Final --&gt; Mihomo[&quot;Mihomo 内核&quot;]
+
+    classDef key fill:#EF4444,stroke:#B91C1C,color:#fff
+    classDef ok fill:#10B981,stroke:#059669,color:#fff
+    class Q key
+    class Keep ok</code></pre>
+
+<p>注意 “ <strong>整块替换</strong> “ 这四个字。不是 merge、不是覆盖个别字段，是直接 <code>config.insert(&quot;dns&quot;, new_dns)</code>,订阅那份 <code>dns:</code> 块完全消失。</p>
+<h2 id="6-1-三种情况，三种配法"><a href="#6-1-三种情况，三种配法" class="headerlink" title="6.1 三种情况，三种配法"></a>6.1 三种情况，三种配法</h2><table>
+<thead>
+<tr>
+<th>你的状况</th>
+<th>DNS 覆写开关</th>
+<th>谁在跑 DNS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>机场订阅 YAML 写好了 <code>dns:</code> 块（多数情况）</td>
+<td><strong>关</strong>（默认）</td>
+<td>订阅自带的 dns 配置</td>
+</tr>
+<tr>
+<td>订阅没写 <code>dns:</code> 块（少数粗糙机场）</td>
+<td>开</td>
+<td>Verge UI 里你填的 DNS</td>
+</tr>
+<tr>
+<td>完全不信任机场的 DNS、想自己控制全套</td>
+<td>开，或用脚本注入</td>
+<td>你自己填的</td>
+</tr>
+</tbody></table>
+<p>99% 的人属于第一种。所以默认就是关的，是对的。</p>
+<h2 id="6-2-怎么看最终生效的-DNS（开了覆写也适用）"><a href="#6-2-怎么看最终生效的-DNS（开了覆写也适用）" class="headerlink" title="6.2 怎么看最终生效的 DNS（开了覆写也适用）"></a>6.2 怎么看最终生效的 DNS（开了覆写也适用）</h2><p>“ 开了 DNS 覆写后，最后到底跑的是哪份 DNS 配置 “——这个问题靠 GUI 看不出来，必须翻文件。Verge 涉及两个 dns 相关文件，千万别搞混：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>路径（macOS）</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dns_config.yaml</code></td>
+<td><code>~/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/dns_config.yaml</code></td>
+<td><strong>输入</strong>——你在 UI “ 设置 DNS” 编辑的那份，仅在 DNS 覆写开启时被读</td>
+</tr>
+<tr>
+<td><code>clash-verge.yaml</code></td>
+<td><code>~/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/clash-verge.yaml</code></td>
+<td><strong>输出</strong>——所有 merge&#x2F;script&#x2F; 覆写处理完后的<strong>最终结果</strong>,真正送给 Mihomo 内核运行的就是这份</td>
+</tr>
+</tbody></table>
+<p>Mihomo 的 external-controller HTTP API（默认 <code>127.0.0.1:9090</code>）<strong>不暴露 dns 字段</strong>——<code>GET /configs</code> 返回的是端口 &#x2F;TUN&#x2F; 模式等基础项，没有 dns。所以唯一可靠的查看方式是读 <code>clash-verge.yaml</code>。</p>
+<h2 id="6-3-三份真实订阅对照（机场-Dns-配置打分）"><a href="#6-3-三份真实订阅对照（机场-Dns-配置打分）" class="headerlink" title="6.3 三份真实订阅对照（机场 Dns 配置打分）"></a>6.3 三份真实订阅对照（机场 Dns 配置打分）</h2><h3 id="🥇-精心型：完整-Dns-块"><a href="#🥇-精心型：完整-Dns-块" class="headerlink" title="🥇 精心型：完整 Dns 块"></a>🥇 精心型：完整 Dns 块</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">ipv6:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:1053</span></span><br><span class="line">  <span class="attr">use-hosts:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">default-nameserver:</span> [<span class="number">119.28</span><span class="number">.28</span><span class="number">.28</span>, <span class="number">119.29</span><span class="number">.29</span><span class="number">.29</span>, <span class="number">223.5</span><span class="number">.5</span><span class="number">.5</span>, <span class="number">223.6</span><span class="number">.6</span><span class="number">.6</span>]</span><br><span class="line">  <span class="attr">nameserver:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://机场专属</span> <span class="string">DoH</span> <span class="string">服务器</span> <span class="number">1</span><span class="string">/dns-query/&lt;token&gt;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://机场专属</span> <span class="string">DoH</span> <span class="string">服务器</span> <span class="number">2</span><span class="string">/dns-query/&lt;token&gt;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://机场专属</span> <span class="string">DoH</span> <span class="string">服务器</span> <span class="number">3</span><span class="string">/dns-query/&lt;token&gt;</span></span><br><span class="line">  <span class="attr">fake-ip-range:</span> <span class="number">198.18</span><span class="number">.0</span><span class="number">.1</span><span class="string">/15</span></span><br><span class="line">  <span class="attr">fake-ip-filter:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.lan&quot;</span> <span class="string">/</span> <span class="string">&quot;*.local&quot;</span> <span class="string">/</span> <span class="string">&quot;*.localhost&quot;</span>               <span class="comment"># 局域网</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.pool.ntp.org&quot;</span> <span class="string">/</span> <span class="string">&quot;ntp1-7.*.com&quot;</span> <span class="string">/</span> <span class="string">&quot;time1-7.*.com&quot;</span>  <span class="comment"># NTP 校时</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;stun.*.*&quot;</span> <span class="string">/</span> <span class="string">&quot;stun.*.*.*&quot;</span>                         <span class="comment"># WebRTC</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.music.163.com&quot;</span> <span class="string">/</span> <span class="string">&quot;*.126.net&quot;</span>                   <span class="comment"># 网易云 IP 校验</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.kuwo.cn&quot;</span> <span class="string">/</span> <span class="string">&quot;api.joox.com&quot;</span> <span class="string">/</span> <span class="string">&quot;*.y.qq.com&quot;</span>       <span class="comment"># QQ/酷我/JOOX</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.msftconnecttest.com&quot;</span> <span class="string">/</span> <span class="string">&quot;*.msftncsi.com&quot;</span>        <span class="comment"># Windows 网络探针</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;+.wargaming.net&quot;</span> <span class="string">/</span> <span class="string">&quot;*.srv.nintendo.net&quot;</span>          <span class="comment"># 游戏验证</span></span><br><span class="line">    <span class="comment"># 共 60+ 条</span></span><br></pre></td></tr></table></figure>
+
+<p>亮点：</p>
+<ul>
+<li>用了<strong>机场自建的加密 DNS</strong>(DoH,你的 DNS 查询不经过运营商，看不到你查啥)</li>
+<li><code>fake-ip-filter</code> 把所有易翻车场景都列了：NTP 校时、WebRTC、流媒体 IP 校验、游戏验证</li>
+<li>所有字段齐全</li>
+</ul>
+<p><strong>结论：千万别开 DNS 覆写</strong>。开了你 100% 比这个差。</p>
+<h3 id="🥈-中等型：半成品"><a href="#🥈-中等型：半成品" class="headerlink" title="🥈 中等型：半成品"></a>🥈 中等型：半成品</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">ipv6:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:53</span></span><br><span class="line">  <span class="attr">fake-ip-filter:</span>                <span class="comment"># ⚠️ 写了 filter 但忘开 fake-ip</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.lan&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*.srv.nintendo.net&quot;</span> <span class="string">/</span> <span class="string">&quot;*.stun.playstation.net&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;xbox.*.microsoft.com&quot;</span> <span class="string">/</span> <span class="string">&quot;*.xboxlive.com&quot;</span></span><br><span class="line">  <span class="attr">nameserver:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">119.29</span><span class="number">.29</span><span class="number">.29</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">223.5</span><span class="number">.5</span><span class="number">.5</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tls://223.5.5.5:853</span>       <span class="comment"># DoT</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tls://120.53.53.53</span></span><br></pre></td></tr></table></figure>
+
+<p>诊断：</p>
+<ul>
+<li>✅ <code>nameserver</code> 给了 DoT（加密 DNS,虽不如 DoH 抗封锁）</li>
+<li>✅ <code>fake-ip-filter</code> 列了主流游戏服务</li>
+<li>❌ <strong>致命漏洞</strong>：没设 <code>enhanced-mode: fake-ip</code>,默认会退化到 <code>redir-host</code>——意味着写的 <code>fake-ip-filter</code> <strong>根本不会被读</strong>(filter 是 fake-ip 模式专属)</li>
+<li>❌ 没有 <code>fallback</code> &#x2F; <code>fallback-filter</code> 防污染机制</li>
+</ul>
+<p><strong>结论：不建议开 DNS 覆写</strong>(开了会把 nameserver 也盖掉)，<strong>建议用脚本补一行 <code>enhanced-mode: fake-ip</code> 让 filter 生效</strong>,再补 <code>fallback</code> 防污染。脚本怎么写见 <a href="/posts/5a9b40b9">下一篇 ch.5</a>。</p>
+<h3 id="🥉-敷衍型：4-行交差"><a href="#🥉-敷衍型：4-行交差" class="headerlink" title="🥉 敷衍型：4 行交差"></a>🥉 敷衍型：4 行交差</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">listen:</span> <span class="string">&#x27;0.0.0.0:1053&#x27;</span></span><br><span class="line">  <span class="attr">default-nameserver:</span> [<span class="number">119.29</span><span class="number">.29</span><span class="number">.29</span>, <span class="number">223.5</span><span class="number">.5</span><span class="number">.5</span>]</span><br><span class="line">  <span class="attr">nameserver-policy:</span> &#123; <span class="string">+.机场专属域名.com:</span> <span class="string">&#x27;124.x.x.x:1053&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>诊断：</p>
+<ul>
+<li>只有 4 行</li>
+<li>没 <code>nameserver</code>、没 <code>fake-ip-filter</code>、没 <code>enhanced-mode</code>、没 <code>fallback</code></li>
+<li>唯一的 <code>nameserver-policy</code> 只是为了解析他们自家节点域名（自利型）——对用户上网体验毫无帮助</li>
+<li>跑这份等于 “ 把 DNS 接管开关打开了，但没干任何活儿 “</li>
+</ul>
+<p><strong>结论：建议开 DNS 覆写</strong>，让 Verge 接管。或更优——用全局扩展脚本注入完整 dns 块（<a href="/posts/5a9b40b9">下一篇 ch.5</a> 给模板）。</p>
+<h3 id="DoH-DoT-DoQ-什么意思"><a href="#DoH-DoT-DoQ-什么意思" class="headerlink" title="DoH &#x2F; DoT &#x2F; DoQ 什么意思"></a>DoH &#x2F; DoT &#x2F; DoQ 什么意思</h3><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>端口</th>
+<th>性能</th>
+<th>抗封锁</th>
+<th>一句话评价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DoH</strong>（HTTPS）</td>
+<td>443</td>
+<td>中</td>
+<td>强（混进普通 HTTPS 流量）</td>
+<td><strong>默认选这个</strong>,几乎所有工具都支持</td>
+</tr>
+<tr>
+<td><strong>DoT</strong>（TLS）</td>
+<td>853</td>
+<td>中</td>
+<td>弱（专用端口易识别）</td>
+<td>适合可控内网（家里 AdGuard Home）</td>
+</tr>
+<tr>
+<td><strong>DoQ</strong>（QUIC）</td>
+<td>853 &#x2F; 443</td>
+<td><strong>最高</strong></td>
+<td>中</td>
+<td>趋势，丢包多的链路有优势，sing-box 和较新 Mihomo 支持</td>
+</tr>
+</tbody></table>
+<p>配置上就是 URL scheme 不同：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nameserver:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">https://dns.alidns.com/dns-query</span>   <span class="comment"># DoH</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">tls://dns.alidns.com</span>               <span class="comment"># DoT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">quic://dns.adguard.com</span>             <span class="comment"># DoQ</span></span><br></pre></td></tr></table></figure>
+
+<p>Mihomo 1.18+ 对 DoQ 支持比较稳，可以试试在 <code>prefer-h3: true</code> 配合下能省一两轮握手。</p>
+<h2 id="6-4-机场为什么劝你关"><a href="#6-4-机场为什么劝你关" class="headerlink" title="6.4 机场为什么劝你关"></a>6.4 机场为什么劝你关</h2><p>几乎每家机场的设置教程都重复同一句话：” 关闭 DNS 覆写、关闭 IPv6、打开统一延迟 “。</p>
+<p>原因不是 “ 关掉更安全 “,是 “ 关掉才能让我们的配置生效 “。精心型机场（如对照里的第一份）花心思配了自家加密 DNS、针对性 fake-ip-filter——你一开覆写，这些定制全被 Verge 通用模板盖掉，出问题概率立刻上升。</p>
+<p><strong>所以这个开关的真名应该叫 “ 用 Verge 的 DNS 配置替换订阅的 DNS 配置 “</strong>。可惜 UI 上就写 “DNS 覆写 “ 三个字，谁看了都以为是 “ 接不接管 DNS”。</p>
+<h1 id="7-Verge-其他几个开关"><a href="#7-Verge-其他几个开关" class="headerlink" title="7. Verge 其他几个开关"></a>7. Verge 其他几个开关</h1><p>DNS 覆写讲透了，剩下几个开关一笔带过：</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>实际控制</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>IPv6</strong></td>
+<td>Clash 内核是否处理 IPv6 流量</td>
+<td>用不上 IPv6 就关。开着但节点不支持 IPv6 会出现 “IPv6 走直连泄漏 “</td>
+</tr>
+<tr>
+<td><strong>统一延迟</strong></td>
+<td>把 TCP 握手 + TLS 握手都算进节点测速</td>
+<td>开。否则测速不真实</td>
+</tr>
+<tr>
+<td><strong>局域网连接</strong></td>
+<td>是否允许同网段其他设备用你的 Clash 当代理</td>
+<td>不需要就关。开等于在局域网开了个公开代理端口</td>
+</tr>
+</tbody></table>
+<h1 id="8-顺手澄清一个高频误会：Global-≠-全系统代理"><a href="#8-顺手澄清一个高频误会：Global-≠-全系统代理" class="headerlink" title="8. 顺手澄清一个高频误会：Global ≠ 全系统代理"></a>8. 顺手澄清一个高频误会：Global ≠ 全系统代理</h1><p>很多人以为切到 <strong>Global 模式</strong> 就能 “ 全系统都走代理 “,终端不走、Navicat 走错节点的问题也就解决了。错。</p>
+<table>
+<thead>
+<tr>
+<th align="left">策略</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Rule（规则模式）</td>
+<td align="left">智能分流：国内直连、国外代理、MATCH 兜底</td>
+</tr>
+<tr>
+<td align="left">Global（全局模式）</td>
+<td align="left">忽略规则，所有流量强制走代理</td>
+</tr>
+<tr>
+<td align="left">Direct（直连模式）</td>
+<td align="left">所有流量直连，不走代理</td>
+</tr>
+</tbody></table>
+<p>Global 的含义是 “<strong>抓到的</strong>全代理 “,不是 “ 全系统都被抓 “。抓的活儿是 TUN 干的，分流策略（Rule&#x2F;Global&#x2F;Direct）只决定 “ 抓到之后怎么处理 “。两件事，别合并理解：</p>
+<table>
+<thead>
+<tr>
+<th>TUN</th>
+<th>模式</th>
+<th>实际效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关</td>
+<td>Rule</td>
+<td>仅浏览器走代理，分流生效</td>
+</tr>
+<tr>
+<td>关</td>
+<td>Global</td>
+<td>仅浏览器<strong>强制</strong>走代理，终端依旧漏</td>
+</tr>
+<tr>
+<td>开</td>
+<td>Rule</td>
+<td>全系统接管，国内直连国外代理（开发首选）</td>
+</tr>
+<tr>
+<td>开</td>
+<td>Global</td>
+<td>全系统接管，国内服务也走代理（排障用）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>关键区分</strong></p>
+<ul>
+<li>ClashX「增强模式」&#x3D; TUN 机制（决定能否捕获终端流量）</li>
+<li>Quantumult X「全部代理」&#x3D; Global 策略（但是因 VPN 架构，天生运行于 TUN 模式）</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Clash/" rel="tag"># Clash</a>
+              <a href="/tags/ClashVerge/" rel="tag"># ClashVerge</a>
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+              <a href="/tags/FakeIP/" rel="tag"># FakeIP</a>
+              <a href="/tags/Mihomo/" rel="tag"># Mihomo</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+              <a href="/tags/Proxy/" rel="tag"># Proxy</a>
+              <a href="/tags/TUN/" rel="tag"># TUN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/5a9b40b9.html" rel="prev" title="2_DNS与FakeIP排障：污染、副作用、TUN调优">
+                  <i class="fa fa-angle-left"></i> 2_DNS与FakeIP排障：污染、副作用、TUN调优
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/c3ba8096.html" rel="next" title="3_代理工具协议深度解析">
+                  3_代理工具协议深度解析 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

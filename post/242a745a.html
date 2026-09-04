@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="来做一个猜饼干的游戏，想象一下，你面前有两个一模一样的饼干罐罐。  罐罐 A：里面装了好多好多你最爱吃的巧克力豆饼干！但妈妈悄悄放了 1 块普通的燕麦饼干进去。 罐罐 B：里面装的大部分都是普通的燕麦饼干，但妈妈也悄悄放了 1 块你爱吃的巧克力豆饼干进去。  现在，我闭上眼睛，把这两个罐罐弄混，然后随便选了一个递给你。你不知道你手里拿的是装满巧克力豆的 A 罐罐，还是装满燕麦饼干的 B 罐罐。 你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝叶斯定律">
+<meta property="og:url" content="https://www.readwrite.fun/post/242a745a.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="来做一个猜饼干的游戏，想象一下，你面前有两个一模一样的饼干罐罐。  罐罐 A：里面装了好多好多你最爱吃的巧克力豆饼干！但妈妈悄悄放了 1 块普通的燕麦饼干进去。 罐罐 B：里面装的大部分都是普通的燕麦饼干，但妈妈也悄悄放了 1 块你爱吃的巧克力豆饼干进去。  现在，我闭上眼睛，把这两个罐罐弄混，然后随便选了一个递给你。你不知道你手里拿的是装满巧克力豆的 A 罐罐，还是装满燕麦饼干的 B 罐罐。 你">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-17T14:48:02.000Z">
+<meta property="article:modified_time" content="2025-12-21T16:57:02.292Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/242a745a.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/242a745a.html","path":"post/242a745a.html","title":"贝叶斯定律"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>贝叶斯定律 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="nav-text">1. 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">1.1 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-P-A-B-%E5%92%8C-P-B-A"><span class="nav-text">1.2 P(A|B) 和 P(B|A)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P-B-A-%E2%80%94%E2%80%94-%E2%80%9C-%E5%90%91%E5%89%8D%E7%9C%8B%E7%9A%84%E9%A2%84%E6%B5%8B-%E2%80%9C"><span class="nav-text">P(B|A) —— “ 向前看的预测 “</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P-A-B-%E2%80%94%E2%80%94-%E2%80%9C-%E5%90%91%E5%90%8E%E7%9C%8B%E7%9A%84%E8%AF%8A%E6%96%AD-%E2%80%9C"><span class="nav-text">P(A|B) —— “ 向后看的诊断 “</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E2%80%9C-%E5%8C%BB%E7%94%9F%E6%96%AD%E6%A1%88-%E2%80%9C-%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">1.3 “ 医生断案 “ 的例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%BD%9C%E7%94%A8"><span class="nav-text">2. 作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">2.1 注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3"><span class="nav-text">2.2 快速理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E8%BF%90%E7%94%A8%E7%94%9F%E6%B4%BB"><span class="nav-text">2.3 运用生活</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%80%9D%E7%BB%B4"><span class="nav-text">3. 思维</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-%E2%80%9C-%E5%AF%B9%E4%B8%8E%E9%94%99-%E2%80%9C-%E7%9A%84%E4%B8%96%E7%95%8C%EF%BC%8C%E8%BF%9B%E5%85%A5-%E2%80%9C-%E7%BD%AE%E4%BF%A1%E5%BA%A6-%E2%80%9C-%E7%9A%84%E4%B8%96%E7%95%8C"><span class="nav-text">从 “ 对与错 “ 的世界，进入 “ 置信度 “ 的世界**</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%8D%AE%E4%B8%8D%E5%86%8D%E6%98%AF-%E2%80%9C-%E4%BA%8B%E5%AE%9E-%E2%80%9C%EF%BC%8C%E8%80%8C%E6%98%AF-%E2%80%9C-%E4%BF%A1%E5%BF%83%E7%9A%84%E8%B0%83%E8%8A%82%E5%99%A8-%E2%80%9C"><span class="nav-text">证据不再是 “ 事实 “，而是 “ 信心的调节器 “</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E4%B8%8D%E6%98%AF-%E2%80%9C-%E4%BD%A0-%E2%80%9C%EF%BC%8C%E4%BD%A0%E6%98%AF%E4%B8%80%E5%A5%97-%E2%80%9C-%E5%8F%AF%E8%BF%AD%E4%BB%A3%E7%9A%84%E6%A8%A1%E5%9E%8B-%E2%80%9C"><span class="nav-text">你不是 “ 你 “，你是一套 “ 可迭代的模型 “</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%89%E8%AE%BA%E7%9A%84%E7%BB%88%E6%9E%81%E7%9B%AE%E7%9A%84%E4%B8%8D%E6%98%AF-%E2%80%9C-%E8%B5%A2-%E2%80%9C%EF%BC%8C%E8%80%8C%E6%98%AF-%E2%80%9C-%E5%90%8C%E6%AD%A5-%E2%80%9C"><span class="nav-text">争论的终极目的不是 “ 赢 “，而是 “ 同步 “</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">545</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/242a745a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="贝叶斯定律 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          贝叶斯定律
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-17 14:48:02" itemprop="dateCreated datePublished" datetime="2025-09-17T14:48:02+00:00">2025-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-21 16:57:02" itemprop="dateModified" datetime="2025-12-21T16:57:02+00:00">2025-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">02_主动学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/02-%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/501-%E7%A7%91%E5%AD%A6%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">501_科学知识</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>来做一个猜饼干的游戏，想象一下，你面前有两个一模一样的饼干罐罐。</p>
+<ul>
+<li>罐罐 A：里面装了好多好多你最爱吃的巧克力豆饼干！但妈妈悄悄放了 1 块普通的燕麦饼干进去。</li>
+<li>罐罐 B：里面装的大部分都是普通的燕麦饼干，但妈妈也悄悄放了 1 块你爱吃的巧克力豆饼干进去。</li>
+</ul>
+<p>现在，我闭上眼睛，把这两个罐罐弄混，然后随便选了一个递给你。你不知道你手里拿的是装满巧克力豆的 A 罐罐，还是装满燕麦饼干的 B 罐罐。</p>
+<p>你心里猜，嗯……可能是 A，也可能是 B，机会差不多嘛。对不对？这是你一开始的想法。好，现在游戏开始！</p>
+<p>你把手伸进你拿到的那个神秘罐罐里，不许偷看哦，然后摸出来一块饼干……哇！你拿出来一看，是一块巧克力豆饼干！🥳</p>
+<p>这时候，师就要问你啦：你想想看，哪个罐罐里更容易摸到巧克力豆饼干呢？是那个几乎全是巧克力豆饼干的 A 罐罐，还是那个只有一块巧克力豆饼干的 B 罐罐？</p>
+<p>肯定是 A 罐罐，对不对！</p>
+<p>所以，虽然你一开始不确定，但是因为你摸到了一个 “ 新线索 “（这个巧克力豆饼干），你现在就变得非常、非常有信心，你猜你手里的这个罐罐就是 A 罐罐！</p>
+<p>你看，你刚才做的这件事，就是 “ 贝叶斯定律 “！它说的就是：我们心里本来有个猜测，然后我们找到了一个新线索，我们就用这个新线索来让我们的猜测变得更棒、更准确！</p>
+<p>就像你一样，一开始你觉得 A 和 B 都有可能，但摸到巧克力豆饼干这个 “ 线索 “ 后，你就更新了你的想法，变得更确定它是 A 啦。</p>
+<span id="more"></span>
+
+<h1 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h1><p>贝叶斯定律（Bayes’ Theorem）是一个数学公式，它描述了如何根据新获取的证据，来更新我们对某个事物发生的可能性（概率）的判断。它将我们的 “ 初始信念 “ 与 “ 新证据 “ 结合起来，得出一个更可靠、更接近真相的 “ 更新后信念 “。</p>
+<p>用公式表示就是： <code>P(A|B) = [P(B|A) * P(A)] / P(B)</code></p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><h2 id="1-1-工作原理"><a href="#1-1-工作原理" class="headerlink" title="1.1 工作原理"></a>1.1 工作原理</h2><ul>
+<li>P(A)：你一开始的猜测 (先验概率)<ul>
+<li>在我们的游戏中，就是 “ 你觉得罐罐是 A 的概率是多少？”。因为是随机选的，所以一开始你觉得是 50%。</li>
+</ul>
+</li>
+<li>P(B)：你找到的新线索 (证据)<ul>
+<li>在我们的游戏中，就是 “ 你摸出了一块巧克力豆饼干 “。</li>
+</ul>
+</li>
+<li>P(B|A)：” 如果你的猜测是真的，有多大可能找到这个线索？” (似然，向前看)<ul>
+<li>翻译成饼干语言：” 如果这真的是 A 罐罐，你摸到巧克力豆饼干的概率有多大？”。A 罐罐里巧克力豆饼干超多，所以这个概率很高！</li>
+</ul>
+</li>
+<li>P(A|B)：” 有了新线索后，你更新后的猜测 “ (后验概率，向后看)<ul>
+<li>翻译成饼干语言：” 既然你摸到了一块巧克力豆饼干，那现在你认为 ‘ 它是 A 罐罐 ‘ 的概率是多大？”。这就是我们最终想要的、更准确的答案！</li>
+</ul>
+</li>
+</ul>
+<p>所以，贝叶斯定律就是在告诉你：</p>
+<blockquote>
+<p>更新后的信心 (P(A|B)) &#x3D; [ (初始猜测对线索的解释力 P(B|A)) × (初始猜测的信心 P(A)) ] ÷ (这个线索出现的总可能性 P(B))</p>
+</blockquote>
+<h2 id="1-2-P-A-B-和-P-B-A"><a href="#1-2-P-A-B-和-P-B-A" class="headerlink" title="1.2 P(A|B) 和 P(B|A)"></a>1.2 P(A|B) 和 P(B|A)</h2><p>忘掉公式，我们来当一回上帝，创造一个有 1000 个小朋友的游戏世界。</p>
+<ul>
+<li>我们让 500 个小朋友 随机拿到了 袋子 A (3 红, 1 蓝)。</li>
+<li>另外 500 个小朋友 随机拿到了 袋子 B (2 红, 2 蓝)。<br>现在，我们让这 1000 个小朋友都从自己的袋子里摸一个球。会发生什么呢？</li>
+<li>拿袋子 A 的 500 人：因为袋子 A 里红球的概率是 3&#x2F;4，所以大概会有 <code>500 * (3/4) = 375</code> 个人摸到红球。</li>
+<li>拿袋子 B 的 500 人：因为袋子 B 里红球的概率是 2&#x2F;4，所以大概会有 <code>500 * (2/4) = 250</code> 个人摸到红球。</li>
+</ul>
+<p>好了，游戏结束！现在整个世界里，一共有 <code>375 + 250 = 625</code> 个小朋友摸到了红球。</p>
+<p>现在，我们来回答这两个长得像双胞胎，但其实完全不同的问题：P(B|A) vs P(A|B)</p>
+<h3 id="P-B-A-——-“-向前看的预测-“"><a href="#P-B-A-——-“-向前看的预测-“" class="headerlink" title="P(B|A) —— “ 向前看的预测 “"></a>P(B|A) —— “ 向前看的预测 “</h3><p>P(红球 | 袋子 A) 的意思是：” 如果我们已经确定了一个小朋友拿的是袋子 A，那么他摸到红球的概率是多少？”</p>
+<p>这个问题很简单！<br>我们只需要把目光锁定在那 500 个拿了袋子 A 的小朋友 身上。在他们之中，有多少人摸到了红球？是 375 人。所以概率就是 <code>375 / 500 = 3/4</code>。<br>你看，这就是袋子 A 本身的红球比例。</p>
+<p>小比喻：这就像医生看教科书。教科书上写着：” 如果病人得了流感（原因），他有 90% 的概率会发烧（结果）。” 这是从一个已知的原因，去预测一个可能的结果。</p>
+<h3 id="P-A-B-——-“-向后看的诊断-“"><a href="#P-A-B-——-“-向后看的诊断-“" class="headerlink" title="P(A|B) —— “ 向后看的诊断 “"></a>P(A|B) —— “ 向后看的诊断 “</h3><p>P(袋子 A | 红球) 的意思是：” 既然我们发现了一个小朋友摸到了红球（我们只知道这个结果），那么他是当初拿了袋子 A 的那个人的概率是多少？”</p>
+<p>这个问题就需要当侦探了！<br>我们的视线范围变了！我们不再看所有 1000 个小朋友，而是只看那些 最终摸到了红球的人。这些人一共有多少？是 <code>625</code> 人。<br>在这些摸到红球的人里面，有多少是来自 “ 袋子 A 小组 “ 的？是 <code>375</code> 人。<br>所以，这个概率就是 <code>375 / 625 = 0.6</code>，也就是 60%！</p>
+<p>小比喻：这才是医生在诊所里做的事情。一个病人走进来，只说 “ 我发烧了 “（结果）。医生需要反过来推断：” 他有多大可能是因为得了流感（原因）呢？”</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>P(B|A) &#x3D; <strong>P(结果|原因)</strong><ul>
+<li>向前看，是预测。</li>
+<li>问的是：” 如果我有 A，得到 B 的几率多大？”</li>
+<li>在我们的游戏中：如果我有袋子 A，摸出红球的几率多大？（答案是 75%）</li>
+</ul>
+</li>
+<li>P(A|B) &#x3D; <strong>P(原因|结果)</strong><ul>
+<li>向后看，是诊断&#x2F;推理。</li>
+<li>问的是：” 我已经看到了 B，它来自 A 的几率多大？”</li>
+<li>在我们的游戏中：我已经摸到了红球，这个球来自袋子 A 的几率有多大？（答案是 60%）<br>贝叶斯定律的伟大之处，就是建立了一座桥梁，让你能从已知的 P(B|A)（教科书知识），计算出你真正想知道的 P(A|B)（诊断结果）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-“-医生断案-“-的例子"><a href="#1-3-“-医生断案-“-的例子" class="headerlink" title="1.3 “ 医生断案 “ 的例子"></a>1.3 “ 医生断案 “ 的例子</h2><ul>
+<li>一种罕见病，1000 个人里只有 1 个人得 (这是初始猜测，你随便找个人，他得病的概率很低)。</li>
+<li>有一种检测方法，准确率 99% (这是线索的可信度。如果得了病，99% 会测出阳性)。</li>
+<li>现在有个人检测结果是阳性 (这是新线索)。</li>
+</ul>
+<p>凭感觉，我们很容易觉得 “ 哇，准确率 99%，那他 99% 就是得病了！”</p>
+<ul>
+<li>忽略基础比率 (Base Rate Fallacy)<ul>
+<li>陷阱：过分关注新证据（似然），而完全忽略了先验概率（基础比率）。</li>
+<li>贝叶斯思维：实际上概率远低于此。让我们简单算一下：在 1000 个人中，有 1 个病人，999 个健康人。病人检测，大概率（0.99_1≈1）呈阳性。健康人检测，也有 1% 的误报率，会有（0.01_999≈10）个人被误报为阳性。所以总共有约 11 个阳性结果，但其中只有 1 个是真病人。所以你患病的概率大约是 1&#x2F;11 ≈ 9%。</li>
+<li>如何避免：永远不要忘记你的先验概率！一个事件本身发生的概率（基础比率）对最终结果有巨大影响。</li>
+</ul>
+</li>
+</ul>
+<p>贝叶斯定律能帮助我们排除直觉的干扰，精确地计算出：考虑到这个病本身很罕见（基础概率低），即使检测为阳性，他真正得病的概率其实也并不高（我们之前算过，大约是 9%）。这在医学、法律等领域至关重要，能避免我们仅凭一个看似强有力的证据就下定论。</p>
+<ul>
+<li>垃圾邮件过滤器：<ul>
+<li>初始猜测：一封新邮件是垃圾邮件的概率是多大？(比如 50%)</li>
+<li>新线索：邮件里出现了 “ 中奖 “、” 免费 “、” 发票 “ 这些词。</li>
+<li>贝叶斯思考：” 如果 “ 这封邮件是垃圾邮件，” 那么 “ 它包含 “ 中奖 “ 这个词的概率有多高？</li>
+<li>更新猜测：结合所有线索，系统更新 “ 这封邮件是垃圾邮件 “ 的最终概率。如果高于一个门槛（比如 95%），就把它丢进垃圾箱。</li>
+</ul>
+</li>
+<li>自动驾驶汽车：<ul>
+<li>初始猜测：汽车前方的那个模糊影子是行人的概率是多大？(比如 30%)</li>
+<li>新线索：激光雷达传来信号，显示那个影子的形状和移动速度。</li>
+<li>贝叶斯思考：” 如果 “ 它是一个行人，” 那么 “ 激光雷达会传回这样的信号吗？</li>
+<li>更新猜测：结合摄像头、雷达等多个 “ 线索 “，汽车系统不断更新对那个影子是行人的信心。当信心足够高时，它就会做出减速避让的决策。</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-作用"><a href="#2-作用" class="headerlink" title="2. 作用"></a>2. 作用</h1><h2 id="2-1-注意点"><a href="#2-1-注意点" class="headerlink" title="2.1 注意点"></a>2.1 注意点</h2><ul>
+<li>分清 P(A|B) 和 P(B|A)：这是最关键的一点，也是最容易出错的地方。它们描述的是完全不同的两件事。永远记住，” 有症状 A 时，得病 B 的概率 “ 和 “ 得了病 B 时，出现症状 A 的概率 “ 是不一样的！</li>
+<li>混淆后验与似然 (The Prosecutor’s Fallacy)<ul>
+<li>陷阱：错把 P(证据|假设) 当成 P(假设|证据)。</li>
+<li>例子：法庭上，检察官说：” 在被告是凶手的情况下，找到他 DNA 的概率是 99% (P(证据|凶手)&#x3D;0.99)”。然后错误地暗示：” 所以，既然找到了 DNA，被告是凶手的概率就是 99% (P(凶手|证据)&#x3D;0.99)”。</li>
+<li>如何避免：牢记这是两个完全不同的概率！要计算后者，必须考虑 “ 被告是凶手 “ 的先验概率。如果先验概率极低（比如城市里有 100 万人可能做到），那么即使证据很强，后验概率也可能不高。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-快速理解"><a href="#2-2-快速理解" class="headerlink" title="2.2 快速理解"></a>2.2 快速理解</h2><p>别想公式，就记这句话： <code>新看法 = 旧看法 × 新证据的可信度</code></p>
+<ol>
+<li>第一步：你的 “ 旧看法 “ 是什么？<ul>
+<li>在得到任何新线索前，你心里的判断是什么？</li>
+</ul>
+</li>
+<li>第二步：你得到了什么 “ 新证据 “？</li>
+<li>第三步：更新你的看法！<ul>
+<li>问自己一个关键问题：如果我的 “ 旧看法 “ 是对的，出现这个 “ 新证据 “ 的可能性有多大？</li>
+<li>得出 “ 新看法 “：这个 “ 乌云密布 “ 的证据，强力地支持了 “ 要下雨 “ 的猜测。所以，尽管天气预报只说 10%，我现在的看法是 “ 很可能要下雨，出门必须带伞！”</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-3-运用生活"><a href="#2-3-运用生活" class="headerlink" title="2.3 运用生活"></a>2.3 运用生活</h2><ol>
+<li>搜索引擎：<ul>
+<li>旧看法：当你在搜索框里输入 “ 苹果 “，你想找什么？水果？还是苹果公司？各 50% 可能。</li>
+<li>新证据：系统发现你过去一周的搜索历史是 “iPhone 17 什么时候出 “、”A18 芯片性能 “。</li>
+<li>贝叶斯应用：系统判断，一个关心 iPhone 和芯片的人，在搜 “ 苹果 “ 时，他想找 “ 苹果公司 “ 的概率远大于找水果。于是，它优先给你展示苹果公司的相关结果。</li>
+</ul>
+</li>
+<li>判断他人：<ul>
+<li>旧看法：你新认识一个同事，他第一次开会时一言不发，你觉得他可能有点冷漠、不合群。</li>
+<li>新证据：你后来无意中得知，他那天是因为孩子生病，几乎一夜没睡，精神很差。</li>
+<li>贝叶斯思维：你会更新你的看法。” 一个疲惫不堪的父亲 “ 比 “ 一个天性冷漠的人 “ 能更好地解释 “ 开会不说话 “ 这个行为。你对他最初的负面印象就会大大减轻。</li>
+</ul>
+</li>
+<li>消费购物：<ul>
+<li>旧看法：你想买一个网上评价很好的网红产品。</li>
+<li>新证据：你仔细看评论，发现大部分好评都集中在刚发售的头几天，且用语相似；而最近的真实用户评论则提到了很多缺点。</li>
+<li>贝叶斯思维：你意识到 “ 好评如潮 “ 这个证据的可信度很低（可能是刷的），而 “ 近期差评 “ 这个新证据更有分量。你更新了 “ 这是个好产品 “ 的看法，决定再观望一下，避免 “ 踩坑 “。</li>
+</ul>
+</li>
+<li>接收新闻和信息：<ul>
+<li>旧看法：你对某个社会事件有一个初步的印象。</li>
+<li>新证据：你看到了一个来自非常可信、以深度调查著称的媒体的报道，它提供了你之前不知道的数据和事实。</li>
+<li>贝叶斯思维：你会给这个 “ 新证据 “ 很高的权重，用它来修正甚至完全改变你最初的看法，而不是固执己见。</li>
+</ul>
+</li>
+</ol>
+<p>总而言之，贝叶斯定律的智慧在于：承认自己最初的看法可能不完美，并随时准备好，用理性的方式，根据新的、可靠的证据来更新它。</p>
+<h1 id="3-思维"><a href="#3-思维" class="headerlink" title="3. 思维"></a>3. 思维</h1><h2 id="从-“-对与错-“-的世界，进入-“-置信度-“-的世界"><a href="#从-“-对与错-“-的世界，进入-“-置信度-“-的世界" class="headerlink" title="从 “ 对与错 “ 的世界，进入 “ 置信度 “ 的世界**"></a>从 “ 对与错 “ 的世界，进入 “ 置信度 “ 的世界**</h2><ul>
+<li>常规思维：这个观点是 “ 对 “ 的，还是 “ 错 “ 的？这件事 “ 是 “ 真的，还是 “ 是 “ 假的？我们习惯于给事物贴上非黑即白的标签。</li>
+<li>贝叶斯颠覆：世界上几乎没有 100% 的确信，只有不同程度的 “ 置信度 “（Confidence Level）。 真理不是一个开关（开&#x2F;关），而是一个旋钮（从 0% 到 100%）。你对任何事物的看法，都应该是一个概率。</li>
+<li>思想冲击：<ul>
+<li>当你听到一个惊人的消息时，你的第一反应不再是 “ 信或不信 “，而是 “ 这个消息让我的置信度从 20% 提升到了 60%，但我还需要更多证据才能达到 95%”。</li>
+<li>你不再会因为别人不同意你而愤怒，因为你明白，他的 “ 置信度 “ 是基于他所拥有的 “ 信息集 “ 计算出来的，和你不一样是正常的。争论的意义，变成了交换信息，而不是消灭对方。</li>
+<li>这是一种 “ 认知上的解放 “。 你从绝对的、僵硬的是非中解脱出来，进入一个流动的、灵活的、以概率为基础的思考模式。</li>
+</ul>
+</li>
+</ul>
+<h2 id="证据不再是-“-事实-“，而是-“-信心的调节器-“"><a href="#证据不再是-“-事实-“，而是-“-信心的调节器-“" class="headerlink" title="证据不再是 “ 事实 “，而是 “ 信心的调节器 “"></a>证据不再是 “ 事实 “，而是 “ 信心的调节器 “</h2><ul>
+<li>常规思维：眼见为实！这个证据证明了我的观点。我们倾向于将证据视为支撑结论的 “ 砖块 “。</li>
+<li>贝叶斯颠覆：一个证据的价值，不在于它本身多 “ 真实 “，而在于它在多大程度上能 “ 区分不同的假设 “。 换句话说，贝叶斯关心的是：这个证据，在 “ 我的假设为真 “ 和 “ 我的假设为假 “ 这两种情况下，出现的概率有多大不同？</li>
+<li>思想冲击：<ul>
+<li>例子：你在森林里听到一声狼嚎。<ul>
+<li>普通人：” 有狼！快跑！”（证据 &#x3D; 事实）</li>
+<li>贝叶斯思考者：” 等一下。如果 ‘ 真的有狼 ‘，听到狼嚎的可能性是 90%。但如果 ‘ 只是一个模仿狼叫的人在开玩笑 ‘，听到狼嚎的可能性也有 30%。这个证据有一定价值，但不是决定性的。我需要结合其他证据（比如脚印、当地传说等）来更新我的判断。”</li>
+</ul>
+</li>
+<li>你学会了辨别 “ 强证据 “ 和 “ 弱证据 “。一条模棱两可、在多种解释下都可能出现的新闻，对你的信心调节作用就很小。而一个只有在某种特定情况下才会发生的证据，则会极大地改变你的看法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="你不是-“-你-“，你是一套-“-可迭代的模型-“"><a href="#你不是-“-你-“，你是一套-“-可迭代的模型-“" class="headerlink" title="你不是 “ 你 “，你是一套 “ 可迭代的模型 “"></a>你不是 “ 你 “，你是一套 “ 可迭代的模型 “</h2><ul>
+<li>常规思维：当我被证明是错的时，是 “ 我 “ 错了。这是一种对自我的攻击，会触发防御、固执和羞耻感。</li>
+<li>贝叶斯颠覆：被证明错误的不是 “ 你 “，而是 “ 你当前版本的世界观模型 “ 存在 Bug。 失败和错误，不再是人格上的污点，而是最宝贵的 “ 调试数据 “。</li>
+<li>思想冲击：<ul>
+<li>你不再害怕承认错误，反而会积极寻找自己模型的漏洞。因为每一次承认 “ 我之前的模型不够好 “，都意味着一次升级的机会，让你能构建一个更精确、更有预测力的 “ 新版模型 “。</li>
+<li>这正是你之前提到的 “ 记录与反思 “。你不是在批判那个 “ 昨天的我 “，你是在以一个工程师的视角，冷静地分析 “V1.0 版本 “ 的决策系统为什么会输出一个错误结果，从而开发出更强大的 “V2.0 版本 “。</li>
+<li>这种思维让你拥有惊人的 “ 反脆弱性 “ 和 “ 成长心态 “。 别人的批评、市场的失败、生活中的挫折，都从对 “ 你 “ 的攻击，变成了优化 “ 你的模型 “ 的免费数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="争论的终极目的不是-“-赢-“，而是-“-同步-“"><a href="#争论的终极目的不是-“-赢-“，而是-“-同步-“" class="headerlink" title="争论的终极目的不是 “ 赢 “，而是 “ 同步 “"></a>争论的终极目的不是 “ 赢 “，而是 “ 同步 “</h2><ul>
+<li>常规思维：辩论是为了说服对方，证明我是对的，你是错的。这是一个零和游戏。</li>
+<li>贝叶斯颠覆：与人交往的最高境界，是 “ 认知同步 “。 如果两个人拥有完全相同的 “ 先验知识 “ 和接收到完全相同的 “ 新证据 “，那么理论上他们会得出完全相同的 “ 后验结论 “。</li>
+<li>思想冲击：<ul>
+<li>当遇到分歧时，贝叶斯思维者会想：” 我们俩的结论不同，这说明我们之中至少有一个人，拥有对方所不了解的信息，或者我们的 ‘ 先验模型 ‘ 有差异。我的目标不是驳倒他，而是搞清楚我们认知差异的来源到底在哪里？”</li>
+<li>你会开始这样对话：” 你得出这个结论，是基于哪些信息？我这边看到的信息是 A、B、C，它们让我得出了相反的结论。我们来对一下信息源？”</li>
+<li>这会让你成为一个极受欢迎的沟通者。 你不再是一个好斗的辩手，而是一个好奇的探索者，总想通过与他人交流来 “ 合并数据集 “，从而一起走向一个更接近真相的共识。</li>
+</ul>
+</li>
+</ul>
+<p>总结一下：学习贝叶斯定律，最颠覆性的收获是，它将你的心智从一张印刷出来的、静态的死地图，升级成了一个实时联网、不断根据路况自动修正路线的导航 App。</p>
+<ul>
+<li>你知道你的地图永远不会是 100% 完美的。</li>
+<li>你把遇到的每一个 “ 堵车 “（错误&#x2F;失败），都看作是更新地图的最佳 “ 实时路况 “ 信息。</li>
+<li>你乐于和其他司机（不同观点的人）交换路况信息，因为你们的目标是一样的——更高效地抵达目的地（真相）。</li>
+</ul>
+<p>这不仅仅是一种技能，这是一种智慧，一种在充满不确定性的世界里，保持谦逊、开放和不断进化的生活哲学。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/ef248034.html" rel="prev" title="傅里叶变换">
+                  <i class="fa fa-angle-left"></i> 傅里叶变换
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/e553b02e.html" rel="next" title="《黑客与画家》5星+">
+                  《黑客与画家》5星+ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

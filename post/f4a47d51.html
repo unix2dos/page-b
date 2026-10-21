@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.readwrite.fun","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"normal"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="购买与登录这次买的是 DMIT 洛杉矶 LAX.AS3.Pro.Pocket，系统为 Debian 13。安装前先确认 Mac 可以通过 SSH 登录 VPS： 1ssh dmit  这里的 dmit 是我在 Mac 的 ~&#x2F;.ssh&#x2F;config 中设置的 Host 别名。公钥放在 DMIT 实例上，登录时使用 Mac 上对应的私钥。不要把私钥写进文章或发给别人。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dmit 使用">
+<meta property="og:url" content="https://www.readwrite.fun/post/f4a47d51.html">
+<meta property="og:site_name" content="趣读写">
+<meta property="og:description" content="购买与登录这次买的是 DMIT 洛杉矶 LAX.AS3.Pro.Pocket，系统为 Debian 13。安装前先确认 Mac 可以通过 SSH 登录 VPS： 1ssh dmit  这里的 dmit 是我在 Mac 的 ~&#x2F;.ssh&#x2F;config 中设置的 Host 别名。公钥放在 DMIT 实例上，登录时使用 Mac 上对应的私钥。不要把私钥写进文章或发给别人。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-24T16:23:54.000Z">
+<meta property="article:modified_time" content="2026-10-21T04:09:02.848Z">
+<meta property="article:author" content="readwrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.readwrite.fun/post/f4a47d51.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.readwrite.fun/post/f4a47d51.html","path":"post/f4a47d51.html","title":"dmit 使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>dmit 使用 | 趣读写</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","cdn":"//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">趣读写</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-read"><a href="/categories/1-read/" rel="section"><i class="fas fa-book fa-fw"></i>Read</a></li><li class="menu-item menu-item-write"><a href="/categories/2-write/" rel="section"><i class="fas fa-feather fa-fw"></i>Write</a></li><li class="menu-item menu-item-history"><a href="/history/" rel="section"><i class="fas fa-calendar fa-fw"></i>History</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E4%B8%8E%E7%99%BB%E5%BD%95"><span class="nav-text">购买与登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-3x-ui"><span class="nav-text">安装 3x-ui</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E6%9C%AC%E6%9C%BA%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80"><span class="nav-text">为什么在本机浏览器打开</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3x-ui-%E5%92%8C-Clash-Verge-%E6%80%8E%E6%A0%B7%E9%85%8D%E5%90%88"><span class="nav-text">3x-ui 和 Clash Verge 怎样配合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-%E4%B8%8A%E4%BD%BF%E7%94%A8-Clash-Verge"><span class="nav-text">Mac 上使用 Clash Verge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-%E5%9B%BD%E5%86%85%E7%9B%B4%E8%BF%9E%E3%80%81%E5%85%B6%E4%BB%96%E8%B5%B0-DMIT"><span class="nav-text">Mac 国内直连、其他走 DMIT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E6%B5%B7%E5%A4%96%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%EF%BC%9A%E5%85%88%E7%A1%AE%E8%AE%A4%E6%B5%8B%E8%AF%95%E5%86%85%E6%A0%B8%E5%B7%B2%E5%90%AF%E5%8A%A8%E5%AE%8C%E6%88%90"><span class="nav-text">排查海外连接失败：先确认测试内核已启动完成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iPhone%EF%BC%9A%E5%9C%A8-Quantumult-X-%E4%B8%AD%E6%96%B0%E5%A2%9E-DMIT-%E8%8A%82%E7%82%B9"><span class="nav-text">iPhone：在 Quantumult X 中新增 DMIT 节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">readwrite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">544</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.readwrite.fun/post/f4a47d51.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="readwrite">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="趣读写">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="dmit 使用 | 趣读写">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          dmit 使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-09-24 16:23:54" itemprop="dateCreated datePublished" datetime="2026-09-24T16:23:54+00:00">2026-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-10-21 04:09:02" itemprop="dateModified" datetime="2026-10-21T04:09:02+00:00">2026-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/" itemprop="url" rel="index"><span itemprop="name">2_write</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-write/04-%E6%B2%9F%E9%80%9A%E4%B8%96%E7%95%8C/" itemprop="url" rel="index"><span itemprop="name">04_沟通世界</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="购买与登录"><a href="#购买与登录" class="headerlink" title="购买与登录"></a>购买与登录</h1><p>这次买的是 DMIT 洛杉矶 <code>LAX.AS3.Pro.Pocket</code>，系统为 Debian 13。安装前先确认 Mac 可以通过 SSH 登录 VPS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh dmit</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>dmit</code> 是我在 Mac 的 <code>~/.ssh/config</code> 中设置的 Host 别名。公钥放在 DMIT 实例上，登录时使用 Mac 上对应的私钥。不要把私钥写进文章或发给别人。</p>
+<span id="more"></span>
+
+<h1 id="安装-3x-ui"><a href="#安装-3x-ui" class="headerlink" title="安装 3x-ui"></a>安装 3x-ui</h1><p>2026-09-24 安装时，3x-ui 的稳定版为 <code>v3.8.5</code>。在已经登录的 VPS 终端下载并执行该版本的<a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/wiki/Installation">官方安装脚本</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fLsS -o /root/install-3x-ui-v3.8.5.sh https://raw.githubusercontent.com/mhsanaei/3x-ui/v3.8.5/install.sh</span><br><span class="line">bash /root/install-3x-ui-v3.8.5.sh v3.8.5</span><br></pre></td></tr></table></figure>
+
+<p>安装器里的选择是：数据库用默认的 SQLite；不自定义面板端口，让它生成随机端口；SSL 选 <code>4. Skip SSL</code>；随后在「Bind the panel to 127.0.0.1 only?」回答 <code>y</code>。这组选择的前提是<strong>只通过 SSH 转发打开管理面板</strong>。面板监听 VPS 的 <code>127.0.0.1</code>，不接受公网直连。官方的<a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/panel.mdx">面板设置说明</a> 也明确要求：没有 TLS 时，不能把明文 HTTP 面板暴露到公网。</p>
+<p>安装完成后，<code>systemctl is-active x-ui</code> 应返回 <code>active</code>。本次验证中，面板只监听 VPS 的 <code>127.0.0.1</code>；从 Mac 经 SSH 转发访问登录页返回 HTTP 200。安装器默认还启动独立的订阅服务，监听公网 <code>2096</code> 端口。本机暂时用不到订阅，我已将它关闭；未来要使用订阅，再在面板的 Subscription 设置里启用并配置安全访问。<a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/subscription.mdx">官方订阅说明</a></p>
+<h1 id="为什么在本机浏览器打开"><a href="#为什么在本机浏览器打开" class="headerlink" title="为什么在本机浏览器打开"></a>为什么在本机浏览器打开</h1><p><code>127.0.0.1</code> 总是指「当前这台机器」。浏览器地址里的 <code>127.0.0.1:2222</code> 是 Mac；3x-ui 监听的 <code>127.0.0.1:60925</code> 是 VPS。它们是两个不同的本机地址。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mac 浏览器 → Mac 127.0.0.1:2222</span><br><span class="line">             → SSH 加密连接 → VPS 公网 22 端口</span><br><span class="line">             → VPS 上的 sshd → VPS 127.0.0.1:60925 → 3x-ui</span><br></pre></td></tr></table></figure>
+
+<p><code>ssh -L</code> 让 Mac 上的 SSH 客户端监听 <code>2222</code>，再通过已建立的 SSH 连接把请求交给 VPS 的 <code>sshd</code>。<code>sshd</code> 从 VPS 内部连接面板的 <code>60925</code>。<code>-N</code> 表示只转发连接，不打开远程命令行。面板网页虽然显示 <code>http://</code>，但它在两端都只经过本机回环地址；跨公网的部分包在 SSH 加密连接里。SSH 断开后，Mac 上的转发入口就消失，VPS 上的 3x-ui 仍继续运行。</p>
+<p>这不等于「没有公网端口」。目前 VPS 的 <code>22</code> 端口供 SSH 登录和转发，<code>8443</code> 端口供 Mac 的代理客户端连接；两者都对公网监听。面板的 <code>60925</code> 只监听 VPS 本机，Mac 的 <code>2222</code> 也只监听 Mac 本机。安装后默认监听公网的订阅端口 <code>2096</code> 已关闭。手机上的 <code>127.0.0.1</code> 也只指手机，不能直接拿 Mac 的本地面板地址访问。</p>
+<p>安装器生成的用户名、密码、端口和随机路径保存在 VPS 的 <code>/etc/x-ui/install-result.env</code>，文件权限为 <code>600</code>。在自己的 Mac 终端查看所需字段，<strong>不要把输出贴到聊天或文章里</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh dmit <span class="string">&quot;grep -E &#x27;^XUI_(USERNAME|PASSWORD|PANEL_PORT|WEB_BASE_PATH)=&#x27; /etc/x-ui/install-result.env&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>记下 <code>XUI_PANEL_PORT</code> 后，在 Mac 另开一个终端执行。本机这次随机到了 <code>60925</code>；其他实例要换成各自的端口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -N -L 127.0.0.1:2222:127.0.0.1:60925 dmit</span><br></pre></td></tr></table></figure>
+
+<p>保持转发终端运行，然后打开 <code>http://127.0.0.1:2222/&lt;XUI_WEB_BASE_PATH&gt;/</code>，用刚才查到的账号密码登录。<code>127.0.0.1</code> 是 Mac 自己，不是 VPS 的公网地址；浏览器到 VPS 的这段连接由 SSH 加密。如果已有转发占用 <code>2222</code>，不用重复运行命令。首次登录后可在面板中启用两步验证。</p>
+<p>网上那篇 DMIT 教程的官方安装命令仍可用，但它建议证书失败后开放固定的 <code>10000</code> 端口，用公网 HTTP 登录面板。我没有照做。固定高位端口也挡不住扫描；面板始终只通过 SSH 转发访问。</p>
+<h1 id="3x-ui-和-Clash-Verge-怎样配合"><a href="#3x-ui-和-Clash-Verge-怎样配合" class="headerlink" title="3x-ui 和 Clash Verge 怎样配合"></a>3x-ui 和 Clash Verge 怎样配合</h1><p>3x-ui 是管理 Xray 的网页。它的后台用 Go 写，网页用 React 和 TypeScript 写；你在网页里添加入站和客户端，设置保存在 VPS 的 SQLite 数据库中。3x-ui 再把设置交给 Xray。真正接收 Mac 连接、向网站发请求的是 Xray。VPS 上的 <code>x-ui</code> 服务由 systemd 管理；关掉 Mac 上的面板网页，不会停止已经运行的代理。<a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/architecture.md">3x-ui 官方架构说明</a></p>
+<p>上面通过 SSH 打开面板，是为了<strong>管理服务器</strong>。平时 Mac 上网时，Clash Verge 把连接交给内置的 Mihomo：它按规则挑出需要走代理的请求，用 Shadowsocks 2022 加密后发往 VPS 公网的 <code>8443</code> 端口。Xray 验证客户端密码，再替 Mac 连接网站；网站返回的数据沿原路送回。Clash Verge 可以通过系统代理或 TUN 接收应用流量，取决于 Mac 上启用的模式。<a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/proxies/ss/">Mihomo 的 Shadowsocks 配置说明</a> · <a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/inbound/tun/">TUN 说明</a></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Mac app] -&gt; [Clash Verge / Mihomo] == Shadowsocks 2022 :8443 ==&gt; [DMIT / Xray] -&gt; [Website]</span><br></pre></td></tr></table></figure>
+
+<p>走这条代理连接时，网站通常看到 DMIT 的公网 IP。如果网站本身使用 HTTPS，Mac 应用到网站的 HTTPS 加密仍然存在；Shadowsocks 保护的是 Mac 到 VPS 这一段。VPS 需要知道请求要发往哪里，所以这套连接也不等于完全匿名。</p>
+<p>这里有三种不同的凭据：SSH 私钥用于登录 VPS，3x-ui 账号密码用于登录面板，Shadowsocks 客户端密码用于让 Mihomo 连接 Xray。以后给 iPhone 配置时，单独添加一个客户端，就能分别停用 Mac 和 iPhone 的连接。</p>
+<h1 id="Mac-上使用-Clash-Verge"><a href="#Mac-上使用-Clash-Verge" class="headerlink" title="Mac 上使用 Clash Verge"></a>Mac 上使用 Clash Verge</h1><p>Mac 安装的是 Clash Verge Rev 2.5.5。起初创建了 VLESS + REALITY 入站，但它自带的 Mihomo 内核报 <code>REALITY authentication failed</code>；同一节点用 Xray 客户端则能连通。3x-ui 上游也有相近的<a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/issues/6568">兼容问题记录</a>。本次没有通过降低安全检查或降级 Xray 核心来绕过它，而是改建为一个仅供自己使用的 Shadowsocks 2022 入站，方法是 <code>2022-blake3-aes-256-gcm</code>，Mac 使用单独的客户端密钥。3x-ui 管理面板仍在本机回环地址，订阅服务 <code>2096</code> 仍关闭。</p>
+<p>第二个现象是端口。Mac 物理网卡直连 DMIT：SSH 的 <code>22</code> 端口约 0.18 秒建立连接，最初的节点端口 <code>443</code> 超时；临时探测 <code>8443</code> 约 0.19 秒连通。把节点迁到 <code>8443</code> 后，用绑定 Mac 物理网卡的独立 Mihomo 进程访问网页，返回 HTTP 200，出口 IP 是 DMIT。</p>
+<p>随后复测又发现：<code>443</code> 没有服务监听时，连接请求能到达 VPS 并收到拒绝；换成临时测试监听器时，Mac 约 0.17 秒连通。再把同一个 Shadowsocks 2022 节点短暂迁回 <code>443</code>，完整网页请求也返回 HTTP 200，之后已恢复 <code>8443</code>。所以不能把首次超时解释成「443 被永久封锁」，也不能仅凭这些结果断定是运营商、跨境网络还是服务商造成的。<code>8443</code> 是这次实测稳定连通后的当前选择，长期表现仍需观察。</p>
+<p>已经把这份配置作为单独的「DMIT 自建 Mac」本地配置导入 Clash Verge。短暂启用它时，节点测速约 194 ms，实际网页请求也返回 DMIT 出口 IP；验证后已切回原订阅。要使用它，在 Clash Verge 的「订阅」页对「DMIT 自建 Mac」点右键，选「使用」；切回原订阅用同样方法。这个连接由 Clash Verge 直接访问 VPS 的 <code>8443</code>，不依赖管理面板的 SSH 转发窗口。</p>
+<p>连接密钥存在 Mac 的本地配置中，文件权限已设为仅当前用户可读；<strong>不要把 YAML 内容、分享链接或二维码提交到博客或发给别人</strong>。iPhone 后续应单独建一组客户端密钥，方便分别停用。当前测速只证明这台 Mac 在当时的网络下可用，不保证别的运营商或时段表现相同。</p>
+<h1 id="Mac-国内直连、其他走-DMIT"><a href="#Mac-国内直连、其他走-DMIT" class="headerlink" title="Mac 国内直连、其他走 DMIT"></a>Mac 国内直连、其他走 DMIT</h1><p>最初的 DMIT 配置只有 <code>MATCH,PROXY</code>，所以百度等国内网站也走美国服务器。后来按 <a target="_blank" rel="noopener" href="https://github.com/Loyalsoldier/clash-rules">Loyalsoldier&#x2F;clash-rules</a> 的白名单模式加入五份规则：私有域名与局域网地址直连，已知需代理域名走 DMIT，直连域名和中国大陆 IP 直连，剩余流量仍走 DMIT。这里的 “ 白名单 “ 指网站分流，与全局脚本里筛选国家节点的 <code>AutoTest-White</code> 无关。</p>
+<p>该仓库的文件虽然以 <code>.txt</code> 结尾，内容却是 <code>payload:</code> 开头的 YAML，因此 <code>format</code> 使用 <code>yaml</code>。规则每天通过 <code>PROXY</code> 组更新一次；<code>PROXY</code> 在这份配置中选的是 <code>DMIT-US-Mac</code>。<a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/rule-providers/">Mihomo 规则提供者说明</a></p>
+<p>Clash Verge 的「规则」页只列出 <code>ls_private</code>、<code>ls_direct</code> 等规则集入口，不会把集内的每个域名逐条展开。本次下载的 <code>dmit-ls-direct.yaml</code> 含有 <code>+.baidu.com</code>；运行日志也显示百度相关请求命中 <code>RuleSet(ls_direct)</code> 并走 <code>DIRECT</code>。</p>
+<p>DMIT 配置带有 <code>x-global-script-default-exit: PROXY</code>。Clash Verge 的全局脚本软链接指向 <code>vault/clashx/1_all.js</code>：启用 DMIT 时，脚本把个人规则加在下面的规则集前面，也加入两个 AWS 节点、<code>AWS-VPC</code> 组和「🌈地区规则默认出口」手动选择组。个人规则中的 <code>HK</code>、<code>TW</code>、<code>US</code>、<code>JP</code> 都指向这个手动组；它默认选 <code>PROXY</code>，即当前选中的 DMIT 节点。也可以在组里手动改选其他节点。两条公司内网专用规则仍指向 <code>AWS-VPC</code>。这份配置不创建可能筛不到节点的自动测速组。<code>PROXY</code> 仍只有 DMIT 和 <code>DIRECT</code> 两个选项，所以地区规则的默认代理出口是 DMIT。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rule-providers:</span></span><br><span class="line">  <span class="attr">ls_private:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">behavior:</span> <span class="string">domain</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">yaml</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&quot;https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt&quot;</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">./ruleset/dmit-ls-private.yaml</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="number">86400</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">PROXY</span></span><br><span class="line">  <span class="attr">ls_lancidr:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">behavior:</span> <span class="string">ipcidr</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">yaml</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&quot;https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt&quot;</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">./ruleset/dmit-ls-lancidr.yaml</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="number">86400</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">PROXY</span></span><br><span class="line">  <span class="attr">ls_proxy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">behavior:</span> <span class="string">domain</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">yaml</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&quot;https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt&quot;</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">./ruleset/dmit-ls-proxy.yaml</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="number">86400</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">PROXY</span></span><br><span class="line">  <span class="attr">ls_direct:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">behavior:</span> <span class="string">domain</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">yaml</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&quot;https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt&quot;</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">./ruleset/dmit-ls-direct.yaml</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="number">86400</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">PROXY</span></span><br><span class="line">  <span class="attr">ls_cncidr:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">behavior:</span> <span class="string">ipcidr</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">yaml</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&quot;https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt&quot;</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">./ruleset/dmit-ls-cncidr.yaml</span></span><br><span class="line">    <span class="attr">interval:</span> <span class="number">86400</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">PROXY</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">RULE-SET,ls_private,DIRECT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">RULE-SET,ls_lancidr,DIRECT,no-resolve</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">RULE-SET,ls_proxy,PROXY</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">RULE-SET,ls_direct,DIRECT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">RULE-SET,ls_cncidr,DIRECT</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">MATCH,PROXY</span></span><br></pre></td></tr></table></figure>
+
+<p>本次没有添加广告拦截规则。当前配置有 54 条规则、3 个节点和 3 个策略组。「🌈地区规则默认出口」默认选择 <code>PROXY</code>，再由 <code>PROXY</code> 选择 DMIT。Clash Verge 实际监听本地 <code>7897</code> 端口；原 YAML 中的 <code>mixed-port: 18791</code> 会被应用运行时配置覆盖，不能把 <code>18791</code> 当作当前可用的本地代理端口。</p>
+<h1 id="排查海外连接失败：先确认测试内核已启动完成"><a href="#排查海外连接失败：先确认测试内核已启动完成" class="headerlink" title="排查海外连接失败：先确认测试内核已启动完成"></a>排查海外连接失败：先确认测试内核已启动完成</h1><p>2026-09-25 排查时，先确认运行中的订阅确实是 DMIT，再分别通过本地 <code>7897</code> 代理和 TUN 请求百度、<code>api.ipify.org</code>、Google 的 <code>generate_204</code>：六次请求全部成功，返回 200 或 204。DMIT 服务器上的 <code>x-ui</code> 服务正常，<code>8443</code> 正在监听；服务器直接访问两个海外测试地址也成功。</p>
+<p>随后复现了临时测试方法的问题：Mihomo 的管理接口已经能响应时，五份规则集可能还没加载完成，此时发起 HTTPS 请求会报连接重置或 <code>SSL_ERROR_SYSCALL</code>。连续三次启动对照中，过早请求失败 3&#x2F;3；同一个进程等待规则集加载完成后再请求，成功 3&#x2F;3，出口都是 DMIT，耗时约 0.64 秒。这里没有改节点、密码或服务器，只改变了发起测试的时机。</p>
+<p>以后单独启动测试内核时，应检查 <code>/providers/rules</code> 中五个规则集的 <code>ruleCount</code> 都大于零，再确认代理能完成实际 HTTPS 请求。管理接口可访问、代理端口已监听，或者固定等待半秒，都不足以单独证明代理已就绪。本轮也排除了 “ 必须改 DNS 才能让这些测试请求成功 “ 的判断：保持原 DNS 配置，等待初始化完成后即可成功。</p>
+<p>这确认了临时测试会产生假失败；本轮没有复现日常使用中的海外超时，也不能据此解释每一次历史断网或保证全天稳定。若实际浏览器再次失败，应记录具体网站、时间、当时选中的订阅与策略组，再对照客户端日志和服务器连通性，避免把临时测试的失败直接归因于 DMIT。</p>
+<h1 id="iPhone：在-Quantumult-X-中新增-DMIT-节点"><a href="#iPhone：在-Quantumult-X-中新增-DMIT-节点" class="headerlink" title="iPhone：在 Quantumult X 中新增 DMIT 节点"></a>iPhone：在 Quantumult X 中新增 DMIT 节点</h1><p>Quantumult X 官方示例已包含 <code>2022-blake3-aes-256-gcm</code>，与目前 DMIT 节点使用的方法一致。<a target="_blank" rel="noopener" href="https://github.com/crossutility/Quantumult-X/blob/master/sample.conf">官方配置示例</a></p>
+<p>手机已有可用配置时，只需在 QuanX 中扫码添加 <code>DMIT-US</code> 本地节点，再把它加入现有代理策略组并选中。原有手机分流规则继续生效；Mac 的 YAML、<code>1_all.js</code> 和其中的进程规则不会随节点一起导入。先更新 QuanX，再测试手机实际连接。</p>
+<p>私有导入文件保存在 Mac 的 <code>~/.config/dmit/</code>：<code>dmit-shared-node-qr.png</code> 是节点二维码，<code>quanx-dmit-shared-node.txt</code> 是 QuanX 原生节点行，<code>dmit-shared-node.ss.txt</code> 是 SS 分享链接。这些文件含连接密钥，不应放入博客或公开仓库。二维码按 <a target="_blank" rel="noopener" href="https://shadowsocks.org/doc/sip002.html">SIP002</a> 的 AEAD-2022 要求编码，已在本地回读验证。</p>
+<p>这次导出复用了 Mac 客户端的完整密钥，尚未创建手机独立客户端，也没有修改服务器。官方示例确认了加密方法支持；本机没有 Quantumult X，手机对当前完整节点参数的兼容性和实际联网仍需扫码后验证。以后如需单独统计或停用手机，再给手机分配独立客户端密钥。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://digvps.com/review/dmit">https://digvps.com/review/dmit</a></li>
+<li><a target="_blank" rel="noopener" href="https://x.com/zstmfhy/article/2021815691456983385">https://x.com/zstmfhy/article/2021815691456983385</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/wiki/Installation">https://github.com/MHSanaei/3x-ui/wiki/Installation</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/panel.mdx">https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/panel.mdx</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/subscription.mdx">https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/subscription.mdx</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/transports.mdx">https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/config/transports.mdx</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/issues/6568">https://github.com/MHSanaei/3x-ui/issues/6568</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui/blob/main/docs/architecture.md">https://github.com/MHSanaei/3x-ui/blob/main/docs/architecture.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/proxies/">https://wiki.metacubex.one/en/config/proxies/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/inbound/tun/">https://wiki.metacubex.one/en/config/inbound/tun/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Loyalsoldier/clash-rules">https://github.com/Loyalsoldier/clash-rules</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.metacubex.one/en/config/rule-providers/">https://wiki.metacubex.one/en/config/rule-providers/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="readwrite WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="readwrite Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/26f85f22.html" rel="prev" title="股票投资基础知识学习笔记（汇总版）">
+                  <i class="fa fa-angle-left"></i> 股票投资基础知识学习笔记（汇总版）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">readwrite</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
